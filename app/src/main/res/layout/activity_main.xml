@@ -46,6 +46,28 @@
                 android:text="@string/credit"
                 android:textColor="@color/colorPrimaryDarkBlack"/>
 
+            <!-- Rating Bar:
+            <TextView
+                android:id="@+id/rt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="20dp"
+                android:text="@string/rate"
+                android:textColor="@color/text_color_secondary"
+                android:textSize="18dp"
+                android:typeface="normal" />
+
+            <RatingBar
+                android:id="@+id/ratingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="47dp"
+                android:layout_below="@+id/rt"
+                android:stepSize="0.5"
+                android:numStars="5"
+                />
+            -->
+
+
         </RelativeLayout>
 
 

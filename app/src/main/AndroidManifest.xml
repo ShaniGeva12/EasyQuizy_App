@@ -9,9 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/DarkyTheme">
-
-        <activity android:name=".SplashActivity"></activity>
-        <activity android:name=".LoginPageActivity"></activity>
+        <activity
+            android:name=".TopicsSelectActivity"
+            android:label="@string/title_activity_topics_select"
+            android:theme="@style/DarkyTheme.NoActionBar"></activity>
+        <activity android:name=".SplashActivity" />
+        <activity android:name=".LoginPageActivity" />
         <activity
             android:name=".MainActivity"
             android:theme="@style/DarkyTheme.NoActionBar">

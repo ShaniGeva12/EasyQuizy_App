@@ -6,4 +6,12 @@
     <string name="gender">מין</string>
     <string name="name">שם</string>
     <string name="age">גיל</string>
+    <string name="female">נקבה</string>
+    <string name="male">זכר</string>
+    <string name="rate">דרגו את האפליקציה</string>
+    <string name="rating_tnx">תודה על הדירוג!</string>
+    <string name="sex">מין:</string>
+    <string name="starts">כוכבים</string>
+    <string name="unknown_sex">לא מעוניין לפרט</string>
+    <string name="wlcm_str">ברוכ/ה הבא/ה</string>
 </resources>
