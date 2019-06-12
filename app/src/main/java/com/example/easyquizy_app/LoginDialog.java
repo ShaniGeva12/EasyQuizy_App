@@ -18,11 +18,11 @@ public class LoginDialog {
         dialog.setContentView(R.layout.login_dialog_layout);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 
-        FrameLayout mDialogNo = dialog.findViewById(R.id.frmOffline);
-        mDialogNo.setOnClickListener(new View.OnClickListener() {
+        FrameLayout mDialogOffline = dialog.findViewById(R.id.frmOffline);
+        mDialogOffline.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(activity.getApplicationContext(),"Offline" ,Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity.getApplicationContext(),"Offline / TopicsSelect" ,Toast.LENGTH_SHORT).show();
 
                 Intent homeIntent = new Intent(activity, TopicsSelectActivity.class);
                 homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -32,13 +32,13 @@ public class LoginDialog {
             }
         });
 
-        FrameLayout mDialogOk = dialog.findViewById(R.id.frmOnline);
-        mDialogOk.setOnClickListener(new View.OnClickListener() {
+        FrameLayout mDialogOnline = dialog.findViewById(R.id.frmOnline);
+        mDialogOnline.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(activity.getApplicationContext(),"Online" ,Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity.getApplicationContext(),"Online / Login" ,Toast.LENGTH_SHORT).show();
 
-                Intent homeIntent = new Intent(activity, TopicsSelectActivity.class);
+                Intent homeIntent = new Intent(activity, LoginPageActivity.class);
                 homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 activity.startActivity(homeIntent);
 

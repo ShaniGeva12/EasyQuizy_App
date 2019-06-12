@@ -163,7 +163,7 @@
                 >
                 <!-- android:background="@color/white_50precent" -->
                 <Button
-                    android:id="@+id/play_btn"
+                    android:id="@+id/enter_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
