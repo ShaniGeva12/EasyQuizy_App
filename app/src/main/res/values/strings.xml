@@ -5,4 +5,15 @@
     <string name="name">Name</string>
     <string name="age">Age</string>
     <string name="gender">Gender</string>
+
+    <string name="sex">Sex:</string>
+    <string name="male">male</string>
+    <string name="female">female</string>
+    <string name="unknown_sex">Not Specified</string>
+
+    <string name="rate">Rate This App</string>
+    <string name="rating_tnx">Thanks for rating us!</string>
+    <string name="starts">Stars</string>
+
+    <string name="wlcm_str">Welcome</string>
 </resources>
