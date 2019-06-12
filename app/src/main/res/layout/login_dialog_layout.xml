@@ -62,7 +62,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:src="@android:color/transparent"
-            app:backgroundTint="@color/fab2" />
+            app:backgroundTint="@color/fabOffline" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -87,7 +87,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:src="@android:color/transparent"
-            app:backgroundTint="@color/fab1" />
+            app:backgroundTint="@color/fabOnline" />
 
         <TextView
             android:layout_width="wrap_content"
