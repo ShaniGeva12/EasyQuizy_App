@@ -9,12 +9,12 @@
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
-    <!--
+
     <include
         layout="@layout/app_bar_topics_select"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-        -->
+
 
     <RelativeLayout
         android:id="@+id/main_layout"

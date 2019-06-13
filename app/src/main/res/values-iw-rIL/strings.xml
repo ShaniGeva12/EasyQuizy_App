@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">EasyQuizy_App</string>
+    <string name="app_name">EasyQuizy</string>
     <string name="credit">© EasyQuizy ©</string>
     <string name="enter">היכנס</string>
     <string name="gender">מין</string>
