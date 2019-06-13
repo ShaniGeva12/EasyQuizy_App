@@ -37,7 +37,8 @@ public class LoginPageActivity extends AppCompatActivity {
     private void enterOnClick() {
 
         String inputStr = name_input.getText().toString();
-        if (inputStr != null && inputStr.length() > 0 && inputStr != " ") {            //dumb user handler: empty name
+        if(inputStr.contentEquals("") || inputStr.contentEquals(getResources().getString(R.string.enter)) || inputStr.contentEquals(" "))
+        {   //dumb user handler: empty name
             //String msg = getResources().getString(R.string.empty_recipe_title);
             Toast.makeText(LoginPageActivity.this, "please enter your name", Toast.LENGTH_SHORT).show();
             Log.d(TAG, "enterOnClick: dumb user handler: empty name value");
@@ -45,7 +46,8 @@ public class LoginPageActivity extends AppCompatActivity {
         }
 
         inputStr = age_input.getText().toString();
-        if (inputStr != null && inputStr.length() > 0 && inputStr != " ") {            //dumb user handler: empty age
+        if(inputStr.contentEquals("") || inputStr.contentEquals(getResources().getString(R.string.enter)) || inputStr.contentEquals(" "))
+        {   //dumb user handler: empty age
             //String msg = getResources().getString(R.string.empty_recipe_title);
             Toast.makeText(LoginPageActivity.this, "please enter your age", Toast.LENGTH_SHORT).show();
             Log.d(TAG, "enterOnClick: dumb user handler: empty age value");
