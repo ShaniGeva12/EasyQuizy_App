@@ -9,6 +9,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.DarkyTheme_NoActionBar);     //return from splash
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -20,17 +21,5 @@ public class MainActivity extends AppCompatActivity {
                 alert.showDialog(MainActivity.this);
             }
         });
-
-//
-//        AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
-//        alertDialog.setTitle("TODO");
-//        alertDialog.setMessage(msg);
-//        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK",
-//                new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        dialog.dismiss();
-//                    }
-//                });
-//        alertDialog.show();
     }
 }

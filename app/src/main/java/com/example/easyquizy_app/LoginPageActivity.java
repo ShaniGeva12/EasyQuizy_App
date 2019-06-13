@@ -15,6 +15,8 @@ public class LoginPageActivity extends AppCompatActivity {
     RadioGroup sexRG;
     Button enter_btn;
 
+    //TODO daniel
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

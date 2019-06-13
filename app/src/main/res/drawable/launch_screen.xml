@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- TODO shani -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <gradient
+        android:angle="135"
+        android:centerColor="#FFC107"
+        android:endColor="#00695C"
+        android:startColor="#4DB6AC"
+        android:type="linear" />
+</shape>
+
+
+<!--&lt;!&ndash; The android:opacity=”opaque” line — this is critical in preventing a flash of black as your theme transitions. &ndash;&gt;-->
+<!--<layer-list xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--android:opacity="opaque">-->
+
+    <!--&lt;!&ndash; The background color, preferably the same as your normal theme &ndash;&gt;-->
+    <!--<item android:drawable="@android:color/white" />-->
+
+    <!--&lt;!&ndash; Your product logo - 144dp color version of your app icon &ndash;&gt;-->
+    <!--<item>-->
+
+        <!--<bitmap-->
+            <!--android:gravity="center"-->
+            <!--android:src="@drawable/ic_menu_camera" />-->
+
+    <!--</item>-->
+
+<!--</layer-list>-->

@@ -13,11 +13,10 @@
             android:name=".TopicsSelectActivity"
             android:label="@string/title_activity_topics_select"
             android:theme="@style/DarkyTheme.NoActionBar"></activity>
-        <activity android:name=".SplashActivity" />
         <activity android:name=".LoginPageActivity" />
         <activity
             android:name=".MainActivity"
-            android:theme="@style/DarkyTheme.NoActionBar">
+            android:theme="@style/AppTheme.Launcher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
