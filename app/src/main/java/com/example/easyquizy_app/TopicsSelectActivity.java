@@ -19,7 +19,7 @@ import android.widget.TextView;
 
 public class TopicsSelectActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    private TextView titleTxt;
+
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
@@ -40,6 +40,7 @@ public class TopicsSelectActivity extends AppCompatActivity
                         .setAction("Action", null).show();
             }
         });*/
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -73,6 +74,7 @@ public class TopicsSelectActivity extends AppCompatActivity
         );
         //-----------------------------------
 
+        /*
         recyclerView = (RecyclerView) findViewById(R.id.topics_recycler_view);
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
@@ -85,6 +87,8 @@ public class TopicsSelectActivity extends AppCompatActivity
         // specify an adapter
         mAdapter = new TopicAdapter(this, topics);
         recyclerView.setAdapter(mAdapter);
+
+        */
     }
 
     @Override

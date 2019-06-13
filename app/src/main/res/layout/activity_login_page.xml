@@ -39,24 +39,55 @@
             android:layout_alignParentBottom="true"
             android:gravity="center">
 
+            <!--
             <TextView
                 android:id="@+id/credits_ly"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/credit"
                 android:textColor="@color/colorPrimaryDarkBlack"/>
+                -->
+        <LinearLayout
+            android:id="@+id/already_signed_ly"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+
+            android:paddingStart="45dp"
+            >
+            <TextView
+                android:id="@+id/already_signed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/already_signed"
+                android:textColor="@color/colorPrimaryDarkBlack"/>
+
+            <Button
+                android:id="@+id/login_now_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginStart="15dp"
+                android:layout_marginBottom="15dp"
+
+                android:background="@drawable/button_bg_rounded_corners"
+                android:text="@string/login_now"
+                android:textColor="@color/text_color_thirdly" />
+
+        </LinearLayout>
 
         </RelativeLayout>
 
         <!-- Main between footer & bottom -->
         <ScrollView
+            android:id="@+id/main_sv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@id/footer"
             android:layout_below="@id/header"
 
             android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="30dp"
             android:layout_marginEnd="20dp"
             android:layout_marginStart="20dp"
 
@@ -73,9 +104,56 @@
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
             android:paddingTop="30dp"
-
-
             >
+
+            <!-- /////////////////////////////////////////////// -->
+            <TextView
+                android:id="@+id/mail_entering"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/mail"
+                android:textColor="@color/text_color_secondary"
+                />
+            <EditText
+                android:id="@+id/mail_et"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/enter_mail"
+                android:inputType="textPersonName"
+                android:layout_below="@id/mail_entering"
+
+                android:layout_marginTop="10dp"
+                android:imeOptions="actionSend"
+                android:textColor="@color/colorPrimaryDarkBlack"
+                android:textColorHint="@color/colorPrimaryDarkBlack"
+                android:layout_marginBottom="10dp"
+                />
+
+            <TextView
+                android:id="@+id/pass_entering"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/password"
+                android:textColor="@color/text_color_secondary"
+
+                android:layout_below="@+id/mail_et"
+                />
+            <EditText
+                android:id="@+id/pass_et"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/paas_hint"
+                android:inputType="textPassword"
+                android:layout_below="@id/pass_entering"
+
+                android:layout_marginTop="10dp"
+                android:imeOptions="actionSend"
+                android:textColor="@color/colorPrimaryDarkBlack"
+                android:textColorHint="@color/colorPrimaryDarkBlack"
+                android:layout_marginBottom="10dp"
+                />
+
+            <!-- /////////////////////////////////////////////// -->
 
             <TextView
                 android:id="@+id/name_entering"
@@ -83,6 +161,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/name"
                 android:textColor="@color/text_color_secondary"
+                android:layout_below="@+id/pass_et"
                 />
             <EditText
                 android:id="@+id/name_et"
@@ -112,7 +191,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="write your age here"
-                android:inputType="textPersonName"
+                android:inputType="number"
                 android:layout_below="@id/age_entering"
 
                 android:layout_marginTop="20dp"
@@ -164,12 +243,13 @@
 
 
             <RelativeLayout
-                android:id="@+id/name_layout"
+                android:id="@+id/enter_btn_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
                 android:gravity="center"
-                android:layout_marginTop="340dp"
+
+                android:layout_below="@+id/sexRadioGroup"
 
                 >
                 <!-- android:background="@color/white_50precent" -->
@@ -178,22 +258,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
-                    android:paddingStart="100dp"
-                    android:paddingLeft="100dp"
-                    android:paddingEnd="100dp"
-                    android:paddingRight="100dp"
-
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="20dp"
-
                     android:background="@drawable/button_bg_rounded_corners"
+                    android:paddingStart="100dp"
+
+                    android:paddingLeft="100dp"
+                    android:paddingEnd="100dp"
+
+                    android:paddingRight="100dp"
                     android:text="@string/enter"
                     android:textColor="@color/text_color_thirdly" />
             </RelativeLayout>
-
         </RelativeLayout>
-
         </ScrollView>
+
     </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

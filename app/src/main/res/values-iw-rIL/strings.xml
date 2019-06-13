@@ -31,4 +31,11 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">ראש ניווט</string>
     <string name="action_settings">הגדרות</string>
+    <string name="already_signed">כבר רשום?</string>
+    <string name="login_now">התחבר כעת</string>
+    <string name="mail">אימייל</string>
+    <string name="password">סיסמא</string>
+    <string name="enter_mail">example@gmail.com</string>
+    <string name="paas_hint">הכנס כאן סיסמא</string>
+    <string name="sign_up">הרשמה</string>
 </resources>
