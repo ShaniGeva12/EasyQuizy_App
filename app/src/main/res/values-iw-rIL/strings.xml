@@ -14,4 +14,21 @@
     <string name="starts">כוכבים</string>
     <string name="unknown_sex">לא מעוניין לפרט</string>
     <string name="wlcm_str">ברוכ/ה הבא/ה</string>
+    <string name="countries">מדינות</string>
+    <string name="food">אוכל</string>
+    <string name="hp">הארי פוטר</string>
+    <string name="math">מתמטיקה</string>
+    <string name="menu_gallery">גלריה</string>
+    <string name="menu_home">בית</string>
+    <string name="menu_send">שלח</string>
+    <string name="menu_share">שתף</string>
+    <string name="menu_slideshow">מצגת</string>
+    <string name="menu_tools">כלים</string>
+    <string name="title_activity_topics_select">אקטיביטי בחירת נושא</string>
+    <string name="navigation_drawer_open">פתח ניווט</string>
+    <string name="navigation_drawer_close">סגור ניווט</string>
+    <string name="nav_header_title">אנדרואיד סטודיו</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">ראש ניווט</string>
+    <string name="action_settings">הגדרות</string>
 </resources>

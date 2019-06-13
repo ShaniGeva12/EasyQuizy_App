@@ -30,4 +30,18 @@
     <string name="menu_tools">Tools</string>
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
+
+
+    <string name="math">Math</string>
+    <string name="hp">Harry Potter</string>
+    <string name="countries">Countries</string>
+    <string name="food">Food</string>
+
+    <string-array name="Categories">
+        <item> @string/math </item>
+        <item> @string/hp </item>
+        <item> @string/countries </item>
+        <item> @string/food </item>
+    </string-array>
+
 </resources>

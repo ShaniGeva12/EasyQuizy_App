@@ -3,6 +3,8 @@ package com.example.easyquizy_app;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -13,14 +15,20 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.widget.TextView;
 
 public class TopicsSelectActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    private TextView titleTxt;
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_topics_select);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         /*FloatingActionButton fab = findViewById(R.id.fab);
@@ -38,6 +46,44 @@ public class TopicsSelectActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        //-----------------------------------
+        Topic topics[] = new Topic[4];
+
+        topics[0] = new Topic(
+                getResources().getString(R.string.math),
+                getResources().getString(R.string.math)
+        );
+
+        topics[2] = new Topic(
+                getResources().getString(R.string.hp),
+                getResources().getString(R.string.hp)
+        );
+
+        topics[3] = new Topic(
+                getResources().getString(R.string.countries),
+                getResources().getString(R.string.countries)
+        );
+
+        topics[4] = new Topic(
+                getResources().getString(R.string.food),
+                getResources().getString(R.string.food)
+        );
+        //-----------------------------------
+
+        recyclerView = (RecyclerView) findViewById(R.id.topics_recycler_view);
+        // use this setting to improve performance if you know that changes
+        // in content do not change the layout size of the RecyclerView
+        recyclerView.setHasFixedSize(true);
+
+        // use a linear layout manager
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+
+        // specify an adapter
+        mAdapter = new TopicAdapter(this, topics);
+        recyclerView.setAdapter(mAdapter);
     }
 
     @Override
