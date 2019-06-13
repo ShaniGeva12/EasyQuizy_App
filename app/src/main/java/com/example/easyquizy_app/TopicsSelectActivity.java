@@ -1,5 +1,6 @@
 package com.example.easyquizy_app;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -23,6 +24,7 @@ public class TopicsSelectActivity extends AppCompatActivity
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
+    //private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +33,7 @@ public class TopicsSelectActivity extends AppCompatActivity
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         /* TODO shani
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -86,6 +89,7 @@ public class TopicsSelectActivity extends AppCompatActivity
 
         // specify an adapter
         mAdapter = new TopicAdapter(this, topics);
+        recyclerView.addItemDecoration(new SpacingItemDecoration(this, 2));
         recyclerView.setAdapter(mAdapter);
 
 

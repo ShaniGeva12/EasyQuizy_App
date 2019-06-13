@@ -50,5 +50,6 @@
     <string name="enter_mail">example@gmail.com</string>
     <string name="paas_hint">Enter Password Here</string>
     <string name="sign_up">Sign Up</string>
+    <string name="topics">Topics</string>
 
 </resources>
