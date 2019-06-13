@@ -58,23 +58,23 @@ public class TopicsSelectActivity extends AppCompatActivity
                 getResources().getString(R.string.math)
         );
 
-        topics[2] = new Topic(
+        topics[1] = new Topic(
                 getResources().getString(R.string.hp),
                 getResources().getString(R.string.hp)
         );
 
-        topics[3] = new Topic(
+        topics[2] = new Topic(
                 getResources().getString(R.string.countries),
                 getResources().getString(R.string.countries)
         );
 
-        topics[4] = new Topic(
+        topics[3] = new Topic(
                 getResources().getString(R.string.food),
                 getResources().getString(R.string.food)
         );
         //-----------------------------------
 
-        /*
+
         recyclerView = (RecyclerView) findViewById(R.id.topics_recycler_view);
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
@@ -88,7 +88,7 @@ public class TopicsSelectActivity extends AppCompatActivity
         mAdapter = new TopicAdapter(this, topics);
         recyclerView.setAdapter(mAdapter);
 
-        */
+
     }
 
     @Override
