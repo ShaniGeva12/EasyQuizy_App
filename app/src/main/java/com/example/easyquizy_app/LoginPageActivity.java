@@ -135,7 +135,7 @@ public class LoginPageActivity extends AppCompatActivity {
                         }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(getApplicationContext(),getResources().getString(R.string.login_failed)+ e.getMessage(), Toast.LENGTH_LONG)
+                        Toast.makeText(getApplicationContext(),getResources().getString(R.string.login_failed)+ " "+ e.getMessage(), Toast.LENGTH_LONG)
                                 .show();
                     }
                 });
@@ -165,18 +165,23 @@ public class LoginPageActivity extends AppCompatActivity {
 
         if (TextUtils.isEmpty(email_ed.getText().toString())) {
             Toast.makeText(this,getResources().getString(R.string.enter_email), Toast.LENGTH_LONG).show();
+            return;
         }
         if (TextUtils.isEmpty(pass_ed.getText().toString())) {
             Toast.makeText(this,getResources().getString(R.string.enter_pass), Toast.LENGTH_LONG).show();
+            return;
         }
         if (TextUtils.isEmpty(name_input.getText().toString())) {
             Toast.makeText(this,getResources().getString(R.string.enter_name), Toast.LENGTH_LONG).show();
+            return;
         }
         if (TextUtils.isEmpty(age_input.getText().toString())) {
             Toast.makeText(this,getResources().getString(R.string.enter_age), Toast.LENGTH_LONG).show();
+            return;
         }
         if (pass_ed.getText().toString().length() < 6) {
             Toast.makeText(this,getResources().getString(R.string.pass_short), Toast.LENGTH_LONG).show();
+            return;
         }
 
         //Register new user
@@ -207,7 +212,7 @@ public class LoginPageActivity extends AppCompatActivity {
                                 }).addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(getApplicationContext(),getResources().getString(R.string.register_failed)+ e.getMessage(), Toast.LENGTH_LONG)
+                                Toast.makeText(getApplicationContext(),getResources().getString(R.string.register_failed) + " "+ e.getMessage(), Toast.LENGTH_LONG)
                                         .show();
                             }
                         });
@@ -216,7 +221,7 @@ public class LoginPageActivity extends AppCompatActivity {
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getApplicationContext(),getResources().getString(R.string.register_failed)+ e.getMessage(), Toast.LENGTH_LONG)
+                Toast.makeText(getApplicationContext(),getResources().getString(R.string.register_failed)+ " " +e.getMessage(), Toast.LENGTH_LONG)
                         .show();
             }
         });
