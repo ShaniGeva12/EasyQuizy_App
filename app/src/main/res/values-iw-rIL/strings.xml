@@ -39,4 +39,16 @@
     <string name="paas_hint">הכנס כאן סיסמא</string>
     <string name="sign_up">הרשמה</string>
     <string name="topics">נושאים</string>
+    <string name="Email">מייל</string>
+    <string name="enter_email">אנא הכנס מייל!</string>
+    <string name="enter_pass">אנא הכנס סיסמא!</string>
+    <string name="enter_name">אנא הכנס שם!</string>
+    <string name="enter_age">אנא הכנס גיל!</string>
+    <string name="pass_short">הסיסמא שלך קצרה מדי! אנא הכנס סיסמא באורך 6 תווים לפחות!</string>
+    <string name="register_succeded">ההרשמה הצליחה!</string>
+    <string name="register_failed">ההרשמה נכשלה</string>
+    <string name="sign_in">התחברות</string>
+    <string name="sign_in_using_email">התחבר בעזרת המייל שלך</string>
+    <string name="login_failed">ההתחברות נכשלה</string>
+    <string name="cancel">ביטול</string>
 </resources>

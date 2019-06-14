@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "379914435920",
+    "firebase_url": "https://easyquizy-81929.firebaseio.com",
+    "project_id": "easyquizy-81929",
+    "storage_bucket": "easyquizy-81929.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:379914435920:android:7402452450d6da41",
+        "android_client_info": {
+          "package_name": "com.example.easyquizy_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "379914435920-c7ici0lc2ie0v85gkhc5n2l3g569dcm4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.easyquizy_app",
+            "certificate_hash": "e058bd88c26f6f6216d083da4bcdd24ed855af30"
+          }
+        },
+        {
+          "client_id": "379914435920-lbcnc1e4lfohqhpj0ujnvloaqv883r6e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBpXj6BO1Cd2NkLU7Ci46HXDNK6BbpQJTY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "379914435920-lbcnc1e4lfohqhpj0ujnvloaqv883r6e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

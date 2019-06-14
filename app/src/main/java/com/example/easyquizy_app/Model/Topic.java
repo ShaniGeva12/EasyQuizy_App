@@ -1,4 +1,4 @@
-package com.example.easyquizy_app;
+package com.example.easyquizy_app.Model;
 
 import android.media.Image;
 

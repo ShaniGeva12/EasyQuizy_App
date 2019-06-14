@@ -51,5 +51,17 @@
     <string name="paas_hint">Enter Password Here</string>
     <string name="sign_up">Sign Up</string>
     <string name="topics">Topics</string>
+    <string name="Email">Email</string>
+    <string name="enter_email">Please enter email!</string>
+    <string name="enter_pass">Please enter password!</string>
+    <string name="enter_name">Please enter name!</string>
+    <string name="enter_age">Please enter age!</string>
+    <string name="pass_short">your password is too short!!! you need at least 6 digits!</string>
+    <string name="register_succeded">register succeded!!!</string>
+    <string name="register_failed">Register failed</string>
+    <string name="sign_in">SIGN IN</string>
+    <string name="sign_in_using_email">sign in with your email</string>
+    <string name="login_failed">Login failed</string>
+    <string name="cancel">CANCEL</string>
 
 </resources>
