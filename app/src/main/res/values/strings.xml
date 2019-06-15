@@ -43,6 +43,15 @@
         <item> @string/countries </item>
         <item> @string/food </item>
     </string-array>
+
+
+    <string-array name="choose_players_arr">
+        <item> @string/specific_opponent </item>
+        <item> @string/specific_opponent </item>
+        <item> @string/specific_opponent </item>
+        <item> @string/specific_opponent </item>
+    </string-array>
+
     <string name="already_signed">Already signed up?</string>
     <string name="login_now">Log In Now</string>
     <string name="mail">Mail</string>
@@ -70,5 +79,11 @@
     <string name="play">Play</string>
     <string name="write_yr_name">Write your name here</string>
     <string name="write_age">Write your age here</string>
+    <string name="single_player">Single Player</string>
+    <string name="random_player">Random Player</string>
+    <string name="or_choose">Or Choose:</string>
+    <string name="specific_opponent">Specific Opponent</string>
+    <string name="random_opponent">Random Opponent</string>
+    <string name="rate_topic">Rate This Topic</string>
 
 </resources>

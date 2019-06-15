@@ -58,4 +58,10 @@
     <string name="play">שחק</string>
     <string name="write_yr_name">הכנס שם כאן</string>
     <string name="write_age">הכנס גיל כאן</string>
+    <string name="single_player">שחקן יחיד</string>
+    <string name="random_player">הגרלת שחקן נוסף</string>
+    <string name="or_choose">או בחר/י</string>
+    <string name="specific_opponent">מתחרה מסוים</string>
+    <string name="random_opponent">מתחרה רנדומלי</string>
+    <string name="rate_topic">דרגו את הנושא</string>
 </resources>

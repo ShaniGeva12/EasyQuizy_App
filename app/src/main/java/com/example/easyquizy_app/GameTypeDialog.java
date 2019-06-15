@@ -9,13 +9,13 @@ import android.view.Window;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
-public class LoginDialog {
+public class GameTypeDialog {
 
     public void showDialog(final Activity activity) {
         final Dialog dialog = new Dialog(activity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setCancelable(false);
-        dialog.setContentView(R.layout.login_dialog_layout);
+        dialog.setCancelable(true);
+        dialog.setContentView(R.layout.game_type_dialog_layout);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 
         FrameLayout mDialogOffline = dialog.findViewById(R.id.frmOffline);

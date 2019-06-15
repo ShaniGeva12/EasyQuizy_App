@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LoginDialog alert = new LoginDialog();
+                GameTypeDialog alert = new GameTypeDialog();
                 alert.showDialog(MainActivity.this);
             }
         });
