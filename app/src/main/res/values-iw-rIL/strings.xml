@@ -58,4 +58,5 @@
     <string name="play">שחק</string>
     <string name="write_yr_name">הכנס שם כאן</string>
     <string name="write_age">הכנס גיל כאן</string>
+    <string name="choose_sex">אנא בחר מין</string>
 </resources>
