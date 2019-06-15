@@ -51,4 +51,11 @@
     <string name="sign_in_using_email">התחבר בעזרת המייל שלך</string>
     <string name="login_failed">ההתחברות נכשלה</string>
     <string name="cancel">ביטול</string>
+    <string name="choose">בחר/י</string>
+    <string name="game_type">סוג משחק</string>
+    <string name="offline">מקומי</string>
+    <string name="online">ברשת</string>
+    <string name="play">שחק</string>
+    <string name="write_yr_name">הכנס שם כאן</string>
+    <string name="write_age">הכנס גיל כאן</string>
 </resources>

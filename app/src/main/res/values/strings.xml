@@ -63,5 +63,12 @@
     <string name="sign_in_using_email">sign in with your email</string>
     <string name="login_failed">Login failed</string>
     <string name="cancel">CANCEL</string>
+    <string name="choose">Choose</string>
+    <string name="game_type">Game Type</string>
+    <string name="offline">Offline</string>
+    <string name="online">Online</string>
+    <string name="play">Play</string>
+    <string name="write_yr_name">Write your name here</string>
+    <string name="write_age">Write your age here</string>
 
 </resources>

@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="250dp"
     android:layout_gravity="center"
-    android:layout_marginLeft="25dp"
-    android:layout_marginRight="25dp"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
     android:gravity="center">
 
     <LinearLayout
@@ -20,6 +20,13 @@
             android:layout_width="match_parent"
             android:layout_height="165dp"
             android:layout_gravity="center"
+
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+
+            android:paddingStart="40dp"
+            android:paddingEnd="40dp"
+
             app:cardCornerRadius="8dp"
             app:cardElevation="15dp">
 
@@ -29,19 +36,19 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="14dp"
                 android:gravity="center"
-                android:text="Quit Earning?"
+                android:text="@string/choose"
                 android:textColor="@android:color/black"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginEnd="20dp"
                 android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
                 android:gravity="center"
-                android:text="You are 400pts. away from \n unlocking rewards. quit Earning?"
+                android:text="@string/game_type"
                 android:textSize="18dp"
                 android:textStyle="bold" />
 
@@ -57,17 +64,20 @@
         android:layout_marginTop="75dp">
 
         <android.support.design.widget.FloatingActionButton
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:src="@android:color/transparent"
-            app:backgroundTint="@color/fabOffline" />
+            app:backgroundTint="@color/fabOffline"
+            android:layout_marginLeft="8dp"
+            />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:elevation="6dp"
-            android:text="Offline"
+            android:text="@string/offline"
+            android:textSize="15sp"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@android:color/white"
             android:textStyle="bold" />
@@ -82,17 +92,20 @@
         android:layout_marginTop="75dp">
 
         <android.support.design.widget.FloatingActionButton
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:src="@android:color/transparent"
-            app:backgroundTint="@color/fabOnline" />
+            app:backgroundTint="@color/fabOnline"
+            android:layout_marginRight="12dp"
+            />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:elevation="6dp"
-            android:text="Online"
+            android:text="@string/online"
+            android:textSize="15sp"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@android:color/white"
             android:textStyle="bold" />

@@ -167,7 +167,7 @@
                 android:id="@+id/name_et"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="write your name here"
+                android:hint="@string/write_yr_name"
                 android:inputType="textPersonName"
                 android:layout_below="@id/name_entering"
 
@@ -190,7 +190,7 @@
                 android:id="@+id/age_et"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="write your age here"
+                android:hint="@string/write_age"
                 android:inputType="number"
                 android:layout_below="@id/age_entering"
 
