@@ -159,7 +159,6 @@ public class LoginPageActivity extends AppCompatActivity {
 
     }
 
-    //TODO add gender to the register function
     private void register() {
 
         email_ed = findViewById(R.id.mail_et);
@@ -184,6 +183,10 @@ public class LoginPageActivity extends AppCompatActivity {
                 break;
         }
 
+        if (TextUtils.isEmpty(ch_sex)) {
+            Toast.makeText(this,getResources().getString(R.string.choose_sex), Toast.LENGTH_LONG).show();
+            return;
+        }
         if (TextUtils.isEmpty(email_ed.getText().toString())) {
             Toast.makeText(this,getResources().getString(R.string.enter_email), Toast.LENGTH_LONG).show();
             return;
@@ -216,7 +219,8 @@ public class LoginPageActivity extends AppCompatActivity {
                         user.setPassword(pass_ed.getText().toString());
                         user.setName(name_input.getText().toString());
                         user.setAge(age_input.getText().toString());
-                        //TODO add setting gender
+                        user.setGender(ch_sex);
+
 
                         users.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                 .setValue(user)
