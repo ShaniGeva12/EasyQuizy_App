@@ -71,5 +71,11 @@
     <string name="write_yr_name">Write your name here</string>
     <string name="write_age">Write your age here</string>
     <string name="choose_sex">Please choose your gender</string>
+    <string name="or_choose">Or Choose</string>
+    <string name="random_opponent">Random Opponent</string>
+    <string name="random_player">Random Player</string>
+    <string name="rate_topic">Rate This Topic</string>
+    <string name="single_player">Single Player</string>
+    <string name="specific_opponent">Specific Opponent</string>
 
 </resources>
