@@ -32,6 +32,10 @@ import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
 public class LoginPageActivity extends AppCompatActivity {
     private static final String TAG = "LoginPageActivity";
+
+    private RadioGroup radioSexGroup;
+    private String ch_sex;
+
     EditText name_input, age_input,email_ed,pass_ed;
     RadioGroup sexRG;
     Button enter_btn,login_now_btn;
@@ -62,6 +66,8 @@ public class LoginPageActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_login_page);
 
+        radioSexGroup  = (RadioGroup)findViewById(R.id.sexRadioGroup);
+
         auth = FirebaseAuth.getInstance();
         db = FirebaseDatabase.getInstance();
         users = db.getReference("Users");
@@ -81,7 +87,6 @@ public class LoginPageActivity extends AppCompatActivity {
                 showLoginDialog();
             }
         });
-
 
     }
 
@@ -162,6 +167,22 @@ public class LoginPageActivity extends AppCompatActivity {
         name_input = findViewById(R.id.name_et);
         age_input  = findViewById(R.id.age_et);
         //sexRG = findViewById(R.id.sexRadioGroup);
+
+        //Add gender by String (ch_sex) here:
+        int selectedId = radioSexGroup.getCheckedRadioButtonId();
+        switch(selectedId){
+            case R.id.male_checkbox:
+                // do operations specific to this selection
+                ch_sex = getResources().getString(R.string.male);
+                break;
+            case R.id.female_checkbox:
+                ch_sex = getResources().getString(R.string.female);
+                break;
+
+            default:
+                ch_sex = getResources().getString(R.string.unknown_sex);
+                break;
+        }
 
         if (TextUtils.isEmpty(email_ed.getText().toString())) {
             Toast.makeText(this,getResources().getString(R.string.enter_email), Toast.LENGTH_LONG).show();
