@@ -85,5 +85,6 @@
         <item>@string/specific_opponent</item>
         <item>@string/specific_opponent</item>
     </string-array>
+    <string name="shani">Shani</string>
 
 </resources>
