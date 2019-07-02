@@ -71,49 +71,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    void sentNotif(String notif_txt) {
-        String channelId = null;
-        if(Build.VERSION.SDK_INT >= 26) {
-
-            channelId =  "some_channel_id" ;
-            CharSequence channelName =  "Some Channel" ;
-            int  importance = NotificationManager.IMPORTANCE_HIGH ;
-            NotificationChannel notificationChannel =  new  NotificationChannel(channelId, channelName, importance);
-            notificationChannel.enableLights( true );
-            notificationChannel.setLightColor(Color.RED );
-            notificationChannel.enableVibration( true );
-            notificationChannel.setVibrationPattern( new long []{ 100 ,  200 ,  300 ,  400 ,  500 ,  400 ,  300 ,  200 ,  400 });
-
-            //manager.createNotificationChannel(notificationChannel);
-        }
-
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(MainActivity.this,channelId);
-        builder.setSmallIcon(android.R.drawable.star_on)
-                .setContentTitle("Notification title")
-                .setContentText("Notification extra text body...");
-
-        builder.setPriority(Notification.PRIORITY_MAX);
-
-        Intent intent = new Intent(MainActivity.this,TopicStartActivity.class);
-        intent.putExtra("notif_txt",notif_txt);
-        PendingIntent pendingIntent = PendingIntent.getActivity(MainActivity.this,0,intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        builder.setContentIntent(pendingIntent);
-
-        //Adding action  - note must work with NotificatioComapt
-        Intent actionIntent = new Intent(MainActivity.this,TopicStartActivity.class);
-        actionIntent.putExtra("notif_txt",notif_txt);
-        PendingIntent playPendingIntent = PendingIntent.getActivity(MainActivity.this,1,actionIntent,PendingIntent.FLAG_UPDATE_CURRENT);
-        builder.addAction(new NotificationCompat.Action(android.R.drawable.ic_media_play,"Play",playPendingIntent));
-
-        Notification notification = builder.build();
-
-        notification.defaults = Notification.DEFAULT_VIBRATE;
-        notification.flags |= Notification.FLAG_AUTO_CANCEL;
-
-        //manager.notify(NOTIF_ID,notification);
-
-    }
-
 
     public void sendOnChannel1(String i_title, String i_message) {
         String title = i_title;
@@ -127,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
                 .setCategory(NotificationCompat.CATEGORY_MESSAGE)
                 .build();
 
+        //TODO Shani - change icon
         notificationManager.notify(1, notification);
     }
 
@@ -141,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
                 .setPriority(NotificationCompat.PRIORITY_LOW)
                 .build();
 
+        //TODO Shani - change icon
         notificationManager.notify(2, notification);
     }
 }
