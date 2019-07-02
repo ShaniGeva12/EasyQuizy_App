@@ -76,12 +76,24 @@ public class MainActivity extends AppCompatActivity {
         String title = i_title;
         String message = i_message;
 
+        Intent activityIntent = new Intent(this, MainActivity.class);
+        PendingIntent contentIntent = PendingIntent.getActivity(this,
+                0, activityIntent, 0);
+
+        Intent playIntent = new Intent(this, TopicStartActivity.class);
+        PendingIntent contentPlayIntent = PendingIntent.getActivity(this,
+                0, playIntent, 0);
+
         Notification notification = new NotificationCompat.Builder(this, CHANNEL_1_ID)
                 .setSmallIcon(android.R.drawable.star_on)
                 .setContentTitle(title)
                 .setContentText(message)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+                .setColor(Color.BLUE)
+                .setContentIntent(contentIntent)
+                .setAutoCancel(true)
+                .addAction(R.mipmap.ic_launcher, "Play", contentPlayIntent)
                 .build();
 
         //TODO Shani - change icon
