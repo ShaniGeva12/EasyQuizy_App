@@ -134,7 +134,7 @@ public class LoginPageActivity extends AppCompatActivity {
                             @Override
                             public void onSuccess(AuthResult authResult) {
 
-                                    Intent intent = new Intent(LoginPageActivity.this, TopicsSelectActivity.class);
+                                    Intent intent = new Intent(LoginPageActivity.this, Home.class);
                                     startActivity(intent);
                             }
                         }).addOnFailureListener(new OnFailureListener() {
@@ -230,7 +230,7 @@ public class LoginPageActivity extends AppCompatActivity {
 
                                         Toast.makeText(getApplicationContext(),getResources().getString(R.string.register_succeded), Toast.LENGTH_LONG).show();
 
-                                            Intent intent = new Intent(LoginPageActivity.this, TopicsSelectActivity.class);
+                                            Intent intent = new Intent(LoginPageActivity.this, Home.class);
                                             startActivity(intent);
 
                                     }

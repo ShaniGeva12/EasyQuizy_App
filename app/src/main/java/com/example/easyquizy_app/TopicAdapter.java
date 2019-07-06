@@ -1,6 +1,7 @@
 package com.example.easyquizy_app;
 
 import android.content.Context;
+import android.os.Message;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -41,6 +42,7 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.MyViewHolder
             playTopic = itemView.findViewById(R.id.play_btn);
         }
     }
+
 
 
     // Provide a suitable constructor (depends on the kind of dataset)

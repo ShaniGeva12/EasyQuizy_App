@@ -24,7 +24,7 @@ public class GameTypeDialog {
             public void onClick(View v) {
                 Toast.makeText(activity.getApplicationContext(),"Offline / TopicsSelect" ,Toast.LENGTH_SHORT).show();
 
-                Intent homeIntent = new Intent(activity, TopicsSelectActivity.class);
+                Intent homeIntent = new Intent(activity, Home.class);
                 homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 activity.startActivity(homeIntent);
 

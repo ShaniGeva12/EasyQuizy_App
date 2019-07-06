@@ -13,6 +13,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.widget.Button;
 
 import com.example.easyquizy_app.Model.Topic;
 
@@ -98,6 +99,8 @@ public class TopicsSelectActivity extends AppCompatActivity
         //-----------------------------------
 
 
+
+
         recyclerView = (RecyclerView) findViewById(R.id.topics_recycler_view);
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
@@ -111,6 +114,8 @@ public class TopicsSelectActivity extends AppCompatActivity
         mAdapter = new TopicAdapter(this, topics);
         recyclerView.addItemDecoration(new SpacingItemDecoration(this, 2));
         recyclerView.setAdapter(mAdapter);
+
+
 
 
     }
