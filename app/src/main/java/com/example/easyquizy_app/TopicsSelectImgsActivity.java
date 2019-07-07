@@ -2,9 +2,7 @@ package com.example.easyquizy_app;
 
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
@@ -15,7 +13,6 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 public class TopicsSelectImgsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -66,7 +63,7 @@ public class TopicsSelectImgsActivity extends AppCompatActivity implements Navig
 
     private void setDefaultFragment() {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.frame_layout,CategoryFragment.newInstance());
+        fragmentTransaction.replace(R.id.frame_layout, CategoryFragment.newInstance());
         fragmentTransaction.commit();
     }
 
