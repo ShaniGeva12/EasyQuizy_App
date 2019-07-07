@@ -8,5 +8,32 @@
     tools:context=".TopicsSelectActivity"
     tools:showIn="@layout/app_bar_topics_select">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/blue_bg"
+        tools:context=".TopicsSelectImgsActivity">
+
+
+        <FrameLayout
+            android:id="@+id/frame_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/navigation"
+            android:animateLayoutChanges="true"
+
+            />
+
+        <android.support.design.widget.BottomNavigationView
+            android:id="@+id/navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/cardview_dark_background"
+            app:itemIconTint="@drawable/nav_item_color_state"
+            app:itemTextColor="@drawable/nav_item_color_state"
+            app:menu="@menu/bottom_menu" />
+
+    </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>
