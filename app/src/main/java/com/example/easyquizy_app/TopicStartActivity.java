@@ -46,6 +46,11 @@ public class TopicStartActivity extends AppCompatActivity
             }
         });
 
+        Intent intent = getIntent();
+        String category = intent.getStringExtra("category");
+
+
+
         //spinner handler START
         Spinner spinner = (Spinner) findViewById(R.id.players_spinner);
             // Create an ArrayAdapter using the string array and a default spinner layout
@@ -56,7 +61,6 @@ public class TopicStartActivity extends AppCompatActivity
             // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
-
         //spinner handler END
 
         //Navigation Drawer
