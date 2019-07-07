@@ -6,6 +6,15 @@ public class Category {
 
     private String Name;
     private String Image;
+    private String description;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public Category() { }
 
@@ -25,8 +34,9 @@ public class Category {
         Image = image;
     }
 
-    public Category(String name, String image) {
+    public Category(String name, String image,String description) {
         Name = name;
         Image = image;
+        description = description;
     }
 }
