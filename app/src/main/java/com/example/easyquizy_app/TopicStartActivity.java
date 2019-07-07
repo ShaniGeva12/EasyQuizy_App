@@ -16,14 +16,21 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.easyquizy_app.Common.Common;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class TopicStartActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, AdapterView.OnItemSelectedListener {
 
     Button singleBtn, randBtn, specBtn;
+
+    //firebase
+    FirebaseDatabase database;
+    DatabaseReference categories;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,10 +53,16 @@ public class TopicStartActivity extends AppCompatActivity
             }
         });
 
+        //title & description setter TODO daniel
         Intent intent = getIntent();
         String category = intent.getStringExtra("category");
+        TextView title = findViewById(R.id.topic_name_txt);
+        TextView description = findViewById(R.id.topic_description_txt);
+        title.setText(category);
 
-
+        database = FirebaseDatabase.getInstance();
+        categories = database.getReference("Category");
+        //title & description setter END
 
         //spinner handler START
         Spinner spinner = (Spinner) findViewById(R.id.players_spinner);
