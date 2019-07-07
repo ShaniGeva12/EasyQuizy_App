@@ -220,8 +220,6 @@
                     />
 
             </LinearLayout>
-
-
         </RelativeLayout>
 
 
@@ -237,6 +235,10 @@
             android:layout_margin="20dp"
             >
 
+            <include
+                layout="@layout/content_american_questions"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
         </RelativeLayout>
 
