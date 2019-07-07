@@ -22,5 +22,9 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_topics_select"
-        app:menu="@menu/activity_topics_select_drawer" />
+        app:menu="@menu/activity_topics_select_drawer"
+        app:itemBackground="@drawable/activated_background"
+        android:background="@color/colorPrimary01"
+        />
+
 </android.support.v4.widget.DrawerLayout>
