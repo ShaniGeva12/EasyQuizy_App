@@ -1,5 +1,6 @@
 package com.example.easyquizy_app;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -10,14 +11,38 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.View;
+import android.widget.Button;
+
+import com.example.easyquizy_app.Common.Common;
 
 public class TopicStartActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    Button singleBtn, randBtn, specBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_topic_start);
+
+        singleBtn = findViewById(R.id.single_player_btn);
+        randBtn = findViewById(R.id.random_player_btn);
+        //specBtn = findViewById(R.id.single_player_btn); TODO spinner handler
+        singleBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                singlePlayerOnClick();
+            }
+        });
+        randBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                randomPlayerOnClick();
+            }
+        });
+
+        //Navigation Drawer
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -27,8 +52,23 @@ public class TopicStartActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+        //END Navigation Drawer
+    }
+/*
+ */
+    private void randomPlayerOnClick() {
+        Intent startGame = new Intent(TopicStartActivity.this, Playing.class);
+        startGame.putExtra("gameType", "random");
+        startActivity(startGame);
     }
 
+    private void singlePlayerOnClick() {
+        Intent startGame = new Intent(TopicStartActivity.this, Playing.class);
+        startGame.putExtra("gameType", "single");
+        startActivity(startGame);
+    }
+
+    //Navigation Drawer funcs START
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -85,4 +125,5 @@ public class TopicStartActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+    //Navigation Drawer funcs END
 }
