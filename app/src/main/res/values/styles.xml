@@ -6,6 +6,9 @@
         <item name="colorPrimary">@color/colorPrimary01</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark01</item>
         <item name="colorAccent">@color/colorAccent01</item>
+
+        <!-- To change the background of options menu-->
+        <item name="android:itemBackground">@color/white_50precent</item>
     </style>
 
     <style name="DarkyTheme" parent="AppTheme">
@@ -20,11 +23,17 @@
         <item name="android:textColorPrimaryInverse">@color/text_color_primary</item>
         <item name="colorAccent">@color/text_color_secondary</item>
         <item name="android:windowBackground">@color/colorPrimaryDark</item>
+
+        <!-- To change the background of options menu-->
+        <item name="android:itemBackground">@color/white_50precent</item>
     </style>
 
     <style name="DarkyTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+
+        <!-- To change the background of options menu-->
+        <item name="android:itemBackground">@color/white_50precent</item>
     </style>
 
     <style name="DarkyTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
