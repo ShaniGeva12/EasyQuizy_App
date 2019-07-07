@@ -14,6 +14,11 @@ public class Playing extends AppCompatActivity {
 
         Intent intent = getIntent();
         String playMode = intent.getStringExtra("gameType");
-        Toast.makeText(this, "play mode: " + playMode, Toast.LENGTH_SHORT).show();
+        if(playMode.equals("spec")) {
+            String player = intent.getStringExtra("player");
+            Toast.makeText(this, "play mode: " + playMode + "\nyou play against - " + player, Toast.LENGTH_SHORT).show();
+        }
+        else
+            Toast.makeText(this, "play mode: " + playMode, Toast.LENGTH_SHORT).show();
     }
 }

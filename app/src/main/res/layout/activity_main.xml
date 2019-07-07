@@ -95,7 +95,7 @@
                     android:layout_width="200dp"
                     android:layout_height="200dp"
                     android:id="@+id/animation_image_view"
-                    android:src="@drawable/frame_cube_anim"
+                    android:src="@drawable/anim_frame_cube"
 
                     android:layout_marginLeft="15dp"
                     />

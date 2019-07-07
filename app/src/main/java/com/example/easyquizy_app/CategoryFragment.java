@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.easyquizy_app.Common.Common;
 import com.example.easyquizy_app.Interface.ItemClickListener;
@@ -102,15 +103,19 @@ public class CategoryFragment extends Fragment {
                 holder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
-                        //Toast.makeText(getActivity(),String.format("%s|%s",adapter.getRef(position).getKey(),model.getName()), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(),String.format("%s|%s",adapter.getRef(position).getKey(),model.getName()), Toast.LENGTH_SHORT).show();
                         Intent startGame = new Intent(getActivity(), TopicStartActivity.class);
                         Common.categoryId = adapter.getRef(position).getKey();
+
+                        startGame.putExtra("category", Common.categoryId);
                         startActivity(startGame);
 
                     }
                 });
             }
 
+            /*
+             */
 
         };
 

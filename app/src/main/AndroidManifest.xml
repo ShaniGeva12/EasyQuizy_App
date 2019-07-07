@@ -12,7 +12,7 @@
         android:theme="@style/DarkyTheme">
         <activity
             android:name=".TopicStartActivity"
-            android:label="@string/title_activity_topic_start2"
+            android:label="@string/title_activity_topic_start"
             android:theme="@style/DarkyTheme.NoActionBar"></activity>
         <activity android:name=".Playing" />
         <activity
