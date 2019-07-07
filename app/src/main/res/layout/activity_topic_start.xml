@@ -233,7 +233,7 @@
                          android:textSize="35sp"
                          android:textColor="@color/text_color_primary"
 
-                         android:layout_marginLeft="120dp"
+                         android:layout_marginStart="120dp"
                          />
 
                      <LinearLayout
