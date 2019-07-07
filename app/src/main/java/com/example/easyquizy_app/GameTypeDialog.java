@@ -15,7 +15,7 @@ public class GameTypeDialog {
         final Dialog dialog = new Dialog(activity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(true);
-        dialog.setContentView(R.layout.game_type_dialog_layout);
+        dialog.setContentView(R.layout.layout_game_type_dialog);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 
         FrameLayout mDialogOffline = dialog.findViewById(R.id.frmOffline);

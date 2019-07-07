@@ -85,7 +85,7 @@ public class CategoryFragment extends Fragment {
             @Override
             public CategoryViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
                 View view = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.category_layout, parent, false);
+                        .inflate(R.layout.layout_category, parent, false);
 
                 return new CategoryViewHolder(view);
             }
