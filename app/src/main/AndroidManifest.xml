@@ -10,7 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/DarkyTheme">
-        <activity android:name=".Home"></activity>
+        <activity android:name=".TopicSelectImgsActivity"></activity>
         <activity android:name=".TopicStartActivity" />
         <activity android:name=".ChoosePlayerActivity" />
         <activity

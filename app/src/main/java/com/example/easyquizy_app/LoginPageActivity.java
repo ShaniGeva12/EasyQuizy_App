@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -134,7 +133,7 @@ public class LoginPageActivity extends AppCompatActivity {
                             @Override
                             public void onSuccess(AuthResult authResult) {
 
-                                    Intent intent = new Intent(LoginPageActivity.this, Home.class);
+                                    Intent intent = new Intent(LoginPageActivity.this, TopicSelectImgsActivity.class);
                                     startActivity(intent);
                             }
                         }).addOnFailureListener(new OnFailureListener() {
@@ -230,7 +229,7 @@ public class LoginPageActivity extends AppCompatActivity {
 
                                         Toast.makeText(getApplicationContext(),getResources().getString(R.string.register_succeded), Toast.LENGTH_LONG).show();
 
-                                            Intent intent = new Intent(LoginPageActivity.this, Home.class);
+                                            Intent intent = new Intent(LoginPageActivity.this, TopicSelectImgsActivity.class);
                                             startActivity(intent);
 
                                     }

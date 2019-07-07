@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Notification HANDLER
         notificationManager = NotificationManagerCompat.from(getApplicationContext());
-        sendOnChannel1("title", "message");
+//        sendOnChannel1("title", "message");
         sendOnChannel2("title2", "message2");
 
     }
