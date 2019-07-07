@@ -80,20 +80,30 @@
             android:gravity="center"
             >
 
+
+
             <RelativeLayout
                 android:id="@+id/name_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
                 android:gravity="center"
-                android:layout_marginTop="300dp"
+                android:layout_marginTop="180dp"
 
                 >
+                <ImageView
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:id="@+id/animation_image_view"
+                    android:src="@drawable/frame_cube_anim"/>
+
 <!-- android:background="@color/white_50precent" -->
                 <Button
                     android:id="@+id/enter_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+
+                    android:layout_below="@+id/animation_image_view"
 
                     android:paddingStart="100dp"
                     android:paddingLeft="100dp"

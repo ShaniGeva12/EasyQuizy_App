@@ -5,12 +5,14 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.AnimationDrawable;
+import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import io.github.inflationx.calligraphy3.CalligraphyConfig;
 import io.github.inflationx.calligraphy3.CalligraphyInterceptor;
@@ -65,6 +67,12 @@ public class MainActivity extends AppCompatActivity {
         notificationManager = NotificationManagerCompat.from(getApplicationContext());
 //        sendOnChannel1("title", "message");
         sendOnChannel2("title2", "message2");
+
+        //animation
+        ImageView imageView = findViewById(R.id.animation_image_view);
+        AnimationDrawable animationDrawable = (AnimationDrawable)imageView.getDrawable();
+
+        animationDrawable.start();
 
     }
 

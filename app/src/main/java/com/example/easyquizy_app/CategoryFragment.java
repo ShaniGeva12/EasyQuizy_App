@@ -107,8 +107,6 @@ public class CategoryFragment extends Fragment {
                         Common.categoryId = adapter.getRef(position).getKey();
                         startActivity(startGame);
 
-
-
                     }
                 });
             }
