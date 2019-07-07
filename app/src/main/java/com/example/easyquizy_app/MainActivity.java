@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
         String message = i_message;
 
         Notification notification = new NotificationCompat.Builder(this, CHANNEL_2_ID)
-                .setSmallIcon(android.R.drawable.star_off)
+                .setSmallIcon(R.drawable.ic_noti_log_p)
                 .setContentTitle(title)
                 .setContentText(message)
                 .setPriority(NotificationCompat.PRIORITY_LOW)
