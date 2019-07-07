@@ -7,7 +7,10 @@
     android:background="@drawable/blue_bg"
     tools:context=".Playing">
 
-    <!--TODO shani-->
+    <!--Doing: shani-->
+
+    <!--old ui-->
+    <!--
     <ImageView
         android:id="@+id/question_image"
         android:layout_alignParentTop="true"
@@ -17,7 +20,6 @@
         android:layout_width="300dp"
         android:layout_height="200dp"
         />
-    
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,7 +30,6 @@
         android:layout_marginTop="25dp"
         android:gravity="center"
         />
-
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -88,6 +89,123 @@
                 android:layout_height="wrap_content" />
             
         </LinearLayout>
+
+    </RelativeLayout>
+    -->
+
+    <!--New UI-->
+
+    <RelativeLayout
+        android:id="@+id/main_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+
+        <!-- Header aligned to top -->
+        <RelativeLayout
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:gravity="center"
+
+            android:paddingTop="25dp"
+            >
+
+            <TextView
+                android:id="@+id/topic_name_txt"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text=" - Topic Name Here - "
+
+                android:textSize="20sp"
+
+                android:textColor="@color/cardview_light_background"
+
+                />
+
+        </RelativeLayout>
+
+        <!-- Footer aligned to bottom -->
+        <RelativeLayout
+            android:id="@+id/footer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:gravity="center"
+            >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginBottom="10dp"
+
+                android:orientation="horizontal"
+                android:weightSum="4"
+                >
+
+
+                <ImageView
+                    android:id="@+id/clock_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/alarm_clock_pngrepo"
+
+                    android:maxWidth="80dp"
+                    android:maxHeight="80dp"
+
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+
+                    android:layout_weight="2"
+                    android:layout_marginRight="30dp"
+                    />
+
+                <Button
+                    android:id="@+id/enter_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:paddingStart="20dp"
+                    android:paddingLeft="20dp"
+                    android:paddingEnd="20dp"
+                    android:paddingRight="20dp"
+
+                    android:layout_marginTop="25dp"
+
+                    android:layout_marginLeft="30dp"
+
+                    android:background="@drawable/button_bg_rounded_corners"
+                    android:text="@string/quit_game"
+                    android:textColor="@color/text_color_thirdly"
+
+                    android:layout_weight="2"
+                    />
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/main_frame_ly"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/footer"
+            android:layout_below="@id/header"
+            android:gravity="center"
+
+            android:background="@color/white_50precent"
+            android:layout_margin="20dp"
+            >
+
+
+        </RelativeLayout>
 
     </RelativeLayout>
 
