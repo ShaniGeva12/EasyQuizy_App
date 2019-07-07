@@ -26,7 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class TopicStartActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, AdapterView.OnItemSelectedListener {
 
-    Button singleBtn, randBtn, specBtn;
+    Button singleBtn, randBtn;
 
     //firebase
     FirebaseDatabase database;
@@ -39,7 +39,6 @@ public class TopicStartActivity extends AppCompatActivity
 
         singleBtn = findViewById(R.id.single_player_btn);
         randBtn = findViewById(R.id.random_player_btn);
-        //specBtn = findViewById(R.id.single_player_btn); TODO spinner handler
         singleBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
