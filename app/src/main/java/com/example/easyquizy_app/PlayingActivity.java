@@ -27,7 +27,7 @@ public class PlayingActivity extends AppCompatActivity implements View.OnClickLi
 
     CountDownTimer mCountDown;
 
-    int index = 0, score = 0, thisQuestion = 0, totalQuestion, currectAnswer;
+    int index = 0, score = 0, thisQuestion = 0, totalQuestion, correctAnswer;
 
     //Firebase
     FirebaseDatabase database;
@@ -113,7 +113,7 @@ public class PlayingActivity extends AppCompatActivity implements View.OnClickLi
             {
                 //Choose correct answer
                 score+=10;
-                currectAnswer++;
+                correctAnswer++;
                 showQuestion(++index);  //next questions
             }
             else
@@ -125,7 +125,7 @@ public class PlayingActivity extends AppCompatActivity implements View.OnClickLi
                     Bundle dataSend = new Bundle();
                     dataSend.putInt("SCORE", score);
                     dataSend.putInt("TOTAL", totalQuestion);
-                    dataSend.putInt("CORRECT", currectAnswer);
+                    dataSend.putInt("CORRECT", correctAnswer);
                     intent.putExtras(dataSend);
                     startActivity(intent);
                     finish();
@@ -142,7 +142,7 @@ public class PlayingActivity extends AppCompatActivity implements View.OnClickLi
             Bundle dataSend = new Bundle();
             dataSend.putInt("SCORE", score);
             dataSend.putInt("TOTAL", totalQuestion);
-            dataSend.putInt("CORRECT", currectAnswer);
+            dataSend.putInt("CORRECT", correctAnswer);
             intent.putExtras(dataSend);
             startActivity(intent);
             finish();
@@ -188,7 +188,7 @@ public class PlayingActivity extends AppCompatActivity implements View.OnClickLi
             Bundle dataSend = new Bundle();
             dataSend.putInt("SCORE", score);
             dataSend.putInt("TOTAL", totalQuestion);
-            dataSend.putInt("CORRECT", currectAnswer);
+            dataSend.putInt("CORRECT", correctAnswer);
             intent.putExtras(dataSend);
             startActivity(intent);
             finish();

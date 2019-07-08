@@ -57,11 +57,11 @@ public class DoneActivity extends AppCompatActivity {
             txtResultScore.setText(String.format("SCORE : %d", score));
             getTxtResultQuestion.setText(String.format("PASSED : %d / %d", correctAnswer, totalQuestion));
 
-            question_score.child(String.format("%s_%s", Common.currentUser.getName(), Common.categoryId))
-                    .setValue(new QuestionScore(String.format("%s_%s", Common.currentUser.getName(),
-                            Common.categoryId),
-                            Common.currentUser.getName(),
-                            String.valueOf(score)));
+//            question_score.child(String.format("%s_%s", Common.currentUser.getName(), Common.categoryId))
+//                    .setValue(new QuestionScore(String.format("%s_%s", Common.currentUser.getName(),
+//                            Common.categoryId),
+//                            Common.currentUser.getName(),
+//                            String.valueOf(score)));
 
         }
 
