@@ -13,10 +13,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+
+import com.example.easyquizy_app.Common.Common;
 
 public class TopicsSelectImgsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     BottomNavigationView bottomNavigationView;
+    View mHeaderView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +62,19 @@ public class TopicsSelectImgsActivity extends AppCompatActivity implements Navig
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+
+        //get the references we need from navView
+        //mHeaderView = navigationView.getHeaderView(0);
+        /*
+        TextView userNameTv = navigationView.findViewById(R.id.user_name);
+        TextView userEmailTv = navigationView.findViewById(R.id.user_email);
+        //user name
+        String userName = Common.currentUser.getName();
+        userNameTv.setText(userName);
+        //email
+        String userEmail = Common.currentUser.getEmail();
+        userEmailTv.setText(userEmail);
+        */
         //END Navigation Drawer
 
     }
