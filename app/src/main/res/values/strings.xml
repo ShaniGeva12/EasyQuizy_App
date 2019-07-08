@@ -103,5 +103,7 @@
     <string name="username">Username</string>
     <string name="topic">Topic</string>
     <string name="score">Score</string>
+    <string name="ur_score_is">Your score is :</string>
+    <string name="succeeded">Succeeded :</string>
 
 </resources>

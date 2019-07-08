@@ -81,7 +81,7 @@
                 android:orientation="vertical"
                 android:gravity="center"
 
-                android:weightSum="6"
+                android:weightSum="8"
                 >
 
                 <TextView
@@ -97,23 +97,44 @@
                     android:layout_marginBottom="20dp"
                     />
 
-                <!--TODO Shani-->
+            <LinearLayout
+                android:id="@+id/score_lin_ly"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_weight="2"
+
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+
+                android:layout_marginBottom="20dp"
+
+                android:gravity="center"
+
+                android:orientation="vertical"
+                >
+
                 <TextView
                     android:id="@+id/txtTotalScore"
-                    android:text="score : 0"
+                    android:text="@string/ur_score_is"
                     android:textSize="30sp"
                     android:textColor="@android:color/white"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    />
 
-                <!--TODO Shani-->
                 <TextView
                     android:id="@+id/txtTotalQuestion"
-                    android:text="passed : 0/30"
+                    android:text="@string/succeeded"
                     android:textSize="30sp"
                     android:textColor="@android:color/white"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    />
+
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/btns_lin_ly"
