@@ -5,16 +5,15 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.view.GravityCompat;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.util.Log;
-import android.view.MenuItem;
 import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -24,9 +23,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.easyquizy_app.Common.Common;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
 
 import java.io.InputStream;
 
@@ -73,9 +72,16 @@ public class TopicStartActivity extends AppCompatActivity
         String desc = intent.getStringExtra("desc");
         String categoryId = intent.getStringExtra("categoryId");
 
-        //category image displaying
-        new DownloadImageTask((ImageView) findViewById(R.id.topic_img))
-                .execute(getIntent().getExtras().getString("categoryImage"));
+        //Category Image Displaying
+        //Old way - takes time
+        //new DownloadImageTask((ImageView) findViewById(R.id.topic_img)).execute(getIntent().getExtras().getString("categoryImage"));
+
+        ImageView imgV = findViewById(R.id.topic_img);
+        Picasso.get()
+                .load(getIntent().getExtras().getString("categoryImage"))
+                .placeholder(R.drawable.loading_gr_wbg)
+                .error(R.drawable.error_loading_pic)
+                .into(imgV);
 
         TextView title = findViewById(R.id.topic_name_txt);
         TextView description = findViewById(R.id.topic_description_txt);
