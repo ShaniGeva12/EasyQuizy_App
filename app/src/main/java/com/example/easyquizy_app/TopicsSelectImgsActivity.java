@@ -1,5 +1,6 @@
 package com.example.easyquizy_app;
 
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
@@ -9,7 +10,6 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -105,18 +105,28 @@ public class TopicsSelectImgsActivity extends AppCompatActivity implements Navig
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        Fragment selectedFragment = CategoryFragment.newInstance();
 
         if (id == R.id.nav_home) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+            // Handle the home action
+            selectedFragment = CategoryFragment.newInstance();
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.frame_layout, selectedFragment);
+            fragmentTransaction.commit();
+        }
 
-        } else if (id == R.id.nav_slideshow) {
+        else if (id == R.id.nav_score_board) {
+            selectedFragment = RankingFragment.newInstance();
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.frame_layout, selectedFragment);
+            fragmentTransaction.commit();
+        }
 
-        } else if (id == R.id.nav_tools) {
+        else if (id == R.id.nav_log_out) {
+            //TO DO - Inbal (Session logout)
+        }
 
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+        else if (id == R.id.nav_about) {
 
         }
 
