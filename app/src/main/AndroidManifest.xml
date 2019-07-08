@@ -11,11 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/DarkyTheme">
+        <activity android:name=".DoneActivity"></activity>
         <activity
             android:name=".TopicStartActivity"
             android:label="@string/title_activity_topic_start"
-            android:theme="@style/DarkyTheme.NoActionBar"></activity>
-        <activity android:name=".Playing" />
+            android:theme="@style/DarkyTheme.NoActionBar" />
+        <activity android:name=".PlayingActivity" />
         <activity
             android:name=".TopicsSelectImgsActivity"
             android:theme="@style/DarkyTheme.NoActionBar" />

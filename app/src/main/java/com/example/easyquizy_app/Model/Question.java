@@ -2,7 +2,7 @@ package com.example.easyquizy_app.Model;
 
 public class Question {
 
-    private String Question,AnswerA,AnswerB,AnswerC,AnswerD,CorrectAnswer,categoryId,isImageQuestion;
+    private String Question, AnswerA, AnswerB, AnswerC, AnswerD, CorrectAnswer, categoryId, isImageQuestion;
 
     public Question() {
     }
@@ -84,6 +84,9 @@ public class Question {
     }
 
 
-
-
+    public enum QuestionType {
+        american,
+        fillWord,
+        freeTxt
+    }
 }

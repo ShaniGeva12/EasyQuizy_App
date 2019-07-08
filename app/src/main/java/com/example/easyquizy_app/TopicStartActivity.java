@@ -134,13 +134,13 @@ public class TopicStartActivity extends AppCompatActivity
     }
 
     private void randomPlayerOnClick() {
-        Intent startGame = new Intent(TopicStartActivity.this, Playing.class);
+        Intent startGame = new Intent(TopicStartActivity.this, PlayingActivity.class);
         startGame.putExtra("gameType", "random");
         startActivity(startGame);
     }
 
     private void singlePlayerOnClick() {
-        Intent startGame = new Intent(TopicStartActivity.this, Playing.class);
+        Intent startGame = new Intent(TopicStartActivity.this, PlayingActivity.class);
         startGame.putExtra("gameType", "single");
         startActivity(startGame);
     }
@@ -213,7 +213,7 @@ public class TopicStartActivity extends AppCompatActivity
         String player = parent.getItemAtPosition(position).toString()+position;
         Toast.makeText(getApplicationContext(),"" + player + " is selected\nget ready" , Toast.LENGTH_LONG).show();
 
-        Intent startGame = new Intent(TopicStartActivity.this, Playing.class);
+        Intent startGame = new Intent(TopicStartActivity.this, PlayingActivity.class);
         startGame.putExtra("gameType", "spec");
         startGame.putExtra("player", player);
         startActivity(startGame);

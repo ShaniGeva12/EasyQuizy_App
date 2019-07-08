@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/blue_bg"
-    tools:context=".Playing">
+    tools:context=".PlayingActivity">
 
     <!--Doing: shani-->
     <!-- TODO: get topic name -->
@@ -114,6 +114,14 @@
             android:paddingTop="25dp"
             >
 
+            <!-- TODO shani-->
+            <TextView
+                android:id="@+id/txtScore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="5dp"/>
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -181,6 +189,13 @@
                 android:weightSum="4"
                 >
 
+                <!--TODO shani -->
+                <ProgressBar
+                    android:id="@+id/timerProgressBar"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2" />
 
                 <ImageView
                     android:id="@+id/clock_img"
@@ -197,6 +212,7 @@
                     android:layout_weight="2"
                     android:layout_marginRight="30dp"
                     />
+
 
                 <Button
                     android:id="@+id/enter_btn"
