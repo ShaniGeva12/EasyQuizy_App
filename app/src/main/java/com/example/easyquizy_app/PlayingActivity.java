@@ -20,7 +20,7 @@ import com.squareup.picasso.Picasso;
 public class PlayingActivity extends AppCompatActivity implements View.OnClickListener {
 
     final static long INTERVAL = 1000; // 1 sec
-    final static long TIMEOUT = 7000; // 7 sec
+    final static long TIMEOUT = 15000; // 15 sec
     int progressValue = 0, lifes = 3;
 
     CountDownTimer mCountDown;
@@ -43,7 +43,7 @@ public class PlayingActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_playing);
 
-        //
+        /*
         Intent intent = getIntent();
         String playMode = intent.getStringExtra("gameType");
         if (playMode.equals("spec")) {
@@ -51,7 +51,7 @@ public class PlayingActivity extends AppCompatActivity implements View.OnClickLi
             Toast.makeText(this, "play mode: " + playMode + "\nyou play against - " + player, Toast.LENGTH_SHORT).show();
         } else
             Toast.makeText(this, "play mode: " + playMode, Toast.LENGTH_SHORT).show();
-        //
+        /*/
 
         //Firebase
         database = FirebaseDatabase.getInstance();
@@ -96,6 +96,7 @@ public class PlayingActivity extends AppCompatActivity implements View.OnClickLi
             });
         }
         //seek bar handler END
+
     }
 
     @Override
@@ -155,7 +156,10 @@ public class PlayingActivity extends AppCompatActivity implements View.OnClickLi
                 //If is image
                 Picasso.get()
                         .load(Common.questionList.get(index).getQuestion())
+                        .placeholder(R.drawable.loading_gr_wbg)
+                        .error(R.drawable.error_loading_pic)
                         .into(question_image);
+
                 question_image.setVisibility(View.VISIBLE);
                 //question_txt.setVisibility(View.GONE);
             } else {
@@ -189,7 +193,7 @@ public class PlayingActivity extends AppCompatActivity implements View.OnClickLi
     protected void onResume() {
         super.onResume();
 
-        totalQuestion = Common.questionList.size();
+        /*totalQuestion = Common.questionList.size();
         mCountDown = new CountDownTimer(TIMEOUT, INTERVAL) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -203,6 +207,7 @@ public class PlayingActivity extends AppCompatActivity implements View.OnClickLi
             }
         };
         showQuestion(++index);
+        */
     }
 
     private void updateLifeUI() {

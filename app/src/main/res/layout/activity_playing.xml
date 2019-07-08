@@ -114,13 +114,13 @@
             android:paddingTop="25dp"
             >
 
-            <!-- TODO shani-->
+            <!-- TODO shani
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="5dp"-->
             <TextView
                 android:id="@+id/txtScore"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_marginStart="5dp"/>
+                android:layout_height="wrap_content"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -262,14 +262,14 @@
                 layout="@layout/content_open_questions"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:visibility="invisible"
+                android:visibility="gone"
                 />
 
             <include
                 layout="@layout/content_completion_questions"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:visibility="invisible"
+                android:visibility="gone"
                 />
 
         </RelativeLayout>
