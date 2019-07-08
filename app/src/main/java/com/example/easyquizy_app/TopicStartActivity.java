@@ -5,6 +5,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.view.GravityCompat;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.util.Log;
+import android.view.MenuItem;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -23,11 +28,17 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.easyquizy_app.Common.Common;
+import com.example.easyquizy_app.Model.Question;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.squareup.picasso.Picasso;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.InputStream;
+import java.util.Collections;
+import java.util.Locale;
 
 public class TopicStartActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, AdapterView.OnItemSelectedListener {
@@ -37,7 +48,7 @@ public class TopicStartActivity extends AppCompatActivity
 
     //firebase
     FirebaseDatabase database;
-    DatabaseReference category;
+    DatabaseReference questions;
 
     String IMAGE_URL = null;
 
@@ -46,8 +57,11 @@ public class TopicStartActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_topic_start);
 
+        //firebase START
         database = FirebaseDatabase.getInstance();
-        category = database.getReference("Category");
+        questions = database.getReference("Questions");
+        loadQuestion(Common.categoryId);
+        //firebase END
 
         //categoryImage = findViewById(R.id.topic_img);
 
@@ -66,22 +80,14 @@ public class TopicStartActivity extends AppCompatActivity
             }
         });
 
-        //title & description setter
+        //title & description setter START
         Intent intent = getIntent();
         String category = intent.getStringExtra("category");
         String desc = intent.getStringExtra("desc");
-        String categoryId = intent.getStringExtra("categoryId");
 
-        //Category Image Displaying
-        //Old way - takes time
-        //new DownloadImageTask((ImageView) findViewById(R.id.topic_img)).execute(getIntent().getExtras().getString("categoryImage"));
-
-        ImageView imgV = findViewById(R.id.topic_img);
-        Picasso.get()
-                .load(getIntent().getExtras().getString("categoryImage"))
-                .placeholder(R.drawable.loading_gr_wbg)
-                .error(R.drawable.error_loading_pic)
-                .into(imgV);
+        //category image displaying
+        new DownloadImageTask((ImageView) findViewById(R.id.topic_img))
+                .execute(getIntent().getExtras().getString("categoryImage"));
 
         TextView title = findViewById(R.id.topic_name_txt);
         TextView description = findViewById(R.id.topic_description_txt);
@@ -136,16 +142,70 @@ public class TopicStartActivity extends AppCompatActivity
         //END Navigation Drawer
     }
 
+    private void loadQuestion(String categoryId) {
+
+        if(Common.questionList.size() > 0)
+            Common.questionList.clear();
+
+        String device_language = Locale.getDefault().getDisplayLanguage().toString();
+        if(device_language.contentEquals("עברית") ||
+                device_language.contentEquals("Hebrew") ||
+                device_language.contentEquals("hebrew") ||
+                device_language.contentEquals("iw_IL") ||
+                device_language.contentEquals("iw") )
+        {
+            //change something in the ui
+            questions.child("he").orderByChild("CategoryId").equalTo(categoryId)
+                    .addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            for(DataSnapshot postSnapshot : dataSnapshot.getChildren())
+                            {
+                                Question ques = postSnapshot.getValue(Question.class);
+                                Common.questionList.add((ques));
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+        }
+        else {
+            questions.child("en").orderByChild("CategoryId").equalTo(categoryId)
+                    .addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                                Question ques = postSnapshot.getValue(Question.class);
+                                Common.questionList.add((ques));
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+        }
+
+        //Random list
+        Collections.shuffle(Common.questionList);
+    }
+
     private void randomPlayerOnClick() {
         Intent startGame = new Intent(TopicStartActivity.this, PlayingActivity.class);
         startGame.putExtra("gameType", "random");
         startActivity(startGame);
+        finish();
     }
 
     private void singlePlayerOnClick() {
         Intent startGame = new Intent(TopicStartActivity.this, PlayingActivity.class);
         startGame.putExtra("gameType", "single");
         startActivity(startGame);
+        finish();
     }
 
     //Navigation Drawer funcs START

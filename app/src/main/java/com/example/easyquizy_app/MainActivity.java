@@ -57,12 +57,12 @@ public class MainActivity extends AppCompatActivity {
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               GameTypeDialog alert = new GameTypeDialog();
-               alert.showDialog(MainActivity.this);
+                GameTypeDialog alert = new GameTypeDialog();
+                alert.showDialog(MainActivity.this);
 
                //going to playing page to fix problems
-                //Intent myIntent = new Intent(getBaseContext(),   PlayingActivity.class);
-                //startActivity(myIntent);
+//                Intent myIntent = new Intent(getBaseContext(),   PlayingActivity.class);
+//                startActivity(myIntent);
             }
         });
 

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -18,6 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 public class PlayingActivity extends AppCompatActivity implements View.OnClickListener {
+    private static final String TAG = "PlayingActivity";
 
     final static long INTERVAL = 1000; // 1 sec
     final static long TIMEOUT = 15000; // 15 sec
@@ -59,11 +61,13 @@ public class PlayingActivity extends AppCompatActivity implements View.OnClickLi
 
         //Views
         txtScore = findViewById(R.id.txtScore);
-        //txtQuestionNum = findViewById(R.id.txtTotalQuestion);
+        txtQuestionNum = findViewById(R.id.txtTotalQuestion);
         question_txt = findViewById(R.id.question_txt);
+
         timerProgressBar = findViewById(R.id.timerProgressBar);
         seekBar = findViewById(R.id.seekBar);
-        question_image = findViewById(R.id.animation_image_view);   //TODO based on question type!!!
+
+        question_image = findViewById(R.id.question_img);   //TODO based on questions type!!!
         btnA = findViewById(R.id.ans01_btn);
         btnB = findViewById(R.id.ans02_btn);
         btnC = findViewById(R.id.ans03_btn);
@@ -102,7 +106,7 @@ public class PlayingActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onClick(View v) {
         mCountDown.cancel();
-        if(index < totalQuestion) //still have question in list
+        if(index < totalQuestion) //still have questions in list
         {
             Button clickedBtn = (Button)v;
             if(clickedBtn.getText().equals(Common.questionList.get(index).getCorrectAnswer()))
@@ -110,12 +114,13 @@ public class PlayingActivity extends AppCompatActivity implements View.OnClickLi
                 //Choose correct answer
                 score+=10;
                 currectAnswer++;
-                showQuestion(++index);  //next question
+                showQuestion(++index);  //next questions
             }
             else
             {
                 if(--lifes == 0) {
                     //Choose wrong answer
+                    Log.d(TAG, "onClick: wrong answer. you're out");
                     Intent intent = new Intent(this, DoneActivity.class);
                     Bundle dataSend = new Bundle();
                     dataSend.putInt("SCORE", score);
@@ -132,7 +137,7 @@ public class PlayingActivity extends AppCompatActivity implements View.OnClickLi
 
             txtScore.setText(String.format("%d", score));
         }
-        else {
+        /*else {
             Intent intent = new Intent(this, DoneActivity.class);
             Bundle dataSend = new Bundle();
             dataSend.putInt("SCORE", score);
@@ -141,11 +146,11 @@ public class PlayingActivity extends AppCompatActivity implements View.OnClickLi
             intent.putExtras(dataSend);
             startActivity(intent);
             finish();
-        }
+        }*/
 
     }
 
-    private void showQuestion(int i) {
+    private void showQuestion(int index) {
         if (index < totalQuestion) {
             thisQuestion++;
             txtQuestionNum.setText(String.format("%d / %d", thisQuestion, totalQuestion));
@@ -177,7 +182,8 @@ public class PlayingActivity extends AppCompatActivity implements View.OnClickLi
             mCountDown.start();     //start timer
         }
         else {
-            //If it is final question
+            //If it is final questions
+            Log.d(TAG, "showQuestion: final questions");
             Intent intent = new Intent(this, DoneActivity.class);
             Bundle dataSend = new Bundle();
             dataSend.putInt("SCORE", score);
@@ -193,7 +199,9 @@ public class PlayingActivity extends AppCompatActivity implements View.OnClickLi
     protected void onResume() {
         super.onResume();
 
-        /*totalQuestion = Common.questionList.size();
+
+        totalQuestion = Common.questionList.size();
+        Log.d(TAG, "onResume: totalQuestion " + totalQuestion);
         mCountDown = new CountDownTimer(TIMEOUT, INTERVAL) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -203,11 +211,13 @@ public class PlayingActivity extends AppCompatActivity implements View.OnClickLi
 
             @Override
             public void onFinish() {
+                mCountDown.cancel();
                 showQuestion(++index);
             }
         };
         showQuestion(++index);
-        */
+
+
     }
 
     private void updateLifeUI() {
