@@ -6,14 +6,14 @@ public class Category {
 
     private String Name;
     private String Image;
-    private String description;
+    private String Description;
 
     public String getDescription() {
-        return description;
+        return Description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDescription(String Description) {
+        this.Description = Description;
     }
 
     public Category() { }
@@ -34,9 +34,9 @@ public class Category {
         Image = image;
     }
 
-    public Category(String name, String image,String description) {
+    public Category(String name, String image,String Description) {
         Name = name;
         Image = image;
-        description = description;
+        Description = Description;
     }
 }
