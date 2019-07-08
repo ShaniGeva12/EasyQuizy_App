@@ -3,13 +3,163 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/blue_bg"
     tools:context=".RankingFragment">
 
-    <TextView
+    <RelativeLayout
+        android:id="@+id/main_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="This is Ranking Page"
-        android:textSize="30sp"
-        android:textColor="@android:color/white"/>
+        >
+
+
+        <!-- Header aligned to top -->
+        <RelativeLayout
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:gravity="center"
+
+            android:paddingTop="25dp"
+            >
+
+        </RelativeLayout>
+
+        <!-- Footer aligned to bottom -->
+        <RelativeLayout
+            android:id="@+id/footer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:gravity="center"
+            >
+
+
+        </RelativeLayout>
+
+        <!-- Main between footer & bottom -->
+
+        <ScrollView
+            android:id="@+id/main_sv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/footer"
+            android:layout_below="@id/header"
+
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="30dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+
+            android:background="@color/white_50precent"
+
+            android:gravity="center"
+            >
+
+            <!-- /////////////////////////////////////////////// -->
+            <RelativeLayout
+                android:id="@+id/main_frame_ly"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@id/footer"
+                android:layout_below="@id/header"
+                android:gravity="center"
+                android:layout_margin="20dp"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center"
+
+                    android:weightSum="5"
+                    >
+
+                <TextView
+                    android:id="@+id/title_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/score_board"
+                    android:textSize="35sp"
+                    android:textColor="@color/colorPrimaryDarkBlack"
+
+                    android:layout_weight="1"
+
+                    android:layout_marginBottom="20dp"
+                    />
+
+                    <LinearLayout
+                        android:id="@+id/table_title_lin_ly"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+
+                        android:orientation="horizontal"
+                        android:weightSum="3"
+                        >
+
+                        <TextView
+                            android:id="@+id/user_txt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/username"
+
+                            android:textColor="@color/colorPrimaryDarkBlack"
+
+                            android:layout_weight="1"
+
+                            android:layout_marginBottom="20dp"
+                            />
+
+                        <TextView
+                            android:id="@+id/topic_txt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/topic"
+
+                            android:textColor="@color/colorPrimaryDarkBlack"
+
+                            android:layout_weight="1"
+
+                            android:layout_marginBottom="20dp"
+                            />
+
+                        <TextView
+                            android:id="@+id/score_txt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/score"
+
+                            android:textColor="@color/colorPrimaryDarkBlack"
+
+                            android:layout_weight="1"
+
+                            android:layout_marginBottom="20dp"
+                            />
+
+
+                    </LinearLayout>
+
+                    <!-- A RecyclerView with some commonly used attributes -->
+                    <android.support.v7.widget.RecyclerView
+                        android:clipToPadding="false"
+                        android:id="@+id/score_recycler_view"
+                        android:scrollbars="vertical"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:layout_weight="3"
+                        />
+
+
+                </LinearLayout>
+
+            </RelativeLayout>
+            <!-- /////////////////////////////////////////////// -->
+        </ScrollView>
+
+    </RelativeLayout>
 
 </FrameLayout>

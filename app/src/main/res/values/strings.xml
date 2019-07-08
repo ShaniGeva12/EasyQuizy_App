@@ -100,5 +100,8 @@
     <string name="good_job">Good Job!</string>
     <string name="play_another">Play Another</string>
     <string name="back_to_topics">Back To Topics</string>
+    <string name="username">Username</string>
+    <string name="topic">Topic</string>
+    <string name="score">Score</string>
 
 </resources>
