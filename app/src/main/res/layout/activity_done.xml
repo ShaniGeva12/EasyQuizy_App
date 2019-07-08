@@ -4,6 +4,187 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/blue_bg"
     tools:context=".DoneActivity">
+
+    <RelativeLayout
+        android:id="@+id/main_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+
+        <!-- Header aligned to top -->
+        <RelativeLayout
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:gravity="center"
+
+            android:paddingTop="25dp"
+            >
+
+        </RelativeLayout>
+
+        <!-- Footer aligned to bottom -->
+        <RelativeLayout
+            android:id="@+id/footer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:gravity="center"
+            >
+
+            <TextView
+                android:id="@+id/credits_ly"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/credit"
+                android:textColor="@color/colorPrimaryDarkBlack"/>
+
+        </RelativeLayout>
+
+        <!-- Main between footer & bottom -->
+
+        <ScrollView
+            android:id="@+id/main_sv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/footer"
+            android:layout_below="@id/header"
+
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="30dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+
+            android:background="@color/white_50precent"
+
+            android:gravity="center"
+            >
+
+        <!-- /////////////////////////////////////////////// -->
+        <RelativeLayout
+            android:id="@+id/main_frame_ly"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/footer"
+            android:layout_below="@id/header"
+            android:gravity="center"
+            android:layout_margin="20dp"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+
+                android:weightSum="5"
+                >
+
+                <TextView
+                    android:id="@+id/title_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/good_job"
+                    android:textSize="35sp"
+                    android:textColor="@color/colorPrimaryDarkBlack"
+
+                    android:layout_weight="1"
+
+                    android:layout_marginBottom="20dp"
+                    />
+
+            <LinearLayout
+                android:id="@+id/btns_lin_ly"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_weight="2"
+
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+
+                android:layout_marginBottom="20dp"
+
+                android:orientation="vertical"
+                >
+
+                <Button
+                    android:id="@+id/play_more_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:background="@drawable/button_bg_rounded_corners"
+
+                    android:text="@string/play_another"
+                    android:textColor="@color/text_color_thirdly"
+
+                    android:layout_weight="1"
+                    android:layout_marginBottom="20dp"
+                    />
+
+                <Button
+                    android:id="@+id/back_to_topics_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:background="@drawable/button_bg_rounded_corners"
+
+                    android:text="@string/back_to_topics"
+                    android:textColor="@color/text_color_thirdly"
+
+                    android:layout_weight="1"
+                    />
+
+            </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/rate_lin_ly"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_weight="2"
+
+                    android:paddingStart="40dp"
+                    android:paddingEnd="40dp"
+
+                    android:orientation="vertical"
+                    >
+
+                    <TextView
+                        android:id="@+id/rt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="20dp"
+                        android:text="@string/rate_topic"
+                        android:textColor="@color/text_color_secondary"
+                        android:textSize="18dp"
+                        android:typeface="normal"
+                        android:layout_gravity="center_horizontal" />
+
+                    <RatingBar
+                        android:id="@+id/ratingBar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="47dp"
+                        android:layout_gravity="center_horizontal"
+
+                        android:layout_below="@+id/rt"
+
+                        android:stepSize="0.5"
+                        android:numStars="5"
+                        />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+            <!-- /////////////////////////////////////////////// -->
+        </ScrollView>
+
+    </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

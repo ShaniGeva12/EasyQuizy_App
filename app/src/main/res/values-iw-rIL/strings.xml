@@ -68,4 +68,10 @@
     <string name="shani">שני</string>
     <string name="quit_game">עזוב משחק</string>
     <string name="enter_ans">הכנס תשובה</string>
+    <string name="score_board">טבלת שיאים</string>
+    <string name="about">אודותינו</string>
+    <string name="logout">התנתק</string>
+    <string name="good_job">כל הכבוד!</string>
+    <string name="play_another">שחק שוב</string>
+    <string name="back_to_topics">חזור לנושאים</string>
 </resources>

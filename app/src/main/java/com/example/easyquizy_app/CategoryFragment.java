@@ -99,8 +99,10 @@ public class CategoryFragment extends Fragment {
                 //old usege
                 //Picasso.with(getActivity()).load(model.getImage()).into(holder.category_image);
 
-                Picasso.get().load(model.getImage()).placeholder(R.drawable.loading_gr_wbg)
-                        .error(R.drawable.error_loading_pic).into(holder.category_image);
+                Picasso.get().load(model.getImage())
+                        .placeholder(R.drawable.loading_gr_wbg)
+                        .error(R.drawable.error_loading_pic)
+                        .into(holder.category_image);
 
                 holder.setItemClickListener(new ItemClickListener() {
                     @Override

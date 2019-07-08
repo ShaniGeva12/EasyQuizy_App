@@ -94,5 +94,11 @@
     <string name="select_specific_opponent">select opponent</string>
     <string name="quit_game">Quit Game</string>
     <string name="enter_ans">Enter Answer</string>
+    <string name="score_board">Score Board</string>
+    <string name="about">About</string>
+    <string name="logout">Log out</string>
+    <string name="good_job">Good Job!</string>
+    <string name="play_another">Play Another</string>
+    <string name="back_to_topics">Back To Topics</string>
 
 </resources>
