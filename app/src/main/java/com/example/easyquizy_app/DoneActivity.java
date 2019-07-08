@@ -18,7 +18,7 @@ import java.net.CookieHandler;
 public class DoneActivity extends AppCompatActivity {
 
     Button btnTryAgain, btnToTopic;
-    TextView txtResultScore, getTxtResultQuestion;
+    TextView txtResultScore, getTxtResultQuestion, title_txt;
 
     FirebaseDatabase database;
     DatabaseReference question_score;
@@ -33,6 +33,7 @@ public class DoneActivity extends AppCompatActivity {
 
         txtResultScore = findViewById(R.id.txtTotalScore);
         getTxtResultQuestion = findViewById(R.id.txtTotalQuestion);
+        title_txt = findViewById(R.id.title_txt);
 
         btnTryAgain = findViewById(R.id.play_more_btn);
         btnToTopic = findViewById(R.id.back_to_topics_btn);
@@ -56,6 +57,14 @@ public class DoneActivity extends AppCompatActivity {
 
             txtResultScore.setText(String.format("SCORE : %d", score));
             getTxtResultQuestion.setText(String.format("PASSED : %d / %d", correctAnswer, totalQuestion));
+
+            String str;
+            if(correctAnswer < totalQuestion/2) {
+                str = getResources().getString(R.string.next_time);
+            }
+            else
+                str = getResources().getString(R.string.good_job);
+            title_txt.setText(str);
 
 //            question_score.child(String.format("%s_%s", Common.currentUser.getName(), Common.categoryId))
 //                    .setValue(new QuestionScore(String.format("%s_%s", Common.currentUser.getName(),

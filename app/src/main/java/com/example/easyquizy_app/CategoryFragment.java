@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ import com.squareup.picasso.Picasso;
 
 public class CategoryFragment extends Fragment {
 
+    private static final String TAG = "CategoryFragment";
     View myFragment;
 
     RecyclerView listCategory;
@@ -108,6 +110,7 @@ public class CategoryFragment extends Fragment {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
                         Toast.makeText(getActivity(),String.format("%s|%s",adapter.getRef(position).getKey(),model.getName()), Toast.LENGTH_SHORT).show();
+                        Log.d(TAG, "onClick: " + String.format("%s|%s",adapter.getRef(position).getKey(),model.getName()));
                         Intent startGame = new Intent(getActivity(), TopicStartActivity.class);
                         Common.categoryId = adapter.getRef(position).getKey();
 

@@ -109,6 +109,8 @@ public class PlayingActivity extends AppCompatActivity implements View.OnClickLi
         if(index < totalQuestion) //still have questions in list
         {
             Button clickedBtn = (Button)v;
+            Log.d(TAG, "onClick: button " + clickedBtn.getText());
+            Log.d(TAG, "onClick: Correct Answer " + Common.questionList.get(index).getCorrectAnswer());
             if(clickedBtn.getText().equals(Common.questionList.get(index).getCorrectAnswer()))
             {
                 //Choose correct answer
@@ -215,7 +217,7 @@ public class PlayingActivity extends AppCompatActivity implements View.OnClickLi
                 showQuestion(++index);
             }
         };
-        showQuestion(++index);
+        showQuestion(index);
 
 
     }
