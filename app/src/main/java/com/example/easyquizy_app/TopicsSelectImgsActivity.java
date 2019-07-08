@@ -13,6 +13,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 public class TopicsSelectImgsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -58,6 +60,24 @@ public class TopicsSelectImgsActivity extends AppCompatActivity implements Navig
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
         //END Navigation Drawer
+
+        //Header of Navigation Drawer
+        //----------------------------------------------------------------
+        View headerView = navigationView.getHeaderView(0);
+
+        TextView userNameTv = headerView.findViewById(R.id.username_txt);
+        TextView userEmailTv = headerView.findViewById(R.id.mail_txt);
+
+        /*
+        //user name
+        String userName = Common.currentUser.getName();
+        userNameTv.setText(userName);
+
+        //email
+        String userEmail = Common.currentUser.getEmail();
+        userEmailTv.setText(userEmail);
+        */
+        //----------------------------------------------------------------
 
     }
 
