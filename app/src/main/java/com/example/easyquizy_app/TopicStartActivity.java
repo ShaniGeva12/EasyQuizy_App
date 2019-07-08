@@ -1,9 +1,13 @@
 package com.example.easyquizy_app;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -15,27 +19,41 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.easyquizy_app.Common.Common;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import java.io.InputStream;
 
 public class TopicStartActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, AdapterView.OnItemSelectedListener {
 
     Button singleBtn, randBtn;
+    ImageView categoryImage;
 
     //firebase
-    //FirebaseDatabase database;
-    //DatabaseReference categories;
+    FirebaseDatabase database;
+    DatabaseReference category;
+
+    String IMAGE_URL = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_topic_start);
+
+        database = FirebaseDatabase.getInstance();
+        category = database.getReference("Category");
+
+        //categoryImage = findViewById(R.id.topic_img);
 
         singleBtn = findViewById(R.id.single_player_btn);
         randBtn = findViewById(R.id.random_player_btn);
@@ -52,16 +70,42 @@ public class TopicStartActivity extends AppCompatActivity
             }
         });
 
-        //title & description setter TODO daniel
+        //title & description setter
         Intent intent = getIntent();
         String category = intent.getStringExtra("category");
         String desc = intent.getStringExtra("desc");
+        String categoryId = intent.getStringExtra("categoryId");
+
+        //category image displaying
+        new DownloadImageTask((ImageView) findViewById(R.id.topic_img))
+                .execute(getIntent().getExtras().getString("categoryImage"));
+
         TextView title = findViewById(R.id.topic_name_txt);
         TextView description = findViewById(R.id.topic_description_txt);
         title.setText(category);
         description.setText(desc);
-        //database = FirebaseDatabase.getInstance();
-        //categories = database.getReference("Category");
+
+        /* not working
+        if(categoryId == "01")
+            IMAGE_URL = "https://images.theconversation.com/files/207820/original/file-20180226-140213-yox11e.jpg";
+        if(categoryId == "02")
+            IMAGE_URL = "https://www.irishcentral.com/uploads/article/129506/cropped_MI_main_harry_potter.jpg";
+        if(categoryId == "03")
+            IMAGE_URL = "https://www.worldatlas.com/r/w728-h425-c728x425/upload/0f/59/b2/untitled-design-275.jpg";
+        if(categoryId == "04")
+            IMAGE_URL = "https://i.kinja-img.com/gawker-media/image/upload/s--vHt6tbFa--/c_scale,f_auto,fl_progressive,q_80,w_800/xjmx1csashjww8j8jwyh.jpg";
+        if(categoryId == "05")
+            IMAGE_URL = "http://alexedmans.com/wp-content/uploads/2017/03/Sports.jpg";
+
+        if (IMAGE_URL != null) {
+            StorageReference ref = FirebaseStorage.getInstance().getReferenceFromUrl(IMAGE_URL);
+
+            Glide.with(this)
+                    .load(ref)
+                    .into(categoryImage);
+        }
+        */
+
         //title & description setter END
 
         //spinner handler START
@@ -181,4 +225,30 @@ public class TopicStartActivity extends AppCompatActivity
     }
     //spinner func END
 
+}
+
+//needed for category image displaying
+class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+    ImageView bmImage;
+
+    public DownloadImageTask(ImageView bmImage) {
+        this.bmImage = bmImage;
+    }
+
+    protected Bitmap doInBackground(String... urls) {
+        String urldisplay = urls[0];
+        Bitmap mIcon11 = null;
+        try {
+            InputStream in = new java.net.URL(urldisplay).openStream();
+            mIcon11 = BitmapFactory.decodeStream(in);
+        } catch (Exception e) {
+            Log.e("Error", e.getMessage());
+            e.printStackTrace();
+        }
+        return mIcon11;
+    }
+
+    protected void onPostExecute(Bitmap result) {
+        bmImage.setImageBitmap(result);
+    }
 }

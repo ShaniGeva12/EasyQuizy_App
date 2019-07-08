@@ -133,8 +133,6 @@
                             android:id="@+id/topic_img"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/quiz_pic"
-
 
                             android:maxWidth="150dp"
                             android:maxHeight="150dp"
