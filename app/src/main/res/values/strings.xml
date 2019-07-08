@@ -93,5 +93,6 @@
     <string name="title_activity_topic_start">TopicStartActivity</string>
     <string name="select_specific_opponent">select opponent</string>
     <string name="quit_game">Quit Game</string>
+    <string name="enter_ans">Enter Answer</string>
 
 </resources>

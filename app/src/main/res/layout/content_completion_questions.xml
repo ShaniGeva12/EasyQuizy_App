@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".Playing"
+    tools:showIn="@layout/activity_playing">
+
+    <RelativeLayout
+        android:id="@+id/main_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        >
+
+        <!-- Header aligned to top -->
+        <RelativeLayout
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:gravity="center">
+
+        </RelativeLayout>
+
+        <!-- Footer aligned to bottom -->
+        <RelativeLayout
+            android:id="@+id/footer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:gravity="center">
+
+        </RelativeLayout>
+
+        <!-- Main between footer & bottom -->
+        <ScrollView
+            android:id="@+id/main_sv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/footer"
+            android:layout_below="@id/header"
+            android:gravity="center"
+            >
+
+            <!-- /////////////////////////////////////////////// -->
+            <RelativeLayout
+                android:id="@+id/main_frame_ly"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                >
+
+                <LinearLayout
+                    android:id="@+id/main_lin_ly"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+                    android:orientation="vertical"
+
+                    android:weightSum="8"
+                    >
+
+                    <TextView
+                        android:id="@+id/question_txt"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:text=" - Question Text Here - "
+                        android:textSize="20sp"
+
+                        android:textColor="@color/colorPrimaryDarkBlack"
+                        android:layout_weight="2"
+                        android:layout_marginBottom="20dp"
+                        />
+
+                    <ImageView
+                        android:id="@+id/topic_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/quiz_pic"
+
+
+                        android:maxWidth="450dp"
+                        android:maxHeight="200dp"
+
+                        android:scaleType="fitCenter"
+                        android:adjustViewBounds="true"
+
+                        android:layout_weight="2"
+                        android:layout_marginBottom="20dp"
+
+                        android:visibility="gone"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+
+                        android:orientation="vertical"
+
+                        android:weightSum="3"
+                        >
+
+                        <LinearLayout
+                            android:id="@+id/complete_lin_ly"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+
+                            android:orientation="horizontal"
+
+                            android:paddingStart="5dp"
+                            android:paddingEnd="5dp"
+
+                            android:weightSum="3"
+                            >
+
+                            <TextView
+                                android:id="@+id/complete_this_tv"
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+
+                                android:text="Sh"
+
+                                android:paddingTop="15dp"
+
+                                android:textColor="@color/colorPrimaryDarkBlack"
+                                android:layout_weight="1"
+                                />
+
+                            <!-- change input type dynamically if needed-->
+                            <EditText
+                                android:id="@+id/answer_et"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:hint="a"
+                                android:textColorHint="@color/colorPrimaryDarkBlack"
+                                android:textColor="@color/colorPrimaryDarkBlack"
+
+                                android:inputType="text"
+                                android:layout_weight="1"
+                                />
+
+                            <TextView
+                                android:id="@+id/complete_this_tv02"
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+
+                                android:text="ni"
+
+                                android:paddingTop="15dp"
+
+                                android:textColor="@color/colorPrimaryDarkBlack"
+                                android:layout_weight="1"
+                                />
+
+
+                        </LinearLayout>
+
+                        <Button
+                            android:id="@+id/ans_btn"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:text="@string/enter_ans"
+
+                            android:padding="5dp"
+                            android:background="@drawable/button_bg_rounded_corners"
+                            android:textColor="@color/text_color_thirdly"
+
+                            android:layout_weight="1"
+                            />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+            <!-- /////////////////////////////////////////////// -->
+        </ScrollView>
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>
