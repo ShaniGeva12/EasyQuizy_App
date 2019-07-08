@@ -95,6 +95,8 @@
                     android:layout_weight="1"
 
                     android:layout_marginBottom="20dp"
+
+                    android:fontFamily="@font/the_frontman_font"
                     />
 
             <LinearLayout
@@ -123,7 +125,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
 
-                    android:fontFamily="@font/the_frontman_font"
                     />
 
                 <TextView
