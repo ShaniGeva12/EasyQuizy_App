@@ -2,7 +2,7 @@ package com.example.easyquizy_app.Model;
 
 public class Question {
 
-    private String Question, AnswerA, AnswerB, AnswerC, AnswerD, CorrectAnswer, categoryId, isImageQuestion;
+    private String Question, AnswerA, AnswerB, AnswerC, AnswerD, CorrectAnswer, CategoryId, IsImageQuestion;
 
     public Question() {
     }
@@ -14,8 +14,8 @@ public class Question {
         AnswerC = answerC;
         AnswerD = answerD;
         CorrectAnswer = correctAnswer;
-        this.categoryId = categoryId;
-        this.isImageQuestion = isImageQuestion;
+        this.CategoryId = categoryId;
+        this.IsImageQuestion = isImageQuestion;
     }
 
 
@@ -68,19 +68,19 @@ public class Question {
     }
 
     public String getCategoryId() {
-        return categoryId;
+        return CategoryId;
     }
 
     public void setCategoryId(String categoryId) {
-        this.categoryId = categoryId;
+        this.CategoryId = categoryId;
     }
 
     public String getIsImageQuestion() {
-        return isImageQuestion;
+        return IsImageQuestion;
     }
 
     public void setIsImageQuestion(String isImageQuestion) {
-        this.isImageQuestion = isImageQuestion;
+        this.IsImageQuestion = isImageQuestion;
     }
 
 
