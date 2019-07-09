@@ -29,6 +29,8 @@ public class DoneActivity extends AppCompatActivity {
 
     private SoundPlayer sound;
 
+    String topicScore= "check passing data";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -113,5 +115,9 @@ public class DoneActivity extends AppCompatActivity {
                     ,Common.currentUser.getName(),String.valueOf(score)));
         }
 
+    }
+
+    public String getMyData() {
+        return topicScore;
     }
 }

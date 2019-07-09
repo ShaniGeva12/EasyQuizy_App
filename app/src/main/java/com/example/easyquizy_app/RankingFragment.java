@@ -60,12 +60,16 @@ public class RankingFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        DoneActivity activity = (DoneActivity) getActivity();
+        String myDataFromActivity = activity.getMyData();
+
         myFragment = inflater.inflate(R.layout.fragment_ranking_new,container,false);
         listCategoryScores = (RecyclerView)myFragment.findViewById(R.id.score_recycler_view);
         listCategoryScores.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(container.getContext());
         listCategoryScores.setLayoutManager(layoutManager);
-        loadCategories();
+        loadCategories(myDataFromActivity);
 
         return myFragment;
     }
@@ -82,7 +86,7 @@ public class RankingFragment extends Fragment {
         adapter.startListening();
     }
 
-    private void loadCategories() {
+    private void loadCategories(final String score) {
 
         FirebaseRecyclerOptions<Category> options =
                 new FirebaseRecyclerOptions.Builder<Category>()
@@ -102,6 +106,7 @@ public class RankingFragment extends Fragment {
             protected void onBindViewHolder(CategoryBoardHolder holder, int position,final Category model) {
                 // Bind the Category object to the CategoryViewHolder
                 holder.topic_txt.setText(model.getName());
+                holder.score_txt.setText(score);
 
                 holder.setItemClickListener(new ItemClickListener() {
                     @Override
