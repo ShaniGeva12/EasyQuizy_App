@@ -82,7 +82,7 @@ public class TopicStartActivity extends AppCompatActivity
 
         //title & description setter START
         Intent intent = getIntent();
-        String category = intent.getStringExtra("category");
+        String category = intent.getStringExtra("categoryName");
         String desc = intent.getStringExtra("desc");
 
         //category image displaying
