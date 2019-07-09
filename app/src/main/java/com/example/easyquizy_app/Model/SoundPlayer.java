@@ -3,10 +3,13 @@ package com.example.easyquizy_app.Model;
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.SoundPool;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.example.easyquizy_app.R;
 
 public class SoundPlayer {
+    private static final String TAG = "SoundPlayer";
 
     private static SoundPool soundPool;
     private static int heartBreakSound;
@@ -26,16 +29,19 @@ public class SoundPlayer {
     public void playHeartBreakSound()
     {
         //play(int soundID, float leftVolume, float rightVolume, int priority, int loop, float rate)
+        Log.d(TAG, "playHeartBreakSound: Sound played");
         soundPool.play(heartBreakSound, 0.7f, 0.7f, 1, 0, 1.0f);
     }
     public void playFailSound()
     {
         //play(int soundID, float leftVolume, float rightVolume, int priority, int loop, float rate)
+        Log.d(TAG, "playFailSound: Sound played");
         soundPool.play(failSound, 1.0f, 1.0f, 1, 0, 1.0f);
     }
     public void playApplauseSound()
     {
         //play(int soundID, float leftVolume, float rightVolume, int priority, int loop, float rate)
+        Log.d(TAG, "playApplauseSound: Sound played");
         soundPool.play(applauseSound, 1.0f, 1.0f, 1, 0, 1.0f);
     }
 }

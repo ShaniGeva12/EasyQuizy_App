@@ -36,18 +36,6 @@ public class DoneActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_done);
 
-        //----------------Rating-----------------------
-        ratingBar = (RatingBar) findViewById(R.id.ratingBar);
-
-        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
-            public void onRatingChanged(RatingBar ratingBar, float rating,
-                                        boolean fromUser) {
-                msg_rate = getResources().getString(R.string.rating_tnx) + " " + String.valueOf(rating) + " " + getResources().getString(R.string.starts);
-                Toast.makeText(DoneActivity.this, msg_rate , Toast.LENGTH_SHORT).show();
-            }
-        });
-        //----------------------------------------
-
         //Firebase
         database = FirebaseDatabase.getInstance();
         question_score = database.getReference("Question_Score");
@@ -81,6 +69,23 @@ public class DoneActivity extends AppCompatActivity {
             }
         });
 
+        //----------------Rating-----------------------
+        ratingBar = (RatingBar) findViewById(R.id.ratingBar);
+
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            public void onRatingChanged(RatingBar ratingBar, float rating,
+                                        boolean fromUser) {
+                msg_rate = getResources().getString(R.string.rating_tnx) + " " + String.valueOf(rating) + " " + getResources().getString(R.string.starts);
+                Toast.makeText(DoneActivity.this, msg_rate , Toast.LENGTH_SHORT).show();
+            }
+        });
+        //----------------------------------------
+
+        Bundle_extra();
+
+    }
+
+    private void Bundle_extra() {
         //get data from bundle
         Bundle extra = getIntent().getExtras();
         if(extra != null)
@@ -112,9 +117,8 @@ public class DoneActivity extends AppCompatActivity {
             //Uplaod to DB
             question_score.child(String.format("%s_%s", Common.currentUser.getName(),Common.categoryId))
                     .setValue(new QuestionScore(String.format("%s_%s", Common.currentUser.getName(),Common.categoryId)
-                    ,Common.currentUser.getName(),String.valueOf(score)));
+                            ,Common.currentUser.getName(),String.valueOf(score)));
         }
-
     }
 
     public String getMyData() {
