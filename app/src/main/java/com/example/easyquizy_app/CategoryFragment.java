@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.easyquizy_app.Common.Common;
@@ -28,6 +29,7 @@ public class CategoryFragment extends Fragment {
     private static final String TAG = "CategoryFragment";
     View myFragment;
 
+
     RecyclerView listCategory;
     RecyclerView.LayoutManager layoutManager;
     //FirebaseRecyclerAdapter<Category, CategoryViewHolder> adapter;
@@ -42,12 +44,15 @@ public class CategoryFragment extends Fragment {
         return categoryFragment;
     }
 
+    LinearLayout prog_ly;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         database = FirebaseDatabase.getInstance();
         categories = database.getReference("Category");
+
     }
 
     @Nullable
@@ -59,7 +64,10 @@ public class CategoryFragment extends Fragment {
         layoutManager = new LinearLayoutManager(container.getContext());
         listCategory.setLayoutManager(layoutManager);
 
+        prog_ly = myFragment.findViewById(R.id.progressBar_ly);
         loadCategories();
+
+        prog_ly.setVisibility(View.GONE);
 
         return myFragment;
     }

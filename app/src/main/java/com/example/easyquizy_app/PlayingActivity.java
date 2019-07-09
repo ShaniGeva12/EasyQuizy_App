@@ -130,8 +130,7 @@ public class PlayingActivity extends AppCompatActivity implements View.OnClickLi
             }
             else
             {
-
-                if(--lifes == 0) {
+                if(--lifes <= 0) {
                     updateLifeUI();
                     //Choose wrong answer
                     Log.d(TAG, "onClick: wrong answer. you're out");
@@ -222,12 +221,20 @@ public class PlayingActivity extends AppCompatActivity implements View.OnClickLi
             public void onTick(long millisUntilFinished) {
                 timerProgressBar.setProgress(progressValue);
                 progressValue++;
+
+                //Log.v("Log_tag", "Tick of Progress"+ progressValue+ millisUntilFinished);
+                int tmp = (progressValue*7); //15 goes 6.666 times in 100%
+                timerProgressBar.setProgress(tmp);
             }
 
             @Override
             public void onFinish() {
                 mCountDown.cancel();
                 showQuestion(++index);
+
+                timerProgressBar.setProgress(0);
+                lifes--;
+                updateLifeUI();
             }
         };
         showQuestion(index);

@@ -5,6 +5,30 @@
     android:layout_height="match_parent"
     tools:context=".CategoryFragment">
 
+<LinearLayout
+    android:id="@+id/progressBar_ly"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:layout_gravity="center"
+    android:gravity="center"
+    >
+
+    <ProgressBar
+        android:id="@+id/loadProgressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:maxWidth="200dp"
+        android:maxHeight="200dp"
+
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+        />
+
+</LinearLayout>
+
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/listCategory"

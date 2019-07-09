@@ -110,7 +110,6 @@ public class LoginPageActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
 
-
                 //check validation
                 if (TextUtils.isEmpty(edEmail.getText().toString())) {
                     Toast.makeText(getApplicationContext(), getResources().getString(R.string.enter_email), Toast.LENGTH_LONG).show();
@@ -225,6 +224,8 @@ public class LoginPageActivity extends AppCompatActivity {
                         user.setAge(age_input.getText().toString());
                         user.setGender(ch_sex);
 
+                        //try to save to common
+                        Common.currentUser = user;
 
                         users.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                 .setValue(user)

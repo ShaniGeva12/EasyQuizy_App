@@ -4,6 +4,9 @@
     <color name="OLD_colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
 
+    <color name="redAlert">#C2011A</color>
+
+
     <color name="colorPrimary">#797b7d</color>
     <color name="colorPrimaryDark">#212529</color>
 

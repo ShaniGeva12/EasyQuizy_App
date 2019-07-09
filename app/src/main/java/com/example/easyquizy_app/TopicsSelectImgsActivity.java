@@ -19,7 +19,6 @@ import android.widget.TextView;
 
 import com.example.easyquizy_app.Common.Common;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class TopicsSelectImgsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -79,11 +78,11 @@ public class TopicsSelectImgsActivity extends AppCompatActivity implements Navig
         TextView userNameTv = headerView.findViewById(R.id.username_txt);
         TextView userEmailTv = headerView.findViewById(R.id.mail_txt);
 
-        /*
+
         //user name
         String userName = Common.currentUser.getName();
         userNameTv.setText(userName);
-        */
+
 
         //email
           String userEmail = Common.currentUser.getEmail();
