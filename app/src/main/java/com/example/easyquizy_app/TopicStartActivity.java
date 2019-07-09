@@ -6,10 +6,6 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.view.GravityCompat;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.util.Log;
-import android.view.MenuItem;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -24,6 +20,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -52,10 +49,27 @@ public class TopicStartActivity extends AppCompatActivity
 
     String IMAGE_URL = null;
 
+    private String msg_rate;
+    private RatingBar ratingBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_topic_start);
+
+        //----------------Rating-----------------------
+        ratingBar = (RatingBar) findViewById(R.id.ratingBar);
+
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            public void onRatingChanged(RatingBar ratingBar, float rating,
+                                        boolean fromUser) {
+                msg_rate =
+                        getResources().getString(R.string.rating_tnx) + " " +
+                                String.valueOf(rating) + " " + getResources().getString(R.string.starts);
+                Toast.makeText(TopicStartActivity.this, msg_rate , Toast.LENGTH_SHORT).show();
+            }
+        });
+        //----------------------------------------
 
         //firebase START
         database = FirebaseDatabase.getInstance();

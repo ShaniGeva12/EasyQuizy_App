@@ -1,19 +1,16 @@
 package com.example.easyquizy_app;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ProgressBar;
+import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.example.easyquizy_app.Common.Common;
-import com.example.easyquizy_app.Model.QuestionScore;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import java.net.CookieHandler;
 
 public class DoneActivity extends AppCompatActivity {
 
@@ -23,10 +20,25 @@ public class DoneActivity extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference question_score;
 
+    private String msg_rate;
+    private RatingBar ratingBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_done);
+
+        //----------------Rating-----------------------
+        ratingBar = (RatingBar) findViewById(R.id.ratingBar);
+
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            public void onRatingChanged(RatingBar ratingBar, float rating,
+                                        boolean fromUser) {
+                msg_rate = getResources().getString(R.string.rating_tnx) + " " + String.valueOf(rating) + " " + getResources().getString(R.string.starts);
+                Toast.makeText(DoneActivity.this, msg_rate , Toast.LENGTH_SHORT).show();
+            }
+        });
+        //----------------------------------------
 
         database = FirebaseDatabase.getInstance();
         question_score = database.getReference("Question_Score");
