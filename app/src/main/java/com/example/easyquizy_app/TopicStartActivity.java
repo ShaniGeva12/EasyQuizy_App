@@ -249,10 +249,16 @@ public class TopicStartActivity extends AppCompatActivity
 
         if (id == R.id.nav_home) {
             // Handle the home action
+
+            Intent homeIntent = new Intent(TopicStartActivity.this, TopicsSelectImgsActivity.class);
+           // homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(homeIntent);
+            /*
             selectedFragment = CategoryFragment.newInstance();
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.frame_layout, selectedFragment);
             fragmentTransaction.commit();
+            */
         }
 
         else if (id == R.id.nav_score_board) {

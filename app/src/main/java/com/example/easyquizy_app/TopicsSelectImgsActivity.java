@@ -142,10 +142,13 @@ public class TopicsSelectImgsActivity extends AppCompatActivity implements Navig
 
         if (id == R.id.nav_home) {
             // Handle the home action
+
+
             selectedFragment = CategoryFragment.newInstance();
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.frame_layout, selectedFragment);
             fragmentTransaction.commit();
+
         }
 
         else if (id == R.id.nav_score_board) {
@@ -156,7 +159,6 @@ public class TopicsSelectImgsActivity extends AppCompatActivity implements Navig
         }
 
         else if (id == R.id.nav_log_out) {
-            //TO DO - Inbal (Session logout)
             mAuth.signOut();
 
             Intent homeIntent = new Intent(TopicsSelectImgsActivity.this, MainActivity.class);
