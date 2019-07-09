@@ -42,8 +42,7 @@ public class GameTypeDialog {
         mDialogOnline.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(activity.getApplicationContext(),"Online / Login" ,Toast.LENGTH_SHORT).show();
-
+                String toastStr;
                 Intent homeIntent;
                 // Initialize Firebase Auth
                 mAuth = FirebaseAuth.getInstance();
@@ -51,9 +50,16 @@ public class GameTypeDialog {
                 if(currentUser != null) {
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                     homeIntent = new Intent(activity, TopicsSelectImgsActivity.class);
+                    toastStr = activity.getResources().getString(R.string.wlcm_back);
                 }
                 else
+                {
                     homeIntent = new Intent(activity, LoginPageActivity.class);
+                    toastStr = "Online / Login";
+                }
+
+
+                Toast.makeText(activity.getApplicationContext(),toastStr ,Toast.LENGTH_SHORT).show();
 
                 homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 activity.startActivity(homeIntent);

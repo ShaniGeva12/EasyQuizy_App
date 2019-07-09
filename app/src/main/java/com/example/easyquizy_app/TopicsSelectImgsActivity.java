@@ -1,5 +1,6 @@
 package com.example.easyquizy_app;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -17,15 +18,23 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.easyquizy_app.Common.Common;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class TopicsSelectImgsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     BottomNavigationView bottomNavigationView;
 
+    //Firebase
+    private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_topics_select_imgs);
+
+        // Initialize Firebase Auth
+        mAuth = FirebaseAuth.getInstance();
 
         bottomNavigationView = (BottomNavigationView)findViewById(R.id.navigation);
 
@@ -147,6 +156,11 @@ public class TopicsSelectImgsActivity extends AppCompatActivity implements Navig
 
         else if (id == R.id.nav_log_out) {
             //TO DO - Inbal (Session logout)
+            mAuth.signOut();
+
+            Intent homeIntent = new Intent(TopicsSelectImgsActivity.this, MainActivity.class);
+            homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(homeIntent);
         }
 
         else if (id == R.id.nav_about) {

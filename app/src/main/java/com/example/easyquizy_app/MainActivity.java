@@ -108,75 +108,77 @@ public class MainActivity extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
         //firebase START
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference user = database.getReference("user").child(currentUser.getUid());
-        final String[] name = new String[1];
-        user.child("name").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                name[0] = dataSnapshot.getValue(String.class);
+        if(currentUser != null) { //TODO make that shit work
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference user = database.getReference("user").child(currentUser.getUid());
+            final String[] name = new String[1];
+            user.child("name").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    name[0] = dataSnapshot.getValue(String.class);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+            String email = currentUser.getEmail();
+            final String[] password = new String[1];
+            user.child("password").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    password[0] = dataSnapshot.getValue(String.class);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+            final String[] age = new String[1];
+            user.child("age").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    age[0] = dataSnapshot.getValue(String.class);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+            final String[] gender = new String[1];
+            user.child("gender").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    gender[0] = dataSnapshot.getValue(String.class);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
+
+            for (UserInfo profile : currentUser.getProviderData()) {
+                // Id of the provider (ex: google.com)
+                String providerId = profile.getProviderId();
+
+                // UID specific to the provider
+                String uid = profile.getUid();
+
+                // Name, email address, and profile photo Url
+                String name1 = profile.getDisplayName();
+                String email1 = profile.getEmail();
+                Uri photoUrl = profile.getPhotoUrl();
             }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-        String email = currentUser.getEmail();
-        final String[] password = new String[1];
-        user.child("password").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                password[0] = dataSnapshot.getValue(String.class);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-        final String[] age = new String[1];
-        user.child("age").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                age[0] = dataSnapshot.getValue(String.class);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-        final String[] gender = new String[1];
-        user.child("gender").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                gender[0] = dataSnapshot.getValue(String.class);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-
-        for (UserInfo profile : currentUser.getProviderData()) {
-            // Id of the provider (ex: google.com)
-            String providerId = profile.getProviderId();
-
-            // UID specific to the provider
-            String uid = profile.getUid();
-
-            // Name, email address, and profile photo Url
-            String name1 = profile.getDisplayName();
-            String email1 = profile.getEmail();
-            Uri photoUrl = profile.getPhotoUrl();
+            Log.d(TAG, "onStart: email " + email + " password " + password[0] + " name " + name[0] + " age " + age[0] + " gender " + gender[0]);
+            Common.currentUser = new User(email, password[0], name[0], age[0], gender[0]);
+            updateUI(currentUser);
         }
-
-        Log.d(TAG, "onStart: email " + email + " password " + password[0] + " name " + name[0] + " age " + age[0] + " gender " + gender[0]);
-        Common.currentUser = new User( email, password[0], name[0], age[0], gender[0]);
-        updateUI(currentUser);
     }
 
 

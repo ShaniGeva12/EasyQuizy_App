@@ -106,5 +106,6 @@
     <string name="ur_score_is">Your score is :</string>
     <string name="succeeded">Succeeded :</string>
     <string name="next_time">next time</string>
+    <string name="wlcm_back">Welcome back</string>
 
 </resources>

@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.example.easyquizy_app.Common.Common;
 import com.example.easyquizy_app.Model.User;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -35,9 +36,9 @@ public class LoginPageActivity extends AppCompatActivity {
     private RadioGroup radioSexGroup;
     private String ch_sex;
 
-    EditText name_input, age_input,email_ed,pass_ed;
+    EditText name_input, age_input, email_ed, pass_ed;
     RadioGroup sexRG;
-    Button enter_btn,login_now_btn;
+    Button enter_btn, login_now_btn;
 
     //Firebase
     FirebaseAuth auth;
@@ -65,13 +66,13 @@ public class LoginPageActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_login_page);
 
-        radioSexGroup  = (RadioGroup)findViewById(R.id.sexRadioGroup);
+        radioSexGroup = (RadioGroup) findViewById(R.id.sexRadioGroup);
 
         auth = FirebaseAuth.getInstance();
         db = FirebaseDatabase.getInstance();
         users = db.getReference("Users");
 
-        enter_btn  = findViewById(R.id.enter_btn);
+        enter_btn = findViewById(R.id.enter_btn);
         enter_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,17 +113,17 @@ public class LoginPageActivity extends AppCompatActivity {
 
                 //check validation
                 if (TextUtils.isEmpty(edEmail.getText().toString())) {
-                    Toast.makeText(getApplicationContext(),getResources().getString(R.string.enter_email), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.enter_email), Toast.LENGTH_LONG).show();
                     return;
                 }
 
                 if (TextUtils.isEmpty(edPassword.getText().toString())) {
-                    Toast.makeText(getApplicationContext(),getResources().getString(R.string.enter_pass), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.enter_pass), Toast.LENGTH_LONG).show();
                     return;
                 }
 
                 if (edPassword.getText().toString().length() < 6) {
-                    Toast.makeText(getApplicationContext(),getResources().getString(R.string.pass_short), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.pass_short), Toast.LENGTH_LONG).show();
                     return;
                 }
 
@@ -132,14 +133,18 @@ public class LoginPageActivity extends AppCompatActivity {
                         .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                             @Override
                             public void onSuccess(AuthResult authResult) {
+                                //Common.currentUser handler
+                                String email = edEmail.getText().toString();
+                                Common.currentUser = new User();
+                                Common.currentUser.setEmail(email);
 
-                                    Intent intent = new Intent(LoginPageActivity.this, TopicsSelectImgsActivity.class);
-                                    startActivity(intent);
+                                Intent intent = new Intent(LoginPageActivity.this, TopicsSelectImgsActivity.class);
+                                startActivity(intent);
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(getApplicationContext(),getResources().getString(R.string.login_failed)+ " "+ e.getMessage(), Toast.LENGTH_LONG)
+                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.login_failed) + " " + e.getMessage(), Toast.LENGTH_LONG)
                                 .show();
                     }
                 });
@@ -163,12 +168,12 @@ public class LoginPageActivity extends AppCompatActivity {
         email_ed = findViewById(R.id.mail_et);
         pass_ed = findViewById(R.id.pass_et);
         name_input = findViewById(R.id.name_et);
-        age_input  = findViewById(R.id.age_et);
+        age_input = findViewById(R.id.age_et);
         //sexRG = findViewById(R.id.sexRadioGroup);
 
         //Add gender by String (ch_sex) here:
         int selectedId = radioSexGroup.getCheckedRadioButtonId();
-        switch(selectedId){
+        switch (selectedId) {
             case R.id.male_checkbox:
                 // do operations specific to this selection
                 ch_sex = getResources().getString(R.string.male);
@@ -183,32 +188,32 @@ public class LoginPageActivity extends AppCompatActivity {
         }
 
         if (TextUtils.isEmpty(ch_sex)) {
-            Toast.makeText(this,getResources().getString(R.string.choose_sex), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getResources().getString(R.string.choose_sex), Toast.LENGTH_LONG).show();
             return;
         }
         if (TextUtils.isEmpty(email_ed.getText().toString())) {
-            Toast.makeText(this,getResources().getString(R.string.enter_email), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getResources().getString(R.string.enter_email), Toast.LENGTH_LONG).show();
             return;
         }
         if (TextUtils.isEmpty(pass_ed.getText().toString())) {
-            Toast.makeText(this,getResources().getString(R.string.enter_pass), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getResources().getString(R.string.enter_pass), Toast.LENGTH_LONG).show();
             return;
         }
         if (TextUtils.isEmpty(name_input.getText().toString())) {
-            Toast.makeText(this,getResources().getString(R.string.enter_name), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getResources().getString(R.string.enter_name), Toast.LENGTH_LONG).show();
             return;
         }
         if (TextUtils.isEmpty(age_input.getText().toString())) {
-            Toast.makeText(this,getResources().getString(R.string.enter_age), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getResources().getString(R.string.enter_age), Toast.LENGTH_LONG).show();
             return;
         }
         if (pass_ed.getText().toString().length() < 6) {
-            Toast.makeText(this,getResources().getString(R.string.pass_short), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getResources().getString(R.string.pass_short), Toast.LENGTH_LONG).show();
             return;
         }
 
         //Register new user
-        auth.createUserWithEmailAndPassword(email_ed.getText().toString(),pass_ed.getText().toString())
+        auth.createUserWithEmailAndPassword(email_ed.getText().toString(), pass_ed.getText().toString())
                 .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                     @Override
                     public void onSuccess(AuthResult authResult) {
@@ -227,16 +232,16 @@ public class LoginPageActivity extends AppCompatActivity {
                                     @Override
                                     public void onSuccess(Void aVoid) {
 
-                                        Toast.makeText(getApplicationContext(),getResources().getString(R.string.register_succeded), Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.register_succeded), Toast.LENGTH_LONG).show();
 
-                                            Intent intent = new Intent(LoginPageActivity.this, TopicsSelectImgsActivity.class);
-                                            startActivity(intent);
+                                        Intent intent = new Intent(LoginPageActivity.this, TopicsSelectImgsActivity.class);
+                                        startActivity(intent);
 
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(getApplicationContext(),getResources().getString(R.string.register_failed) + " "+ e.getMessage(), Toast.LENGTH_LONG)
+                                Toast.makeText(getApplicationContext(), getResources().getString(R.string.register_failed) + " " + e.getMessage(), Toast.LENGTH_LONG)
                                         .show();
                             }
                         });
@@ -245,7 +250,7 @@ public class LoginPageActivity extends AppCompatActivity {
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getApplicationContext(),getResources().getString(R.string.register_failed)+ " " +e.getMessage(), Toast.LENGTH_LONG)
+                Toast.makeText(getApplicationContext(), getResources().getString(R.string.register_failed) + " " + e.getMessage(), Toast.LENGTH_LONG)
                         .show();
             }
         });
@@ -256,8 +261,7 @@ public class LoginPageActivity extends AppCompatActivity {
     private void enterOnClick() {
 
         String inputStr = name_input.getText().toString();
-        if(inputStr.contentEquals("") || inputStr.contentEquals(getResources().getString(R.string.enter)) || inputStr.contentEquals(" "))
-        {   //dumb user handler: empty name
+        if (inputStr.contentEquals("") || inputStr.contentEquals(getResources().getString(R.string.enter)) || inputStr.contentEquals(" ")) {   //dumb user handler: empty name
             //String msg = getResources().getString(R.string.empty_recipe_title);
             Toast.makeText(LoginPageActivity.this, "please enter your name", Toast.LENGTH_SHORT).show();
             Log.d(TAG, "enterOnClick: dumb user handler: empty name value");
@@ -265,8 +269,7 @@ public class LoginPageActivity extends AppCompatActivity {
         }
 
         inputStr = age_input.getText().toString();
-        if(inputStr.contentEquals("") || inputStr.contentEquals(getResources().getString(R.string.enter)) || inputStr.contentEquals(" "))
-        {   //dumb user handler: empty age
+        if (inputStr.contentEquals("") || inputStr.contentEquals(getResources().getString(R.string.enter)) || inputStr.contentEquals(" ")) {   //dumb user handler: empty age
             //String msg = getResources().getString(R.string.empty_recipe_title);
             Toast.makeText(LoginPageActivity.this, "please enter your age", Toast.LENGTH_SHORT).show();
             Log.d(TAG, "enterOnClick: dumb user handler: empty age value");
