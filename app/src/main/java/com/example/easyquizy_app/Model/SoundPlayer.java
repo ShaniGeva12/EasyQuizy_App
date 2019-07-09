@@ -26,7 +26,7 @@ public class SoundPlayer {
     public void playHeartBreakSound()
     {
         //play(int soundID, float leftVolume, float rightVolume, int priority, int loop, float rate)
-        soundPool.play(heartBreakSound, 1.0f, 1.0f, 1, 0, 1.0f);
+        soundPool.play(heartBreakSound, 0.7f, 0.7f, 1, 0, 1.0f);
     }
     public void playFailSound()
     {

@@ -51,27 +51,6 @@ public class PlayingActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_playing);
 
-        //----------------Lifes rating-----------------------
-        hearts_ratingBar = (RatingBar) findViewById(R.id.hearts_ratingBar);
-        //hearts_ratingBar.setEnabled(false);
-        hearts_ratingBar.setRating(3);
-        //----------------------------------------
-
-        sound = new SoundPlayer(this);
-
-        //get quit game btn
-        quit_btn = findViewById(R.id.quit_btn);
-        quit_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                //TODO: add "Are you sure?" dialog
-                Intent homeIntent = new Intent(PlayingActivity.this, TopicsSelectImgsActivity.class);
-                homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(homeIntent);
-            }
-        });
-
         //Firebase
         database = FirebaseDatabase.getInstance();
         questions = database.getReference("Questions");
@@ -99,6 +78,26 @@ public class PlayingActivity extends AppCompatActivity implements View.OnClickLi
         btnB.setOnClickListener(this);
         btnC.setOnClickListener(this);
         btnD.setOnClickListener(this);
+
+        //----------------Lifes rating-----------------------
+        hearts_ratingBar = (RatingBar) findViewById(R.id.hearts_ratingBar);
+        //hearts_ratingBar.setEnabled(false);
+        hearts_ratingBar.setRating(3);
+        //----------------------------------------
+
+        sound = new SoundPlayer(this);
+
+        //get quit game btn
+        quit_btn = findViewById(R.id.quit_btn);
+        quit_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                //TODO: add "Are you sure?" dialog
+                ExitGameDialog alert = new ExitGameDialog();
+                alert.showDialog(PlayingActivity.this);
+            }
+        });
 
         //seek bar - progress bar in the quiz
         SeekBar seekBar = findViewById(R.id.seekBar);
