@@ -16,6 +16,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.easyquizy_app.Common.Common;
+
 public class TopicsSelectImgsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     BottomNavigationView bottomNavigationView;
@@ -72,11 +74,11 @@ public class TopicsSelectImgsActivity extends AppCompatActivity implements Navig
         //user name
         String userName = Common.currentUser.getName();
         userNameTv.setText(userName);
+        */
 
         //email
         String userEmail = Common.currentUser.getEmail();
         userEmailTv.setText(userEmail);
-        */
         //----------------------------------------------------------------
 
 

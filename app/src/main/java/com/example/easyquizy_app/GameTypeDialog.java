@@ -14,6 +14,9 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class GameTypeDialog {
 
+    //Firebase
+    private FirebaseAuth mAuth;
+
     public void showDialog(final Activity activity) {
         final Dialog dialog = new Dialog(activity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -41,15 +44,17 @@ public class GameTypeDialog {
             public void onClick(View v) {
                 Toast.makeText(activity.getApplicationContext(),"Online / Login" ,Toast.LENGTH_SHORT).show();
 
+                Intent homeIntent;
+                // Initialize Firebase Auth
+                mAuth = FirebaseAuth.getInstance();
+                FirebaseUser currentUser = mAuth.getCurrentUser();
+                if(currentUser != null) {
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    homeIntent = new Intent(activity, TopicsSelectImgsActivity.class);
+                }
+                else
+                    homeIntent = new Intent(activity, LoginPageActivity.class);
 
-//                if(currentUser != null) {
-//                    loginBtn.setVisibility(View.GONE);
-//            signupBtn.setVisibility(View.GONE);
-
-//                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-//                }
-
-                    Intent homeIntent = new Intent(activity, LoginPageActivity.class);
                 homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 activity.startActivity(homeIntent);
 
