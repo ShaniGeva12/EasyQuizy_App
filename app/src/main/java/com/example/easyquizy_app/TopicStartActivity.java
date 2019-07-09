@@ -84,31 +84,38 @@ public class TopicStartActivity extends AppCompatActivity
 
         //categoryImage = findViewById(R.id.topic_img);
 
-        singleBtn = findViewById(R.id.single_player_btn);
-        randBtn = findViewById(R.id.random_player_btn);
-        singleBtn.setOnClickListener(new View.OnClickListener() {
+        //singleBtn = findViewById(R.id.single_player_btn);
+        randBtn = findViewById(R.id.single_player_btn);
+        /*singleBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 singlePlayerOnClick();
             }
-        });
+        });*/
+        //title & description setter START
+        Intent intent = getIntent();
+        final String category = intent.getStringExtra("categoryName");
+        String desc = intent.getStringExtra("desc");
+
         randBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                randomPlayerOnClick();
+                Intent startGame = new Intent(TopicStartActivity.this, PlayingActivity.class);
+                //startGame.putExtra("gameType", "random");
+                startGame.putExtra("Topic", category);
+                startActivity(startGame);
+                finish();
             }
         });
 
-        //title & description setter START
-        Intent intent = getIntent();
-        String category = intent.getStringExtra("categoryName");
-        String desc = intent.getStringExtra("desc");
+
+
 
         //category image displaying
         new DownloadImageTask((ImageView) findViewById(R.id.topic_img))
                 .execute(getIntent().getExtras().getString("categoryImage"));
 
-        TextView title = findViewById(R.id.topic_name_txt);
+        final TextView title = findViewById(R.id.topic_name_txt);
         TextView description = findViewById(R.id.topic_description_txt);
         title.setText(category);
         description.setText(desc);
@@ -191,19 +198,6 @@ public class TopicStartActivity extends AppCompatActivity
         Collections.shuffle(Common.questionList);
     }
 
-    private void randomPlayerOnClick() {
-        Intent startGame = new Intent(TopicStartActivity.this, PlayingActivity.class);
-        startGame.putExtra("gameType", "random");
-        startActivity(startGame);
-        finish();
-    }
-
-    private void singlePlayerOnClick() {
-        Intent startGame = new Intent(TopicStartActivity.this, PlayingActivity.class);
-        startGame.putExtra("gameType", "single");
-        startActivity(startGame);
-        finish();
-    }
 
     //Navigation Drawer funcs START
     @Override

@@ -42,7 +42,7 @@ public class PlayingActivity extends AppCompatActivity implements View.OnClickLi
     ProgressBar timerProgressBar;
     ImageView question_image;
     Button btnA, btnB, btnC, btnD;
-    TextView txtScore, txtQuestionNum, question_txt;
+    TextView txtScore, txtQuestionNum, question_txt,categoryName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +73,11 @@ public class PlayingActivity extends AppCompatActivity implements View.OnClickLi
         txtScore = findViewById(R.id.txtScore);
         txtQuestionNum = findViewById(R.id.txtTotalQuestion);
         question_txt = findViewById(R.id.question_txt);
+        categoryName = findViewById(R.id.topic_name_txt);
+
+        Intent intent = getIntent();
+        String category = intent.getStringExtra("Topic");
+        categoryName.setText(category);
 
         timerProgressBar = findViewById(R.id.timerProgressBar);
         seekBar = findViewById(R.id.seekBar);
