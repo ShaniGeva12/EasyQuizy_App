@@ -30,6 +30,7 @@ public class TopicsSelectImgsActivity extends AppCompatActivity implements Navig
     private FirebaseAuth mAuth;
 
     int frag_flag;
+    int offline_flag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +40,11 @@ public class TopicsSelectImgsActivity extends AppCompatActivity implements Navig
         //get intents
         Intent intent = getIntent();
         frag_flag = intent.getIntExtra(TopicStartActivity.EXTRA_FRAGMENT_FLAG , 0);
+        offline_flag = intent.getIntExtra(GameTypeDialog.EXTRA_OFFLINE_FLAG , 0);
+
+
+        Bundle bundle = new Bundle();
+        bundle.putInt("Integer", offline_flag);
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();

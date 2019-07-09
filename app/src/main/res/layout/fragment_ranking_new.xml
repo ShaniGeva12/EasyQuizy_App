@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CategoryFragment">
+
+    <!-- Main between footer & bottom -->
+    <!-- /////////////////////////////////////////////// -->
+    <RelativeLayout
+        android:id="@+id/main_frame_ly"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:background="@color/white_50precent"
+        android:gravity="center"
+        android:layout_margin="20dp"
+        >
+
+    <LinearLayout
+        android:id="@+id/title_lin_ly"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+
+        android:paddingTop="20dp"
+
+        android:weightSum="5"
+        >
+
+        <TextView
+            android:id="@+id/title_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/score_board"
+            android:textSize="35sp"
+            android:textColor="@color/colorPrimaryDarkBlack"
+
+            android:layout_weight="1"
+
+            android:layout_marginBottom="20dp"
+            />
+
+        <LinearLayout
+            android:id="@+id/table_title_lin_ly"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+
+            android:orientation="horizontal"
+            android:weightSum="2"
+            >
+
+            <TextView
+                android:id="@+id/user_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/username"
+
+                android:textColor="@color/colorPrimaryDarkBlack"
+
+                android:layout_weight="1"
+                android:visibility="gone"
+
+                android:layout_marginBottom="20dp"
+                />
+
+            <TextView
+                android:id="@+id/topic_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/topic"
+
+                android:textColor="@color/colorPrimaryDarkBlack"
+
+                android:layout_weight="1"
+
+                android:layout_marginBottom="20dp"
+                />
+
+            <TextView
+                android:id="@+id/score_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/score"
+
+                android:textColor="@color/colorPrimaryDarkBlack"
+
+                android:layout_weight="1"
+
+                android:layout_marginBottom="20dp"
+                />
+
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+        <include
+            layout="@layout/content_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/title_lin_ly"
+            android:visibility="visible"
+            />
+    </RelativeLayout>
+
+
+    <!--
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/score_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/main_sv"
+        >
+    </android.support.v7.widget.RecyclerView>
+    -->
+
+</FrameLayout>
