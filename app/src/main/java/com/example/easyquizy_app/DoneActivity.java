@@ -2,6 +2,7 @@ package com.example.easyquizy_app;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -115,7 +116,7 @@ public class DoneActivity extends AppCompatActivity {
 //                            String.valueOf(score)));
 
             //Uplaod to DB
-            question_score.child(String.format("%s_%s", Common.currentUser.getName(),Common.categoryId))
+            question_score.child(String.format("%s_%s", Common.currentUser.getEmail(),Common.categoryId))
                     .setValue(new QuestionScore(String.format("%s_%s", Common.currentUser.getName(),Common.categoryId)
                             ,Common.currentUser.getName(),String.valueOf(score)));
         }

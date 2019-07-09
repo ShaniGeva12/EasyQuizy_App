@@ -136,6 +136,8 @@ public class LoginPageActivity extends AppCompatActivity {
                                 String email = edEmail.getText().toString();
                                 Common.currentUser = new User();
                                 Common.currentUser.setEmail(email);
+                                String[] strArr = email.split("@");
+                                Common.currentUser.setName(strArr[0]);
 
                                 //Common.currentUser.setName("");
 
@@ -222,7 +224,9 @@ public class LoginPageActivity extends AppCompatActivity {
                         User user = new User();
                         user.setEmail(email_ed.getText().toString());
                         user.setPassword(pass_ed.getText().toString());
-                        user.setName(name_input.getText().toString());
+                        String[] strArr = email_ed.getText().toString().split("@");
+                        user.setName(strArr[0]);
+                        //user.setName(name_input.getText().toString());
                         user.setAge(age_input.getText().toString());
                         user.setGender(ch_sex);
 
