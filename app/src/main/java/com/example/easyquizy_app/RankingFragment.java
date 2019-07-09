@@ -1,48 +1,48 @@
 package com.example.easyquizy_app;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.easyquizy_app.Common.Common;
+import com.example.easyquizy_app.Interface.ItemClickListener;
 import com.example.easyquizy_app.Interface.RankingCallBack;
 import com.example.easyquizy_app.Model.Category;
 import com.example.easyquizy_app.Model.QuestionScore;
 import com.example.easyquizy_app.Model.Ranking;
+import com.example.easyquizy_app.ViewHolder.CategoryBoardHolder;
 import com.example.easyquizy_app.ViewHolder.CategoryViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 
 public class RankingFragment extends Fragment {
+    private static final String TAG = "RankingFragment";
     View myFragment;
-    /*
-    //regular RecyclerView items
-    private RecyclerView recyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager layoutManager;
-    */
-
-    //fire base RecyclerView items
-    //RecyclerView listCategory;
-    //RecyclerView.LayoutManager layoutManager;
-    //FirebaseRecyclerAdapter<Category, CategoryViewHolder> adapter;
 
     FirebaseDatabase database;
-    DatabaseReference questionsScore,rankingTbl;
+    DatabaseReference categories;
 
-    int sum=0;
+    //int sum=0;
+    RecyclerView listCategoryScores;
+    RecyclerView.LayoutManager layoutManager;
 
+    FirebaseRecyclerAdapter<Category, CategoryBoardHolder> adapter;
 
     public static RankingFragment newInstance(){
         RankingFragment rankingFragment = new RankingFragment();
@@ -54,70 +54,83 @@ public class RankingFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         database = FirebaseDatabase.getInstance();
-        questionsScore = database.getReference("Question_Score");
-        rankingTbl = database.getReference("Ranking");
+        categories = database.getReference("Category");
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        myFragment = inflater.inflate(R.layout.fragment_ranking,container,false);
-
-        upadateScore(Common.currentUser.getName(), new RankingCallBack<Ranking>() {
-            @Override
-            public void callBack(Ranking ranking) {
-                //Update to ranking table
-                rankingTbl.child(ranking.getUserName()).setValue(ranking);
-                //After Upload,we will sort ranking table and show result
-                showRanking();
-            }
-        });
+        myFragment = inflater.inflate(R.layout.fragment_ranking_new,container,false);
+        listCategoryScores = (RecyclerView)myFragment.findViewById(R.id.score_recycler_view);
+        listCategoryScores.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(container.getContext());
+        listCategoryScores.setLayoutManager(layoutManager);
+        loadCategories();
 
         return myFragment;
     }
 
-    private void showRanking() {
-
-            rankingTbl.orderByChild("score")
-                    .addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            for (DataSnapshot data:dataSnapshot.getChildren())
-                            {
-                                Ranking local = data.getValue(Ranking.class);
-                                Log.d("DEBUG",local.getUserName());
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                        }
-                    });
-
+    @Override
+    public void onStop() {
+        super.onStop();
+        adapter.stopListening();
     }
 
-    private void upadateScore(final String name, final RankingCallBack<Ranking> callBack) {
+    @Override
+    public void onStart() {
+        super.onStart();
+        adapter.startListening();
+    }
 
-        questionsScore.orderByChild("user").equalTo(name)
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        for (DataSnapshot data:dataSnapshot.getChildren())
-                        {
-                            QuestionScore ques = data.getValue(QuestionScore.class);
-                            sum+=Integer.parseInt(ques.getScore());
-                        }
-                        Ranking ranking = new Ranking(name,sum);
-                        callBack.callBack(ranking);
-                    }
+    private void loadCategories() {
 
+        FirebaseRecyclerOptions<Category> options =
+                new FirebaseRecyclerOptions.Builder<Category>()
+                        .setQuery(categories, Category.class)
+                        .build();
+
+        adapter = new FirebaseRecyclerAdapter<Category, CategoryBoardHolder>(options) {
+            @Override
+            public CategoryBoardHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.layout_ranking, parent, false);
+
+                return new CategoryBoardHolder(view);
+            }
+
+            @Override
+            protected void onBindViewHolder(CategoryBoardHolder holder, int position,final Category model) {
+                // Bind the Category object to the CategoryViewHolder
+                holder.topic_txt.setText(model.getName());
+
+                holder.setItemClickListener(new ItemClickListener() {
                     @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                    public void onClick(View view, int position, boolean isLongClick) {
+                        Toast.makeText(getActivity(),String.format("%s|%s",adapter.getRef(position).getKey(),model.getName()), Toast.LENGTH_SHORT).show();
+                        Log.d(TAG, "onClick: " + String.format("%s|%s",adapter.getRef(position).getKey(),model.getName()));
+                        //Intent startGame = new Intent(getActivity(), TopicStartActivity.class);
+                        //Common.categoryId = adapter.getRef(position).getKey();
+
+                        //startGame.putExtra("categoryId",adapter.getRef(position).getKey());
+                        //startGame.putExtra("categoryName", model.getName());
+                        //startGame.putExtra("categoryImage", model.getImage());
+                        //startGame.putExtra("desc", model.getDescription());
+
+                        //startActivity(startGame);
 
                     }
                 });
+            }
+
+        };
+
+        adapter.notifyDataSetChanged();
+        listCategoryScores.setAdapter(adapter);
 
     }
+
+
+
+
 
 }
