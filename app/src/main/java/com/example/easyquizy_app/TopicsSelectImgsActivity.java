@@ -10,8 +10,10 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -163,11 +165,31 @@ public class TopicsSelectImgsActivity extends AppCompatActivity implements Navig
         }
 
         else if (id == R.id.nav_about) {
-
+            aboutDialog();
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+
+    private void aboutDialog() {
+        String msg =
+                "in this app you can\n" +
+                        "search a recipe on app and even online,\n" +
+                        "add a recipe to app,\n" +
+                        "order a recipe from our chef,\n" +
+                        "add ordering to your calendar,\nmake an alarm to remind you\n" +
+                        "and even contact our chef";
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("What can you do here?");
+        builder.setMessage(msg);
+        builder.setPositiveButton("OK", null);
+        AlertDialog dialog = builder.show();
+        TextView messageText = (TextView)dialog.findViewById(android.R.id.message);
+        messageText.setGravity(Gravity.CENTER);
+        dialog.show();
     }
 }

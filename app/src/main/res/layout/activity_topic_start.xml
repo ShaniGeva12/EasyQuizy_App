@@ -19,8 +19,8 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header_topic_start"
-        app:menu="@menu/activity_topic_start_drawer"
+        app:headerLayout="@layout/nav_header_topics_select"
+        app:menu="@menu/activity_topics_select_drawer"
         android:background="@color/colorPrimary01"
         />
 

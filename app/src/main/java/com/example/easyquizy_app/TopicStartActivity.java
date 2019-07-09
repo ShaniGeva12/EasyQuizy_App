@@ -7,12 +7,16 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,6 +31,7 @@ import android.widget.Toast;
 
 import com.example.easyquizy_app.Common.Common;
 import com.example.easyquizy_app.Model.Question;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -238,19 +243,35 @@ public class TopicStartActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        Fragment selectedFragment = CategoryFragment.newInstance();
 
         if (id == R.id.nav_home) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+            // Handle the home action
+            selectedFragment = CategoryFragment.newInstance();
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.frame_layout, selectedFragment);
+            fragmentTransaction.commit();
+        }
 
-        } else if (id == R.id.nav_slideshow) {
+        else if (id == R.id.nav_score_board) {
+            selectedFragment = RankingFragment.newInstance();
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.frame_layout, selectedFragment);
+            fragmentTransaction.commit();
+        }
 
-        } else if (id == R.id.nav_tools) {
+        else if (id == R.id.nav_log_out) {
+            //TO DO - Inbal (Session logout)
+            FirebaseAuth mAuth = FirebaseAuth.getInstance();
+            mAuth.signOut();
 
-        } else if (id == R.id.nav_share) {
+            Intent homeIntent = new Intent(TopicStartActivity.this, MainActivity.class);
+            homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(homeIntent);
+        }
 
-        } else if (id == R.id.nav_send) {
-
+        else if (id == R.id.nav_about) {
+            aboutDialog();
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -279,6 +300,25 @@ public class TopicStartActivity extends AppCompatActivity
         Toast.makeText(getApplicationContext(),"select your game mode" , Toast.LENGTH_LONG).show();
     }
     //spinner func END
+
+    private void aboutDialog() {
+        String msg =
+                "in this app you can\n" +
+                        "search a recipe on app and even online,\n" +
+                        "add a recipe to app,\n" +
+                        "order a recipe from our chef,\n" +
+                        "add ordering to your calendar,\nmake an alarm to remind you\n" +
+                        "and even contact our chef";
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("What can you do here?");
+        builder.setMessage(msg);
+        builder.setPositiveButton("OK", null);
+        AlertDialog dialog = builder.show();
+        TextView messageText = (TextView)dialog.findViewById(android.R.id.message);
+        messageText.setGravity(Gravity.CENTER);
+        dialog.show();
+    }
 
 }
 
