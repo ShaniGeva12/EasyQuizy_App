@@ -22,16 +22,19 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import io.github.inflationx.calligraphy3.CalligraphyConfig;
 import io.github.inflationx.calligraphy3.CalligraphyInterceptor;
 import io.github.inflationx.viewpump.ViewPump;
 import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
-public class LoginPageActivity extends AppCompatActivity {
-    private static final String TAG = "LoginPageActivity";
+public class NewLogin extends AppCompatActivity {
+    private static final String TAG = "NewLogin";
 
     private RadioGroup radioSexGroup;
     private String ch_sex;
@@ -99,8 +102,8 @@ public class LoginPageActivity extends AppCompatActivity {
         LayoutInflater inflater = LayoutInflater.from(this);
         View login_layout = inflater.inflate(R.layout.layout_login, null);
 
-        final EditText edEmail = login_layout.findViewById(R.id.edName);
-        final EditText edPassword = login_layout.findViewById(R.id.edPassword);
+        final String user = login_layout.findViewById(R.id.edName).toString();
+        final String pwd = login_layout.findViewById(R.id.edPassword).toString();
 
         dialog.setView(login_layout);
 
@@ -109,43 +112,33 @@ public class LoginPageActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
-
-
-                //check validation
-                if (TextUtils.isEmpty(edEmail.getText().toString())) {
-                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.enter_email), Toast.LENGTH_LONG).show();
-                    return;
-                }
-
-                if (TextUtils.isEmpty(edPassword.getText().toString())) {
-                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.enter_pass), Toast.LENGTH_LONG).show();
-                    return;
-                }
-
-                if (edPassword.getText().toString().length() < 6) {
-                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.pass_short), Toast.LENGTH_LONG).show();
-                    return;
-                }
-
-
                 //Login
-                auth.signInWithEmailAndPassword(edEmail.getText().toString(), edPassword.getText().toString())
-                        .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                            @Override
-                            public void onSuccess(AuthResult authResult) {
-                                //Common.currentUser handler
-                                String email = edEmail.getText().toString();
-                                Common.currentUser = new User();
-                                Common.currentUser.setEmail(email);
-
-                                Intent intent = new Intent(LoginPageActivity.this, TopicsSelectImgsActivity.class);
-                                startActivity(intent);
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
+                users.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.login_failed) + " " + e.getMessage(), Toast.LENGTH_LONG)
-                                .show();
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.child(user).exists()) {
+                            if (!user.isEmpty()) {
+                                User login = dataSnapshot.child(user).getValue(User.class);
+                                if (login.getPassword().equals(pwd)) {
+                                    Toast.makeText(NewLogin.this, "Login Successfully!", Toast.LENGTH_LONG).show();
+                                    Intent intent = new Intent(NewLogin.this, TopicsSelectImgsActivity.class);
+                                    Common.currentUser = login;
+                                    startActivity(intent);
+                                }
+                                else
+                                    Toast.makeText(NewLogin.this, "Wrong Password!", Toast.LENGTH_LONG).show();
+                            } else {
+                                Toast.makeText(NewLogin.this, "Please enter your username!", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                        else{
+                            Toast.makeText(NewLogin.this, "User does not exists!", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
                     }
                 });
             }
@@ -207,75 +200,37 @@ public class LoginPageActivity extends AppCompatActivity {
             Toast.makeText(this, getResources().getString(R.string.enter_age), Toast.LENGTH_LONG).show();
             return;
         }
-        if (pass_ed.getText().toString().length() < 6) {
-            Toast.makeText(this, getResources().getString(R.string.pass_short), Toast.LENGTH_LONG).show();
-            return;
-        }
 
         //Register new user
-        auth.createUserWithEmailAndPassword(email_ed.getText().toString(), pass_ed.getText().toString())
-                .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                    @Override
-                    public void onSuccess(AuthResult authResult) {
-                        //Save user to db
-                        User user = new User();
-                        user.setEmail(email_ed.getText().toString());
-                        user.setPassword(pass_ed.getText().toString());
-                        user.setName(name_input.getText().toString());
-                        user.setAge(age_input.getText().toString());
-                        user.setGender(ch_sex);
 
+        final User user = new User();
+        user.setEmail(email_ed.getText().toString());
+        user.setPassword(pass_ed.getText().toString());
+        user.setName(name_input.getText().toString());
+        user.setAge(age_input.getText().toString());
+        user.setGender(ch_sex);
 
-                        users.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                .setValue(user)
-                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void aVoid) {
-
-                                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.register_succeded), Toast.LENGTH_LONG).show();
-
-                                        Intent intent = new Intent(LoginPageActivity.this, TopicsSelectImgsActivity.class);
-                                        startActivity(intent);
-
-                                    }
-                                }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(getApplicationContext(), getResources().getString(R.string.register_failed) + " " + e.getMessage(), Toast.LENGTH_LONG)
-                                        .show();
-                            }
-                        });
-
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
+        users.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getApplicationContext(), getResources().getString(R.string.register_failed) + " " + e.getMessage(), Toast.LENGTH_LONG)
-                        .show();
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.child(user.getName()).exists())
+                        Toast.makeText(NewLogin.this, "User Already Exist!", Toast.LENGTH_LONG).show();
+                else
+                {
+                    users.child(user.getName())
+                            .setValue(user);
+                    Toast.makeText(NewLogin.this, "User Registered successfully!", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(NewLogin.this, TopicsSelectImgsActivity.class);
+                    startActivity(intent);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
             }
         });
 
 
-    }
-
-    private void enterOnClick() {
-
-        String inputStr = name_input.getText().toString();
-        if (inputStr.contentEquals("") || inputStr.contentEquals(getResources().getString(R.string.enter)) || inputStr.contentEquals(" ")) {   //dumb user handler: empty name
-            //String msg = getResources().getString(R.string.empty_recipe_title);
-            Toast.makeText(LoginPageActivity.this, "please enter your name", Toast.LENGTH_SHORT).show();
-            Log.d(TAG, "enterOnClick: dumb user handler: empty name value");
-            return;
-        }
-
-        inputStr = age_input.getText().toString();
-        if (inputStr.contentEquals("") || inputStr.contentEquals(getResources().getString(R.string.enter)) || inputStr.contentEquals(" ")) {   //dumb user handler: empty age
-            //String msg = getResources().getString(R.string.empty_recipe_title);
-            Toast.makeText(LoginPageActivity.this, "please enter your age", Toast.LENGTH_SHORT).show();
-            Log.d(TAG, "enterOnClick: dumb user handler: empty age value");
-            return;
-        }
-
-        finish();
     }
 }

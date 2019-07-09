@@ -9,6 +9,9 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.easyquizy_app.Common.Common;
+import com.example.easyquizy_app.Model.Question;
+import com.example.easyquizy_app.Model.QuestionScore;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -93,6 +96,10 @@ public class DoneActivity extends AppCompatActivity {
 //                            Common.currentUser.getName(),
 //                            String.valueOf(score)));
 
+            //Uplaod to DB
+            question_score.child(String.format("%s_%s", Common.currentUser.getName(),Common.categoryId))
+                    .setValue(new QuestionScore(String.format("%s_%s", Common.currentUser.getName(),Common.categoryId)
+                    ,Common.currentUser.getName(),String.valueOf(score)));
         }
 
     }

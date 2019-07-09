@@ -11,6 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/DarkyTheme">
+        <activity android:name=".NewLogin"></activity>
         <activity android:name=".DoneActivity"></activity>
         <activity
             android:name=".TopicStartActivity"
