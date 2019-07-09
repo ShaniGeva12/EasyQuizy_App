@@ -86,8 +86,8 @@ public class TopicsSelectImgsActivity extends AppCompatActivity implements Navig
         */
 
         //email
-        String userEmail = Common.currentUser.getEmail();
-        userEmailTv.setText(userEmail);
+          String userEmail = Common.currentUser.getEmail();
+          userEmailTv.setText(userEmail);
         //----------------------------------------------------------------
 
 

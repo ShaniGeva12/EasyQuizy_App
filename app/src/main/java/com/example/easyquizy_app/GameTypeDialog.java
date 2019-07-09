@@ -54,7 +54,7 @@ public class GameTypeDialog {
                 }
                 else
                 {
-                    homeIntent = new Intent(activity, NewLogin.class);
+                    homeIntent = new Intent(activity, LoginPageActivity.class);
                     toastStr = "Online / Login";
                 }
 

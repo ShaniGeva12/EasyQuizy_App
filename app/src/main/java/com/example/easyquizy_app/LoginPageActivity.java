@@ -99,7 +99,7 @@ public class LoginPageActivity extends AppCompatActivity {
         LayoutInflater inflater = LayoutInflater.from(this);
         View login_layout = inflater.inflate(R.layout.layout_login, null);
 
-        final EditText edEmail = login_layout.findViewById(R.id.edName);
+        final EditText edEmail = login_layout.findViewById(R.id.edEmail);
         final EditText edPassword = login_layout.findViewById(R.id.edPassword);
 
         dialog.setView(login_layout);

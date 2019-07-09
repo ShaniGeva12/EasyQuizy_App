@@ -44,7 +44,7 @@ public class NewLogin extends AppCompatActivity {
     Button enter_btn, login_now_btn;
 
     //Firebase
-    FirebaseAuth auth;
+    //FirebaseAuth auth;
     FirebaseDatabase db;
     DatabaseReference users;
 
@@ -71,7 +71,7 @@ public class NewLogin extends AppCompatActivity {
 
         radioSexGroup = (RadioGroup) findViewById(R.id.sexRadioGroup);
 
-        auth = FirebaseAuth.getInstance();
+        //auth = FirebaseAuth.getInstance();
         db = FirebaseDatabase.getInstance();
         users = db.getReference("Users");
 
@@ -102,7 +102,7 @@ public class NewLogin extends AppCompatActivity {
         LayoutInflater inflater = LayoutInflater.from(this);
         View login_layout = inflater.inflate(R.layout.layout_login, null);
 
-        final String user = login_layout.findViewById(R.id.edName).toString();
+        final String user = login_layout.findViewById(R.id.edEmail).toString();
         final String pwd = login_layout.findViewById(R.id.edPassword).toString();
 
         dialog.setView(login_layout);
