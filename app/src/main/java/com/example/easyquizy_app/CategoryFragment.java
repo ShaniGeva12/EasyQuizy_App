@@ -115,7 +115,7 @@ public class CategoryFragment extends Fragment {
                         Common.categoryId = adapter.getRef(position).getKey();
 
                         //startGame.putExtra("categoryId",adapter.getRef(position).getKey());
-                        startGame.putExtra("questions", model.getName());
+                        startGame.putExtra("categoryName", model.getName());
                         startGame.putExtra("categoryImage", model.getImage());
                         startGame.putExtra("desc", model.getDescription());
 
