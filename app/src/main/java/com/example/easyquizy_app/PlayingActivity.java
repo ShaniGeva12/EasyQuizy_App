@@ -42,6 +42,7 @@ public class PlayingActivity extends AppCompatActivity implements View.OnClickLi
     ProgressBar timerProgressBar;
     ImageView question_image;
     Button btnA, btnB, btnC, btnD;
+    Button quit_btn;
     TextView txtScore, txtQuestionNum, question_txt,categoryName;
 
     @Override
@@ -64,6 +65,19 @@ public class PlayingActivity extends AppCompatActivity implements View.OnClickLi
         //hearts_ratingBar.setEnabled(false);
         hearts_ratingBar.setRating(3);
         //----------------------------------------
+
+        //get quit game btn
+        quit_btn = findViewById(R.id.quit_btn);
+        quit_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                //TODO: add "Are you sure?" dialog
+                Intent homeIntent = new Intent(PlayingActivity.this, TopicsSelectImgsActivity.class);
+                homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(homeIntent);
+            }
+        });
 
         //Firebase
         database = FirebaseDatabase.getInstance();
