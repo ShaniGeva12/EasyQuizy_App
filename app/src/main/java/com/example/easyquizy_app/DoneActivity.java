@@ -58,6 +58,15 @@ public class DoneActivity extends AppCompatActivity {
                 finish();
             }
         });
+        btnToTopic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DoneActivity.this, TopicsSelectImgsActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         //get data from bundle
         Bundle extra = getIntent().getExtras();
