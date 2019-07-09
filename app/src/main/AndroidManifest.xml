@@ -20,6 +20,7 @@
         <activity
             android:name=".TopicsSelectImgsActivity"
             android:theme="@style/DarkyTheme.NoActionBar" />
+
         <activity android:name=".ChoosePlayerActivity" />
         <activity
             android:name=".TopicsSelectActivity"

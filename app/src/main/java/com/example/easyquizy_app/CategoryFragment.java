@@ -28,6 +28,7 @@ public class CategoryFragment extends Fragment {
 
     private static final String TAG = "CategoryFragment";
     View myFragment;
+    int offline_flag;
 
 
     RecyclerView listCategory;
@@ -52,6 +53,8 @@ public class CategoryFragment extends Fragment {
 
         database = FirebaseDatabase.getInstance();
         categories = database.getReference("Category");
+
+       // offline_flag = getArguments().getInt("Integer");//Integer value
 
     }
 
@@ -87,59 +90,59 @@ public class CategoryFragment extends Fragment {
 
     private void loadCategories() {
 
-        FirebaseRecyclerOptions<Category> options =
-                new FirebaseRecyclerOptions.Builder<Category>()
-                        .setQuery(categories, Category.class)
-                        .build();
+            FirebaseRecyclerOptions<Category> options =
+                    new FirebaseRecyclerOptions.Builder<Category>()
+                            .setQuery(categories, Category.class)
+                            .build();
 
-        adapter = new FirebaseRecyclerAdapter<Category, CategoryViewHolder>(options) {
-            @Override
-            public CategoryViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.layout_category, parent, false);
+            adapter = new FirebaseRecyclerAdapter<Category, CategoryViewHolder>(options) {
+                @Override
+                public CategoryViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+                    View view = LayoutInflater.from(parent.getContext())
+                            .inflate(R.layout.layout_category, parent, false);
 
-                return new CategoryViewHolder(view);
-            }
+                    return new CategoryViewHolder(view);
+                }
 
-            @Override
-            protected void onBindViewHolder(CategoryViewHolder holder, int position,final Category model) {
-                // Bind the Category object to the CategoryViewHolder
-                holder.category_name.setText(model.getName());
+                @Override
+                protected void onBindViewHolder(CategoryViewHolder holder, int position, final Category model) {
+                    // Bind the Category object to the CategoryViewHolder
+                    holder.category_name.setText(model.getName());
 
-                //old usege
-                //Picasso.with(getActivity()).load(model.getImage()).into(holder.category_image);
+                    //old usege
+                    //Picasso.with(getActivity()).load(model.getImage()).into(holder.category_image);
 
-                Picasso.get().load(model.getImage())
-                        .placeholder(R.drawable.loading_gr_wbg)
-                        .error(R.drawable.error_loading_pic)
-                        .into(holder.category_image);
+                    Picasso.get().load(model.getImage())
+                            .placeholder(R.drawable.loading_gr_wbg)
+                            .error(R.drawable.error_loading_pic)
+                            .into(holder.category_image);
 
-                holder.setItemClickListener(new ItemClickListener() {
-                    @Override
-                    public void onClick(View view, int position, boolean isLongClick) {
-                        Toast.makeText(getActivity(),String.format("%s|%s",adapter.getRef(position).getKey(),model.getName()), Toast.LENGTH_SHORT).show();
-                        Log.d(TAG, "onClick: " + String.format("%s|%s",adapter.getRef(position).getKey(),model.getName()));
-                        Intent startGame = new Intent(getActivity(), TopicStartActivity.class);
-                        Common.categoryId = adapter.getRef(position).getKey();
+                    holder.setItemClickListener(new ItemClickListener() {
+                        @Override
+                        public void onClick(View view, int position, boolean isLongClick) {
+                            Toast.makeText(getActivity(), String.format("%s|%s", adapter.getRef(position).getKey(), model.getName()), Toast.LENGTH_SHORT).show();
+                            Log.d(TAG, "onClick: " + String.format("%s|%s", adapter.getRef(position).getKey(), model.getName()));
+                            Intent startGame = new Intent(getActivity(), TopicStartActivity.class);
+                            Common.categoryId = adapter.getRef(position).getKey();
 
-                        //startGame.putExtra("categoryId",adapter.getRef(position).getKey());
-                        startGame.putExtra("categoryName", model.getName());
-                        startGame.putExtra("categoryImage", model.getImage());
-                        startGame.putExtra("desc", model.getDescription());
+                            //startGame.putExtra("categoryId",adapter.getRef(position).getKey());
+                            startGame.putExtra("categoryName", model.getName());
+                            startGame.putExtra("categoryImage", model.getImage());
+                            startGame.putExtra("desc", model.getDescription());
 
-                        startActivity(startGame);
+                            startActivity(startGame);
 
-                    }
-                });
-            }
+                        }
+                    });
+                }
 
-            /*
-             */
+                /*
+                 */
 
-        };
+            };
 
-        adapter.notifyDataSetChanged();
-        listCategory.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+            listCategory.setAdapter(adapter);
 
     }
 }

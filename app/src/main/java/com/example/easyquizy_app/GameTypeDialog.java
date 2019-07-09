@@ -13,9 +13,12 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class GameTypeDialog {
+    public static final String EXTRA_OFFLINE_FLAG = "com.example.easyquizy_app.OFFLINE_FLAG";
 
     //Firebase
     private FirebaseAuth mAuth;
+
+    int offline_flag=0;
 
     public void showDialog(final Activity activity) {
         final Dialog dialog = new Dialog(activity);
@@ -50,6 +53,8 @@ public class GameTypeDialog {
                 if(currentUser != null) {
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                     homeIntent = new Intent(activity, TopicsSelectImgsActivity.class);
+                    offline_flag = 1;
+                    homeIntent.putExtra(EXTRA_OFFLINE_FLAG , offline_flag);
                     toastStr = activity.getResources().getString(R.string.wlcm_back);
                 }
                 else
