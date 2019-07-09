@@ -29,10 +29,16 @@ public class TopicsSelectImgsActivity extends AppCompatActivity implements Navig
     //Firebase
     private FirebaseAuth mAuth;
 
+    int frag_flag;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_topics_select_imgs);
+
+        //get intents
+        Intent intent = getIntent();
+        frag_flag = intent.getIntExtra(TopicStartActivity.EXTRA_FRAGMENT_FLAG , 0);
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
@@ -96,7 +102,11 @@ public class TopicsSelectImgsActivity extends AppCompatActivity implements Navig
 
     private void setDefaultFragment() {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.frame_layout, CategoryFragment.newInstance());
+        if(frag_flag == 1)
+            fragmentTransaction.replace(R.id.frame_layout, RankingFragment.newInstance());
+        else
+            fragmentTransaction.replace(R.id.frame_layout, CategoryFragment.newInstance());
+
         fragmentTransaction.commit();
     }
 
