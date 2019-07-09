@@ -9,6 +9,9 @@ import android.view.Window;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class GameTypeDialog {
 
     public void showDialog(final Activity activity) {
@@ -38,7 +41,15 @@ public class GameTypeDialog {
             public void onClick(View v) {
                 Toast.makeText(activity.getApplicationContext(),"Online / Login" ,Toast.LENGTH_SHORT).show();
 
-                Intent homeIntent = new Intent(activity, LoginPageActivity.class);
+
+//                if(currentUser != null) {
+//                    loginBtn.setVisibility(View.GONE);
+//            signupBtn.setVisibility(View.GONE);
+
+//                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//                }
+
+                    Intent homeIntent = new Intent(activity, LoginPageActivity.class);
                 homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 activity.startActivity(homeIntent);
 

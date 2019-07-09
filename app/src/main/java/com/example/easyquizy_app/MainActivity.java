@@ -6,13 +6,27 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+
+import com.example.easyquizy_app.Common.Common;
+import com.example.easyquizy_app.Model.User;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserInfo;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import io.github.inflationx.calligraphy3.CalligraphyConfig;
 import io.github.inflationx.calligraphy3.CalligraphyInterceptor;
@@ -24,11 +38,14 @@ import static com.example.easyquizy_app.Model.App.CHANNEL_2_ID;
 
 public class MainActivity extends AppCompatActivity {
 
-
+    private static final String TAG = "MainActivity";
     private NotificationManagerCompat notificationManager;
 
 //    NotificationManager manager;
 //    final int NOTIF_ID = 1;
+
+    //Firebase
+    private FirebaseAuth mAuth;
 
     //font
     @Override
@@ -41,6 +58,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.DarkyTheme_NoActionBar);     //return from splash
         super.onCreate(savedInstanceState);
+
+        // Initialize Firebase Auth
+        mAuth = FirebaseAuth.getInstance();
 
         //declare the font
         ViewPump.init(ViewPump.builder()
@@ -60,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
                 GameTypeDialog alert = new GameTypeDialog();
                 alert.showDialog(MainActivity.this);
 
-               //going to playing page to fix problems
+                //going to playing page to fix problems
 //                Intent myIntent = new Intent(getBaseContext(),   PlayingActivity.class);
 //                startActivity(myIntent);
             }
@@ -74,12 +94,95 @@ public class MainActivity extends AppCompatActivity {
 
         //animation
         ImageView imageView = findViewById(R.id.animation_image_view);
-        AnimationDrawable animationDrawable = (AnimationDrawable)imageView.getDrawable();
+        AnimationDrawable animationDrawable = (AnimationDrawable) imageView.getDrawable();
 
         animationDrawable.start();
 
     }
 
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        //firebase START
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference user = database.getReference("user").child(currentUser.getUid());
+        final String[] name = new String[1];
+        user.child("name").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                name[0] = dataSnapshot.getValue(String.class);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        String email = currentUser.getEmail();
+        final String[] password = new String[1];
+        user.child("password").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                password[0] = dataSnapshot.getValue(String.class);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        final String[] age = new String[1];
+        user.child("age").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                age[0] = dataSnapshot.getValue(String.class);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        final String[] gender = new String[1];
+        user.child("gender").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                gender[0] = dataSnapshot.getValue(String.class);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+        for (UserInfo profile : currentUser.getProviderData()) {
+            // Id of the provider (ex: google.com)
+            String providerId = profile.getProviderId();
+
+            // UID specific to the provider
+            String uid = profile.getUid();
+
+            // Name, email address, and profile photo Url
+            String name1 = profile.getDisplayName();
+            String email1 = profile.getEmail();
+            Uri photoUrl = profile.getPhotoUrl();
+        }
+
+        Log.d(TAG, "onStart: email " + email + " password " + password[0] + " name " + name[0] + " age " + age[0] + " gender " + gender[0]);
+        Common.currentUser = new User( email, password[0], name[0], age[0], gender[0]);
+        updateUI(currentUser);
+    }
+
+
+    private void updateUI(FirebaseUser currentUser) {
+        //TODO shani
+    }
 
     public void sendOnChannel1(String i_title, String i_message) {
         String title = i_title;

@@ -93,28 +93,6 @@ public class TopicStartActivity extends AppCompatActivity
         TextView description = findViewById(R.id.topic_description_txt);
         title.setText(category);
         description.setText(desc);
-
-        /* not working
-        if(categoryId == "01")
-            IMAGE_URL = "https://images.theconversation.com/files/207820/original/file-20180226-140213-yox11e.jpg";
-        if(categoryId == "02")
-            IMAGE_URL = "https://www.irishcentral.com/uploads/article/129506/cropped_MI_main_harry_potter.jpg";
-        if(categoryId == "03")
-            IMAGE_URL = "https://www.worldatlas.com/r/w728-h425-c728x425/upload/0f/59/b2/untitled-design-275.jpg";
-        if(categoryId == "04")
-            IMAGE_URL = "https://i.kinja-img.com/gawker-media/image/upload/s--vHt6tbFa--/c_scale,f_auto,fl_progressive,q_80,w_800/xjmx1csashjww8j8jwyh.jpg";
-        if(categoryId == "05")
-            IMAGE_URL = "http://alexedmans.com/wp-content/uploads/2017/03/Sports.jpg";
-
-        if (IMAGE_URL != null) {
-            StorageReference ref = FirebaseStorage.getInstance().getReferenceFromUrl(IMAGE_URL);
-
-            Glide.with(this)
-                    .load(ref)
-                    .into(categoryImage);
-        }
-        */
-
         //title & description setter END
 
         //spinner handler START
