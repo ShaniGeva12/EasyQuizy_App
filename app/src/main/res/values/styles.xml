@@ -11,6 +11,12 @@
         <item name="android:itemBackground">@color/white_50precent</item>
     </style>
 
+    <style name="ImageRatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/ratingbar_selector</item>
+        <item name="android:minHeight">50dp</item>
+        <item name="android:maxHeight">50dp</item>
+    </style>
+
     <style name="DarkyTheme" parent="AppTheme">
         <item name="android:textColorPrimary">@color/text_color_secondary</item>
         <item name="android:colorBackground">@color/background_material_light</item>

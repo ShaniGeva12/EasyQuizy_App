@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RatingBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,6 +34,9 @@ public class PlayingActivity extends AppCompatActivity implements View.OnClickLi
     FirebaseDatabase database;
     DatabaseReference questions;
 
+    private RatingBar hearts_ratingBar;
+
+
     //Views
     SeekBar seekBar;
     ProgressBar timerProgressBar;
@@ -54,6 +58,12 @@ public class PlayingActivity extends AppCompatActivity implements View.OnClickLi
         } else
             Toast.makeText(this, "play mode: " + playMode, Toast.LENGTH_SHORT).show();
         /*/
+
+        //----------------Rating-----------------------
+        hearts_ratingBar = (RatingBar) findViewById(R.id.hearts_ratingBar);
+        hearts_ratingBar.setEnabled(false);
+        hearts_ratingBar.setRating(3);
+        //----------------------------------------
 
         //Firebase
         database = FirebaseDatabase.getInstance();
@@ -120,7 +130,9 @@ public class PlayingActivity extends AppCompatActivity implements View.OnClickLi
             }
             else
             {
+
                 if(--lifes == 0) {
+                    updateLifeUI();
                     //Choose wrong answer
                     Log.d(TAG, "onClick: wrong answer. you're out");
                     Intent intent = new Intent(this, DoneActivity.class);
@@ -224,7 +236,7 @@ public class PlayingActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void updateLifeUI() {
-        //TODO shani
-        Toast.makeText(this, "wrong answer. you have " + lifes + " lifes left", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "wrong answer. you have " + lifes + " lifes left", Toast.LENGTH_SHORT).show();
+        hearts_ratingBar.setRating(lifes);
     }
 }
