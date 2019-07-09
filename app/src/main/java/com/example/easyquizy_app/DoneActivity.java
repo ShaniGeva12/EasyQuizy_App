@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.example.easyquizy_app.Common.Common;
 import com.example.easyquizy_app.Model.Question;
 import com.example.easyquizy_app.Model.QuestionScore;
+import com.example.easyquizy_app.Model.SoundPlayer;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -25,6 +26,8 @@ public class DoneActivity extends AppCompatActivity {
 
     private String msg_rate;
     private RatingBar ratingBar;
+
+    private SoundPlayer sound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,9 +46,14 @@ public class DoneActivity extends AppCompatActivity {
         });
         //----------------------------------------
 
+        //Firebase
         database = FirebaseDatabase.getInstance();
         question_score = database.getReference("Question_Score");
 
+        //sound init
+        sound = new SoundPlayer(this);
+
+        //Views
         txtResultScore = findViewById(R.id.txtTotalScore);
         getTxtResultQuestion = findViewById(R.id.txtTotalQuestion);
         title_txt = findViewById(R.id.title_txt);
@@ -85,9 +93,12 @@ public class DoneActivity extends AppCompatActivity {
             String str;
             if(correctAnswer < totalQuestion/2) {
                 str = getResources().getString(R.string.next_time);
+                sound.playFailSound();
             }
-            else
+            else {
                 str = getResources().getString(R.string.good_job);
+                sound.playApplauseSound();
+            }
             title_txt.setText(str);
 
 //            question_score.child(String.format("%s_%s", Common.currentUser.getName(), Common.categoryId))

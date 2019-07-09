@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.easyquizy_app.Common.Common;
+import com.example.easyquizy_app.Model.SoundPlayer;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
@@ -30,14 +31,14 @@ public class PlayingActivity extends AppCompatActivity implements View.OnClickLi
 
     int index = 0, score = 0, thisQuestion = 0, totalQuestion, correctAnswer;
 
+
+    private SoundPlayer sound;
     //Firebase
     FirebaseDatabase database;
     DatabaseReference questions;
 
-    private RatingBar hearts_ratingBar;
-
-
     //Views
+    private RatingBar hearts_ratingBar;
     SeekBar seekBar;
     ProgressBar timerProgressBar;
     ImageView question_image;
@@ -50,21 +51,13 @@ public class PlayingActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_playing);
 
-        /*
-        Intent intent = getIntent();
-        String playMode = intent.getStringExtra("gameType");
-        if (playMode.equals("spec")) {
-            String player = intent.getStringExtra("player");
-            Toast.makeText(this, "play mode: " + playMode + "\nyou play against - " + player, Toast.LENGTH_SHORT).show();
-        } else
-            Toast.makeText(this, "play mode: " + playMode, Toast.LENGTH_SHORT).show();
-        /*/
-
-        //----------------Rating-----------------------
+        //----------------Lifes rating-----------------------
         hearts_ratingBar = (RatingBar) findViewById(R.id.hearts_ratingBar);
         //hearts_ratingBar.setEnabled(false);
         hearts_ratingBar.setRating(3);
         //----------------------------------------
+
+        sound = new SoundPlayer(this);
 
         //get quit game btn
         quit_btn = findViewById(R.id.quit_btn);
@@ -263,5 +256,6 @@ public class PlayingActivity extends AppCompatActivity implements View.OnClickLi
     private void updateLifeUI() {
         //Toast.makeText(this, "wrong answer. you have " + lifes + " lifes left", Toast.LENGTH_SHORT).show();
         hearts_ratingBar.setRating(lifes);
+        sound.playHeartBreakSound();
     }
 }
