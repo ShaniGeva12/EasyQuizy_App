@@ -61,7 +61,7 @@ public class PlayingActivity extends AppCompatActivity implements View.OnClickLi
 
         //----------------Rating-----------------------
         hearts_ratingBar = (RatingBar) findViewById(R.id.hearts_ratingBar);
-        hearts_ratingBar.setEnabled(false);
+        //hearts_ratingBar.setEnabled(false);
         hearts_ratingBar.setRating(3);
         //----------------------------------------
 
@@ -231,7 +231,6 @@ public class PlayingActivity extends AppCompatActivity implements View.OnClickLi
             }
         };
         showQuestion(index);
-
 
     }
 
