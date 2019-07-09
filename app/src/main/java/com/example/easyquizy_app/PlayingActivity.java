@@ -134,6 +134,7 @@ public class PlayingActivity extends AppCompatActivity implements View.OnClickLi
                 }
                 else {
                     updateLifeUI();
+                    showQuestion(++index);  //next questions
                 }
             }
 
@@ -224,5 +225,6 @@ public class PlayingActivity extends AppCompatActivity implements View.OnClickLi
 
     private void updateLifeUI() {
         //TODO shani
+        Toast.makeText(this, "wrong answer. you have " + lifes + " left", Toast.LENGTH_SHORT).show();
     }
 }
