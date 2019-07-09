@@ -130,7 +130,7 @@ public class TopicStartActivity extends AppCompatActivity
         description.setText(desc);
         //title & description setter END
 
-        //spinner handler START
+        /*spinner handler START
         Spinner spinner = (Spinner) findViewById(R.id.players_spinner);
             // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -140,7 +140,7 @@ public class TopicStartActivity extends AppCompatActivity
             // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
-        //spinner handler END
+        //spinner handler END*/
 
         //Navigation Drawer
         Toolbar toolbar = findViewById(R.id.toolbar);

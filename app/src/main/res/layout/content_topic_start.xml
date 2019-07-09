@@ -273,7 +273,7 @@
                             android:orientation="vertical"
                             android:layout_below="@id/btns_ly"
                             >
-
+<!--
                             <TextView
                                 android:id="@+id/choose_player_txt"
 
@@ -306,6 +306,7 @@
 
                                 android:layout_below="@id/choose_player_txt"
                                 />
+                                -->
 
 
 
