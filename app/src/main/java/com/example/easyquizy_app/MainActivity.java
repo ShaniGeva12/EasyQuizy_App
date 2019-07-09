@@ -46,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
 
     //Firebase
     private FirebaseAuth mAuth;
+    FirebaseDatabase mDatabase;
+    DatabaseReference users;
 
     //font
     @Override
@@ -107,8 +109,29 @@ public class MainActivity extends AppCompatActivity {
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
+        //User cUser = mAuth.getCurrentUser();
+
         //firebase START
         if(currentUser != null) { //TODO make that shit work
+            String name2 = currentUser.getDisplayName();
+            String email2 = currentUser.getEmail();
+            String uId = currentUser.getUid();
+
+            //String uId = currentUser.getUid();
+
+            mDatabase = FirebaseDatabase.getInstance();
+            users = mDatabase.getReference("Users");
+
+           users.child(uId).setValue(name2);
+
+
+            //Common.currentUser = new User(email, name);
+            Log.d(TAG, "---------------------------------------------------------" );
+            Log.d(TAG, "onStart: email " + email2 + " name " + name2 );
+            Log.d(TAG, "uID " + uId );
+            Log.d(TAG, "---------------------------------------------------------" );
+            //--------------------------------------------
+
             FirebaseDatabase database = FirebaseDatabase.getInstance();
             DatabaseReference user = database.getReference("user").child(currentUser.getUid());
             final String[] name = new String[1];
@@ -176,6 +199,8 @@ public class MainActivity extends AppCompatActivity {
             }
 
             Log.d(TAG, "onStart: email " + email + " password " + password[0] + " name " + name[0] + " age " + age[0] + " gender " + gender[0]);
+
+
             Common.currentUser = new User(email, password[0], name[0], age[0], gender[0]);
             updateUI(currentUser);
         }

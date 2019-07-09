@@ -37,6 +37,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.io.InputStream;
 import java.util.Collections;
@@ -112,8 +113,15 @@ public class TopicStartActivity extends AppCompatActivity
 
 
         //category image displaying
+        /* //OLD WAY
         new DownloadImageTask((ImageView) findViewById(R.id.topic_img))
-                .execute(getIntent().getExtras().getString("categoryImage"));
+                .execute(getIntent().getExtras().getString("categoryImage")); */
+
+        //New Way
+        Picasso.get().load(getIntent().getExtras().getString("categoryImage"))
+                .placeholder(R.drawable.loading_gr_wbg)
+                .error(R.drawable.error_loading_pic)
+                .into((ImageView) findViewById(R.id.topic_img));
 
         final TextView title = findViewById(R.id.topic_name_txt);
         TextView description = findViewById(R.id.topic_description_txt);

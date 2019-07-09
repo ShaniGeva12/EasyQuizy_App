@@ -137,6 +137,8 @@ public class LoginPageActivity extends AppCompatActivity {
                                 Common.currentUser = new User();
                                 Common.currentUser.setEmail(email);
 
+                                //Common.currentUser.setName("");
+
                                 Intent intent = new Intent(LoginPageActivity.this, TopicsSelectImgsActivity.class);
                                 startActivity(intent);
                             }
