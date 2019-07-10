@@ -45,7 +45,7 @@
     <string name="enter_name">אנא הכנס שם!</string>
     <string name="enter_age">אנא הכנס גיל!</string>
     <string name="pass_short">הסיסמא שלך קצרה מדי! אנא הכנס סיסמא באורך 6 תווים לפחות!</string>
-    <string name="register_succeded">ההרשמה הצליחה!</string>
+    <string name="register_succeeded">ההרשמה הצליחה!</string>
     <string name="register_failed">ההרשמה נכשלה</string>
     <string name="sign_in">התחברות</string>
     <string name="sign_in_using_email">התחבר בעזרת המייל שלך</string>
@@ -84,4 +84,7 @@
     <string name="succeeded">"הצלחת : "</string>
     <string name="next_time">פעם הבאה</string>
     <string name="life">חיים</string>
+    <string name="online_channel_desc">שחק עכשו ברשת ותהנה מקטגוריות נוספות ושאלות נוספות לשעות של הנאה</string>
+    <string name="wlcm_back">ברוכ/ה השב/ה</string>
+    <string name="category_channel_desc">השאר מעודכן לקטגוריות חדשות ותהנה ותהנה משעות של הנאה</string>
 </resources>

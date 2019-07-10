@@ -58,7 +58,7 @@
     <string name="enter_name">Please enter name!</string>
     <string name="enter_age">Please enter age!</string>
     <string name="pass_short">your password is too short!!! you need at least 6 digits!</string>
-    <string name="register_succeded">register succeded!!!</string>
+    <string name="register_succeeded">register succeeded!!!</string>
     <string name="register_failed">Register failed</string>
     <string name="sign_in">SIGN IN</string>
     <string name="sign_in_using_email">sign in with your email</string>
@@ -108,5 +108,9 @@
     <string name="next_time">next time</string>
     <string name="wlcm_back">Welcome back</string>
     <string name="life">Life</string>
+    <string name="category_channel_desc">stay updated for new categories for more hours of fun</string>
+    <string name="online_channel_desc">go ahead and play online for more categories and more questions and hours of fun</string>
+    <string name="Login_Successfully">Login Successfully!</string>
+    <string name="category_channel_desc">stay updated for new categories for more hours of fun</string>
 
 </resources>

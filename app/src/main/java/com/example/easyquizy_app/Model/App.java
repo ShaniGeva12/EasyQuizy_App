@@ -2,9 +2,14 @@ package com.example.easyquizy_app.Model;
 
 
 import android.app.Application;
+import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.os.Build;
+
+import com.example.easyquizy_app.R;
 
 public class App extends Application {
     public static final String CHANNEL_1_ID = "channel1";
@@ -21,17 +26,17 @@ public class App extends Application {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel1 = new NotificationChannel(
                     CHANNEL_1_ID,
-                    "Channel 1",
+                    "New category Channel",
                     NotificationManager.IMPORTANCE_HIGH
             );
-            channel1.setDescription("This is Channel 1");
+            channel1.setDescription(getResources().getString(R.string.category_channel_desc));
 
             NotificationChannel channel2 = new NotificationChannel(
                     CHANNEL_2_ID,
-                    "Channel 2",
-                    NotificationManager.IMPORTANCE_LOW
+                    "Channel go Online",
+                    NotificationManager.IMPORTANCE_HIGH
             );
-            channel2.setDescription("This is Channel 2");
+            channel2.setDescription(getResources().getString(R.string.online_channel_desc));
 
             NotificationManager manager = getSystemService(NotificationManager.class);
             manager.createNotificationChannel(channel1);

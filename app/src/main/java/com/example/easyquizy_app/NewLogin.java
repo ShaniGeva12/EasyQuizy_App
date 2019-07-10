@@ -113,10 +113,11 @@ public class NewLogin extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if(dataSnapshot.child(user).exists())
                         {
+                            String temp = getResources().getString(R.string.Login_Successfully);
                             if (!user.isEmpty()) {
                                 User login = dataSnapshot.child(user).getValue(User.class);
                                 if (login.getPassword().equals(pwd)) {
-                                    Toast.makeText(NewLogin.this, "Login Successfully!", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(NewLogin.this, getResources().getString(R.string.Login_Successfully), Toast.LENGTH_LONG).show();
 
                                     Intent intent = new Intent(NewLogin.this, TopicsSelectImgsActivity.class);
                                     Common.currentUser = login;

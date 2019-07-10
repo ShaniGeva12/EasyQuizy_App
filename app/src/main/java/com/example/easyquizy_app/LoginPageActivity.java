@@ -239,7 +239,7 @@ public class LoginPageActivity extends AppCompatActivity {
                                     @Override
                                     public void onSuccess(Void aVoid) {
 
-                                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.register_succeded), Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.register_succeeded), Toast.LENGTH_LONG).show();
 
                                         Intent intent = new Intent(LoginPageActivity.this, TopicsSelectImgsActivity.class);
                                         startActivity(intent);
