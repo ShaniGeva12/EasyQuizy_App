@@ -45,7 +45,7 @@ public class RankingFragment extends Fragment {
 
     FirebaseRecyclerAdapter<QuestionScore, CategoryBoardHolder> adapter;
 
-    public static RankingFragment newInstance(){
+    public static RankingFragment newInstance() {
         RankingFragment rankingFragment = new RankingFragment();
         return rankingFragment;
     }
@@ -66,8 +66,8 @@ public class RankingFragment extends Fragment {
         /*DoneActivity activity = (DoneActivity) getActivity();
         String myDataFromActivity = activity.getMyData();*/
 
-        myFragment = inflater.inflate(R.layout.fragment_ranking_new,container,false);
-        listCategoryScores = (RecyclerView)myFragment.findViewById(R.id.score_recycler_view);
+        myFragment = inflater.inflate(R.layout.fragment_ranking_new, container, false);
+        listCategoryScores = (RecyclerView) myFragment.findViewById(R.id.score_recycler_view);
         listCategoryScores.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(container.getContext());
         listCategoryScores.setLayoutManager(layoutManager);
@@ -111,37 +111,99 @@ public class RankingFragment extends Fragment {
                 holder.topic_txt.setText(model.getCategoryName());
                 holder.score_txt.setText(model.getQuestion_Score());
 
-                /*holder.setItemClickListener(new ItemClickListener() {
-                    @Override
-                    public void onClick(View view, int position, boolean isLongClick) {
-                        Toast.makeText(getActivity(),String.format("%s|%s",adapter.getRef(position).getKey(),model.getCategoryName()), Toast.LENGTH_SHORT).show();
-                        Log.d(TAG, "onClick: " + String.format("%s|%s",adapter.getRef(position).getKey(),model.getCategoryName()));
-                        //Intent startGame = new Intent(getActivity(), TopicStartActivity.class);
-                        //Common.categoryId = adapter.getRef(position).getKey();
+//                holder.setItemClickListener(new ItemClickListener() {
+//                    @Override
+//                    public void onClick(View view, int position, boolean isLongClick) {
+//                        Toast.makeText(getActivity(),String.format("%s|%s",adapter.getRef(position).getKey(),model.getCategoryName()), Toast.LENGTH_SHORT).show();
+//                        Log.d(TAG, "onClick: " + String.format("%s|%s",adapter.getRef(position).getKey(),model.getCategoryName()));
+//                        //Intent startGame = new Intent(getActivity(), TopicStartActivity.class);
+//                        //Common.categoryId = adapter.getRef(position).getKey();
+//
+//                        //startGame.putExtra("categoryId",adapter.getRef(position).getKey());
+//                        //startGame.putExtra("categoryName", model.getName());
+//                        //startGame.putExtra("categoryImage", model.getImage());
+//                        //startGame.putExtra("desc", model.getDescription());
+//
+//                        //startActivity(startGame);
+//
+//                    }
+//                });
 
-                        //startGame.putExtra("categoryId",adapter.getRef(position).getKey());
-                        //startGame.putExtra("categoryName", model.getName());
-                        //startGame.putExtra("categoryImage", model.getImage());
-                        //startGame.putExtra("desc", model.getDescription());
-
-                        //startActivity(startGame);
-
-                    }
-                });
-            }*/
                 holder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
-                        Toast.makeText(getActivity(),String.format("%s|%s",adapter.getRef(position)
-                                .getKey(),model.getCategoryName()), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), String.format("%s|%s", adapter.getRef(position)
+                                .getKey(), model.getCategoryName()), Toast.LENGTH_SHORT).show();
                     }
                 });
 
+
+                adapter.notifyDataSetChanged();
+                listCategoryScores.setAdapter(adapter);
+
+            }
+
+
+            private void loadCategories1(final String score) {
+
+                FirebaseRecyclerOptions<QuestionScore> options =
+                        new FirebaseRecyclerOptions.Builder<QuestionScore>()
+                                .setQuery(Question_Score, QuestionScore.class)
+                                .build();
+
+                adapter = new FirebaseRecyclerAdapter<QuestionScore, CategoryBoardHolder>(options) {
+
+                    @Override
+                    public CategoryBoardHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+                        View view = LayoutInflater.from(parent.getContext())
+                                .inflate(R.layout.layout_ranking, parent, false);
+
+                        return new CategoryBoardHolder(view);
+                    }
+
+                    @Override
+                    protected void onBindViewHolder(@NonNull CategoryBoardHolder holder, int position, @NonNull final QuestionScore model) {
+                        // Bind the Category object to the CategoryViewHolder
+                        holder.topic_txt.setText(model.getCategoryName());
+                        holder.score_txt.setText(model.getQuestion_Score());
+
+//                holder.setItemClickListener(new ItemClickListener() {
+//                    @Override
+//                    public void onClick(View view, int position, boolean isLongClick) {
+//                        Toast.makeText(getActivity(),String.format("%s|%s",adapter.getRef(position).getKey(),model.getCategoryName()), Toast.LENGTH_SHORT).show();
+//                        Log.d(TAG, "onClick: " + String.format("%s|%s",adapter.getRef(position).getKey(),model.getCategoryName()));
+//                        //Intent startGame = new Intent(getActivity(), TopicStartActivity.class);
+//                        //Common.categoryId = adapter.getRef(position).getKey();
+//
+//                        //startGame.putExtra("categoryId",adapter.getRef(position).getKey());
+//                        //startGame.putExtra("categoryName", model.getName());
+//                        //startGame.putExtra("categoryImage", model.getImage());
+//                        //startGame.putExtra("desc", model.getDescription());
+//
+//                        //startActivity(startGame);
+//
+//                    }
+//                });
+
+                        holder.setItemClickListener(new ItemClickListener() {
+                            @Override
+                            public void onClick(View view, int position, boolean isLongClick) {
+                                Toast.makeText(getActivity(), String.format("%s|%s", adapter.getRef(position)
+                                        .getKey(), model.getCategoryName()), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+
+                        adapter.notifyDataSetChanged();
+                        listCategoryScores.setAdapter(adapter);
+                    }
+                };
+            }
         };
-
-        adapter.notifyDataSetChanged();
-        listCategoryScores.setAdapter(adapter);
-
     }
-
 }
+
+
+
+
+
