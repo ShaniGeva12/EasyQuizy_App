@@ -20,8 +20,11 @@ import java.util.ArrayList;
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     public static final String EXTRA_OFFLINE_FLAG = "com.example.easyquizy_app.OFFLINE_FLAG";
+    public static final String EXTRA_CATEGORY_NAME = "com.example.easyquizy_app.CATEGORY_NAME";
+    public static final String EXTRA_CATEGORY_IMG = "com.example.easyquizy_app.CATEGORY_IMG";
 
-   // private final Context context;
+
+    // private final Context context;
    // private final String str;
     private final Context context;
     View myFragment;
@@ -109,10 +112,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                         //getRef(position).getKey();
 
                 //startGame.putExtra("categoryId",adapter.getRef(position).getKey());
-                startGame.putExtra("categoryName", mDataset_category.get(position).getName());
-                //startGame.putExtra("categoryImage", model.getImage());
-                startGame.putExtra("desc", mDataset_category.get(position).getDescription() );
-                startGame.putExtra("offline", 1 );
+                //startGame.putExtra("categoryName", mDataset_category.get(position).getName());
+               // startGame.putExtra("desc", mDataset_category.get(position).getDescription() );
+                startGame.putExtra(EXTRA_OFFLINE_FLAG, 1 );
+                startGame.putExtra(EXTRA_CATEGORY_NAME, mDataset_category.get(position).getName());
+
+                if(position==0)
+                    startGame.putExtra(EXTRA_CATEGORY_IMG, R.drawable.math_img);
+                else startGame.putExtra(EXTRA_CATEGORY_IMG, R.drawable.countries_img);
 
                 context.startActivity(startGame);
 

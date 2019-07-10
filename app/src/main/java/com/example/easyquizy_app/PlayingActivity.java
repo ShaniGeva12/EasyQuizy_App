@@ -15,10 +15,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.easyquizy_app.Common.Common;
+import com.example.easyquizy_app.Model.Question;
 import com.example.easyquizy_app.Model.SoundPlayer;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
+
+import java.util.Random;
 
 public class PlayingActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = "PlayingActivity";
@@ -45,25 +48,69 @@ public class PlayingActivity extends AppCompatActivity implements View.OnClickLi
     Button btnA, btnB, btnC, btnD;
     Button quit_btn;
     TextView txtScore, txtQuestionNum, question_txt,categoryName;
+    int offline_flag;
+    String category;
+    Question[] questionsArr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_playing);
 
-        //Firebase
-        database = FirebaseDatabase.getInstance();
-        questions = database.getReference("Questions");
+        Random rand = new Random();
+
+        questionsArr = new Question[4];
+
+        Intent intent = getIntent();
+        offline_flag = intent.getIntExtra(TopicStartActivity.EXTRA_OFFLINE_FLAG , 0);
+
+        if(offline_flag==1)
+        {
+            category = intent.getStringExtra(TopicStartActivity.EXTRA_CATEGORY_NAME);
+            categoryName = findViewById(R.id.topic_name_txt);
+            categoryName.setText(category);
+
+            //Question[] questions = new Question[4];
+            if(category.equals(getResources().getString(R.string.math)))
+            {
+                // Obtain a number between [0 - 49].
+                //int n = rand.nextInt(50);
+
+                int a, b, c, answer;
+                for(int i=0; i<questionsArr.length;i++) {
+                    a = rand.nextInt(20);
+                    b = rand.nextInt(5) + 1;
+                    c = rand.nextInt(10);
+                    answer = a + b * c;
+                    String q = " " + a + " + " + b + " * " + c + " = ? ";
+                    //int answerA, int answerB, int answerC, int answerD, int correctAnswer
+                    questionsArr[i] = new Question(q, b, answer, a+20,b*c ,answer);
+                }
+            }
+
+            else
+            {
+                questionsArr[0] = new Question();
+                questionsArr[1] = new Question();
+                questionsArr[2] = new Question();
+                questionsArr[3] = new Question();
+            }
+        }
+
+        else {
+            category = intent.getStringExtra("Topic");
+            categoryName.setText(category);
+            //Firebase
+            database = FirebaseDatabase.getInstance();
+            questions = database.getReference("Questions");
+        }
+
 
         //Views
         txtScore = findViewById(R.id.txtScore);
         txtQuestionNum = findViewById(R.id.txtTotalQuestion);
         question_txt = findViewById(R.id.question_txt);
         categoryName = findViewById(R.id.topic_name_txt);
-
-        Intent intent = getIntent();
-        String category = intent.getStringExtra("Topic");
-        categoryName.setText(category);
 
         timerProgressBar = findViewById(R.id.timerProgressBar);
         seekBar = findViewById(R.id.seekBar);
@@ -182,28 +229,41 @@ public class PlayingActivity extends AppCompatActivity implements View.OnClickLi
             timerProgressBar.setProgress(0);
             progressValue = 0;
 
-            if (Common.questionList.get(index).getIsImageQuestion().equals("true")) {
-                //If is image
-                Picasso.get()
-                        .load(Common.questionList.get(index).getQuestion())
-                        .placeholder(R.drawable.loading_gr_wbg)
-                        .error(R.drawable.error_loading_pic)
-                        .into(question_image);
+            if (offline_flag==0)
+            {
+                if (Common.questionList.get(index).getIsImageQuestion().equals("true")) {
+                    //If is image
+                    Picasso.get()
+                            .load(Common.questionList.get(index).getQuestion())
+                            .placeholder(R.drawable.loading_gr_wbg)
+                            .error(R.drawable.error_loading_pic)
+                            .into(question_image);
 
-                question_image.setVisibility(View.VISIBLE);
-                //question_txt.setVisibility(View.GONE);
-            } else {
-                question_txt.setText(Common.questionList.get(index).getQuestion());
+                    question_image.setVisibility(View.VISIBLE);
+                    //question_txt.setVisibility(View.GONE);
+                } else {
+                    question_txt.setText(Common.questionList.get(index).getQuestion());
 
-                question_image.setVisibility(View.GONE);
-                question_txt.setVisibility(View.VISIBLE);
+                    question_image.setVisibility(View.GONE);
+                    question_txt.setVisibility(View.VISIBLE);
+                }
+
+                btnA.setText(Common.questionList.get(index).getAnswerA());
+                btnB.setText(Common.questionList.get(index).getAnswerB());
+                btnC.setText(Common.questionList.get(index).getAnswerC());
+                btnD.setText(Common.questionList.get(index).getAnswerD());
             }
 
-            btnA.setText(Common.questionList.get(index).getAnswerA());
-            btnB.setText(Common.questionList.get(index).getAnswerB());
-            btnC.setText(Common.questionList.get(index).getAnswerC());
-            btnD.setText(Common.questionList.get(index).getAnswerD());
+            else {
+                question_txt.setText(questionsArr[index].getQuestion());
+                question_image.setVisibility(View.GONE);
+                question_txt.setVisibility(View.VISIBLE);
 
+                btnA.setText("" + questionsArr[index].getAnswerAi());
+                btnB.setText("" + questionsArr[index].getAnswerBi());
+                btnC.setText("" + questionsArr[index].getAnswerCi());
+                btnD.setText("" + questionsArr[index].getAnswerDi());
+            }
             mCountDown.start();     //start timer
         }
         else {
@@ -224,8 +284,14 @@ public class PlayingActivity extends AppCompatActivity implements View.OnClickLi
     protected void onResume() {
         super.onResume();
 
-
+        if(offline_flag==0)
+        {
         totalQuestion = Common.questionList.size();
+        }
+        else {
+
+            totalQuestion = 4;
+        }
         Log.d(TAG, "onResume: totalQuestion " + totalQuestion);
         mCountDown = new CountDownTimer(TIMEOUT, INTERVAL) {
             @Override
