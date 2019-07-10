@@ -116,8 +116,17 @@ public class DoneActivity extends AppCompatActivity {
 //                            String.valueOf(score)));
 
             //Uplaod to DB
-            question_score.child(String.format("%s_%s", Common.currentUser.getEmail(),Common.categoryId))
-                    .setValue(new QuestionScore(String.format(("%s_%s", Common.currentUser.getName(), Common.categoryId), Common.currentUser.getName(), String.valueOf(score)));
+            //public QuestionScore(String question_Score,
+            //                     String user,
+            //                     int score,
+            //                     String CategoryName)
+            question_score.child(
+                    String.format("%s_%s", Common.currentUser.getName(),Common.categoryId))
+                    .setValue(new QuestionScore(
+                            String.format("%s_%s", Common.currentUser.getName(),Common.categoryId),
+                            Common.currentUser.getName(),
+                            score,
+                            Common.categoryId));
         }
     }
 
