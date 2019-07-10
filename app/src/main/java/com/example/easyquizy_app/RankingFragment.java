@@ -109,7 +109,7 @@ public class RankingFragment extends Fragment {
             protected void onBindViewHolder(@NonNull CategoryBoardHolder holder, int position, @NonNull final QuestionScore model) {
                 // Bind the Category object to the CategoryViewHolder
                 holder.topic_txt.setText(model.getCategoryName());
-                holder.score_txt.setText(model.getScore());
+                holder.score_txt.setText(model.getQuestion_Score());
 
                 /*holder.setItemClickListener(new ItemClickListener() {
                     @Override
@@ -132,17 +132,16 @@ public class RankingFragment extends Fragment {
                 holder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
-                        Toast.makeText(getActivity(), String.format("%s|%s", adapter.getRef(position)
-                                .getKey(), model.getCategoryName()), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(),String.format("%s|%s",adapter.getRef(position)
+                                .getKey(),model.getCategoryName()), Toast.LENGTH_SHORT).show();
                     }
                 });
-            }
 
-            };
+        };
 
         adapter.notifyDataSetChanged();
         listCategoryScores.setAdapter(adapter);
 
+    }
 
-}
 }
