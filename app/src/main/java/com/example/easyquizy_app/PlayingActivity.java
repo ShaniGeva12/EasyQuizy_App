@@ -35,8 +35,8 @@ public class PlayingActivity extends AppCompatActivity implements View.OnClickLi
 
     int index = 0, score = 0, thisQuestion = 0, totalQuestion, correctAnswer;
 
-
     private SoundPlayer sound;
+
     //Firebase
     FirebaseDatabase database;
     DatabaseReference questions;

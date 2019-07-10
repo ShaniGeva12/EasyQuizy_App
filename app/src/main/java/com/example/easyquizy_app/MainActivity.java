@@ -202,13 +202,7 @@ public class MainActivity extends AppCompatActivity {
 
 
             Common.currentUser = new User(email, password[0], name[0], age[0], gender[0]);
-            updateUI(currentUser);
         }
-    }
-
-
-    private void updateUI(FirebaseUser currentUser) {
-        //TODO shani
     }
 
     public void sendOnChannel1(String i_title, String i_message) {

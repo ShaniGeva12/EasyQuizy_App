@@ -35,20 +35,20 @@ public class Category {
         Image = image;
     }
 
-    public Category(String name, String image,String Description) {
+    public Category(String name, String image,String description) {
         Name = name;
         Image = image;
-        Description = Description;
+        Description = description;
     }
 
-    public Category(String name, android.media.Image Img, String Description) {
+    public Category(String name, android.media.Image img, String description) {
         Name = name;
-        Img = Img;
-        Description = Description;
+        Img = img;
+        Description = description;
     }
 
-    public Category(String name, String Description) {
+    public Category(String name, String description) {
         Name = name;
-        Description = Description;
+        Description = description;
     }
 }

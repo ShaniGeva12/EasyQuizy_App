@@ -4,7 +4,6 @@ import android.content.Context;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.example.easyquizy_app.R;
 

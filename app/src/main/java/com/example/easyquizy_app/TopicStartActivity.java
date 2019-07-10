@@ -334,7 +334,6 @@ public class TopicStartActivity extends AppCompatActivity
         }
 
         else if (id == R.id.nav_log_out) {
-            //TO DO - Inbal (Session logout)
             FirebaseAuth mAuth = FirebaseAuth.getInstance();
             mAuth.signOut();
 
@@ -404,10 +403,10 @@ class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
     }
 
     protected Bitmap doInBackground(String... urls) {
-        String urldisplay = urls[0];
+        String urlDisplay = urls[0];
         Bitmap mIcon11 = null;
         try {
-            InputStream in = new java.net.URL(urldisplay).openStream();
+            InputStream in = new java.net.URL(urlDisplay).openStream();
             mIcon11 = BitmapFactory.decodeStream(in);
         } catch (Exception e) {
             Log.e("Error", e.getMessage());

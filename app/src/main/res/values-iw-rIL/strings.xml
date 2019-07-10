@@ -36,7 +36,7 @@
     <string name="mail">אימייל</string>
     <string name="password">סיסמא</string>
     <string name="enter_mail">example@gmail.com</string>
-    <string name="paas_hint">הכנס כאן סיסמא</string>
+    <string name="pass_hint">הכנס כאן סיסמא</string>
     <string name="sign_up">הרשמה</string>
     <string name="topics">נושאים</string>
     <string name="Email">מייל</string>
@@ -87,4 +87,5 @@
     <string name="online_channel_desc">שחק עכשו ברשת ותהנה מקטגוריות נוספות ושאלות נוספות לשעות של הנאה</string>
     <string name="wlcm_back">ברוכ/ה השב/ה</string>
     <string name="category_channel_desc">השאר מעודכן לקטגוריות חדשות ותהנה ותהנה משעות של הנאה</string>
+    <string name="Login_Successfully">התחברת בהצלחה!</string>
 </resources>

@@ -116,10 +116,11 @@ public class DoneActivity extends AppCompatActivity {
             int totalQuestion = extra.getInt("TOTAL");
             int correctAnswer= extra.getInt("CORRECT");
 
-            txtResultScore.setText(String.format("SCORE : %d", score));
-            getTxtResultQuestion.setText(String.format("PASSED : %d / %d", correctAnswer, totalQuestion));
+            String str = getResources().getString(R.string.score) + " : " + score;
+            txtResultScore.setText(str);
+            str = getResources().getString(R.string.pased) + " : " + correctAnswer + " / " +totalQuestion;
+            getTxtResultQuestion.setText(str);
 
-            String str;
             if(correctAnswer < totalQuestion/2) {
                 str = getResources().getString(R.string.next_time);
                 sound.playFailSound();
@@ -149,7 +150,7 @@ public class DoneActivity extends AppCompatActivity {
 
 
 
-            //Uplaod to DB
+            //Upload to DB
             //QuestionScore(String question_Score, String user, String score,String CategoryName)
             question_score.child(String.format("%s_%s", Common.currentUser.getName(),Common.categoryId))
                     .setValue(new QuestionScore(String.format("%s_%s", Common.currentUser.getName(),Common.categoryId)

@@ -282,7 +282,7 @@
             android:layout_below="@id/header"
             android:gravity="center"
 
-            android:background="@color/white_50precent"
+            android:background="@color/white_50percent"
             android:layout_margin="20dp"
             >
 

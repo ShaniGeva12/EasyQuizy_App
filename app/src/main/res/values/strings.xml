@@ -49,7 +49,7 @@
     <string name="mail">Mail</string>
     <string name="password">Password</string>
     <string name="enter_mail">example@gmail.com</string>
-    <string name="paas_hint">Enter Password Here</string>
+    <string name="pass_hint">Enter Password Here</string>
     <string name="sign_up">Sign Up</string>
     <string name="topics">Topics</string>
     <string name="Email">Email</string>
@@ -111,5 +111,6 @@
     <string name="online_channel_desc">go ahead and play online for more categories and more questions and hours of fun</string>
     <string name="category_channel_desc">stay updated for new categories for more hours of fun</string>
     <string name="Login_Successfully">Login Successfully!</string>
+    <string name="pased">PASSED</string>
 
 </resources>

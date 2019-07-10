@@ -17,11 +17,11 @@ public class QuestionScore {
     public QuestionScore() {
     }
 
-    public QuestionScore(String question_Score, String user, String score,String CategoryName) {
+    public QuestionScore(String question_Score, String user, String score,String categoryName) {
         Question_Score = question_Score;
         User = user;
         Score = score;
-        CategoryName = CategoryName;
+        CategoryName = categoryName;
     }
 
     public String getQuestion_Score() {

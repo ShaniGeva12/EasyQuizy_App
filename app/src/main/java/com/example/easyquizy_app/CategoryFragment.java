@@ -32,17 +32,17 @@ public class CategoryFragment extends Fragment {
     //private RecyclerView.LayoutManager layoutManager;
 
     private static final String TAG = "CategoryFragment";
-    View myFragment;
-    int offline_flag;
+    private View myFragment;
+    private int offline_flag;
 
-    RecyclerView listCategory;
-    RecyclerView.LayoutManager layoutManager;
+    private RecyclerView listCategory;
+    private RecyclerView.LayoutManager layoutManager;
     //FirebaseRecyclerAdapter<Category, CategoryViewHolder> adapter;
 
-    FirebaseDatabase database;
-    DatabaseReference categories;
+    private FirebaseDatabase database;
+    private DatabaseReference categories;
 
-    FirebaseRecyclerAdapter<Category,CategoryViewHolder> adapter;
+    private FirebaseRecyclerAdapter<Category,CategoryViewHolder> adapter;
 
     public static CategoryFragment newInstance(){
         CategoryFragment categoryFragment = new CategoryFragment();
@@ -180,9 +180,6 @@ public class CategoryFragment extends Fragment {
                 protected void onBindViewHolder(CategoryViewHolder holder, int position, final Category model) {
                     // Bind the Category object to the CategoryViewHolder
                     holder.category_name.setText(model.getName());
-
-                    //old usege
-                    //Picasso.with(getActivity()).load(model.getImage()).into(holder.category_image);
 
                     Picasso.get().load(model.getImage())
                             .placeholder(R.drawable.loading_gr_wbg)

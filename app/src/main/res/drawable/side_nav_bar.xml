@@ -14,6 +14,6 @@
         android:angle="135"
         android:centerColor="@color/text_color_secondary"
         android:endColor="@color/colorPrimaryDark"
-        android:startColor="@color/white_50precent"
+        android:startColor="@color/white_50percent"
         android:type="linear" />
 </shape>

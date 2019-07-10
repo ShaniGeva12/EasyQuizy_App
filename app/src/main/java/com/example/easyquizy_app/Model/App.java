@@ -2,11 +2,8 @@ package com.example.easyquizy_app.Model;
 
 
 import android.app.Application;
-import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Intent;
 import android.os.Build;
 
 import com.example.easyquizy_app.R;

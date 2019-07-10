@@ -23,8 +23,8 @@
     <color name="foreground_material_light">#d6d6d6</color>
     <color name="primary_text_material_dark">#ffffff</color>
     <color name="text_color_primary">#ffffff</color>
-    <color name="white_50precent">#80ffffff</color>
-    <color name="black_50precent">#80000000</color>
+    <color name="white_50percent">#80ffffff</color>
+    <color name="black_50percent">#80000000</color>
     <color name="textColorSecondaryInverseNoDisable">#91BEB1</color>
     <color name="fabOffline"> #D81B60 </color>
     <color name="fabOnline">#4CAF50</color>

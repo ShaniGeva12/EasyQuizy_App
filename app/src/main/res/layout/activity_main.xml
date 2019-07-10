@@ -100,7 +100,7 @@
                     android:layout_marginLeft="15dp"
                     />
 
-<!-- android:background="@color/white_50precent" -->
+<!-- android:background="@color/white_50percent" -->
                 <Button
                     android:id="@+id/enter_btn"
                     android:layout_width="wrap_content"

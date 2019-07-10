@@ -55,13 +55,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public MyAdapter(Context current, Category[] myDataset, View myFragment) {
+    public MyAdapter(Context current, Category[] myDataSet, View myFragment) {
         this.context = current;
 
         mDataset_category = new ArrayList<>();
-        for(int i=0;i<myDataset.length;i++)
+        for(int i=0;i<myDataSet.length;i++)
         {
-            mDataset_category.add(myDataset[i]);
+            mDataset_category.add(myDataSet[i]);
         }
         this.myFragment = myFragment;
     }
@@ -80,7 +80,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
-        // - get element from your dataset at this position
+        // - get element from your dataSet at this position
         // - replace the contents of the view with that element
 
 
@@ -129,7 +129,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
+    // Return the size of your dataSet (invoked by the layout manager)
     @Override
     public int getItemCount() {
         return mDataset_category.size();

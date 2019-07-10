@@ -8,7 +8,7 @@
         <item name="colorAccent">@color/colorAccent01</item>
 
         <!-- To change the background of options menu-->
-        <item name="android:itemBackground">@color/white_50precent</item>
+        <item name="android:itemBackground">@color/white_50percent</item>
     </style>
 
     <style name="ImageRatingBar" parent="@android:style/Widget.RatingBar">
@@ -31,7 +31,7 @@
         <item name="android:windowBackground">@color/colorPrimaryDark</item>
 
         <!-- To change the background of options menu-->
-        <item name="android:itemBackground">@color/white_50precent</item>
+        <item name="android:itemBackground">@color/white_50percent</item>
     </style>
 
     <style name="DarkyTheme.NoActionBar">
@@ -39,7 +39,7 @@
         <item name="windowNoTitle">true</item>
 
         <!-- To change the background of options menu-->
-        <item name="android:itemBackground">@color/white_50precent</item>
+        <item name="android:itemBackground">@color/white_50percent</item>
     </style>
 
     <style name="DarkyTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
 
         card_view:cardCornerRadius="4dp"
-        card_view:cardBackgroundColor="@color/white_50precent"
+        card_view:cardBackgroundColor="@color/white_50percent"
 
         card_view:cardMaxElevation="1dp"
         card_view:cardElevation="1dp"

@@ -1,7 +1,6 @@
 package com.example.easyquizy_app;
 
 import android.content.Context;
-import android.os.Message;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -46,13 +45,13 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.MyViewHolder
 
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public TopicAdapter(Context current,Topic[] myDataset) {
+    public TopicAdapter(Context current,Topic[] myDataSet) {
         this.context = current;
 
         mDataset_topics = new ArrayList<>();
-        for(int i=0; i<myDataset.length; i++)
+        for(int i=0; i<myDataSet.length; i++)
         {
-            mDataset_topics.add(myDataset[i]);
+            mDataset_topics.add(myDataSet[i]);
         }
     }
 

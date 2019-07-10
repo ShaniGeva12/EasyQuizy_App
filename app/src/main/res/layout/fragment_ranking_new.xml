@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 
-        android:background="@color/white_50precent"
+        android:background="@color/white_50percent"
         android:gravity="center"
         android:layout_margin="20dp"
         >

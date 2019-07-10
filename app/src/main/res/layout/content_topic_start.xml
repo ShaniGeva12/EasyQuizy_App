@@ -93,7 +93,7 @@
             android:layout_marginEnd="20dp"
             android:layout_marginStart="20dp"
 
-            android:background="@color/white_50precent"
+            android:background="@color/white_50percent"
 
             android:gravity="center"
             >
