@@ -99,6 +99,7 @@ public class PlayingActivity extends AppCompatActivity implements View.OnClickLi
 
         else {
             category = intent.getStringExtra("Topic");
+            categoryName = findViewById(R.id.topic_name_txt);
             categoryName.setText(category);
             //Firebase
             database = FirebaseDatabase.getInstance();

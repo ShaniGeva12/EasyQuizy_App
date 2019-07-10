@@ -116,7 +116,6 @@ public class TopicsSelectImgsActivity extends AppCompatActivity implements Navig
           userEmailTv.setText(userEmail);
         //----------------------------------------------------------------
 
-
     }
 
     public int getOffline_flag() {
