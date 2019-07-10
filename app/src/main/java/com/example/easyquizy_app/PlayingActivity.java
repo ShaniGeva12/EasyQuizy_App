@@ -24,6 +24,7 @@ import com.squareup.picasso.Picasso;
 import java.util.Random;
 
 public class PlayingActivity extends AppCompatActivity implements View.OnClickListener {
+    public static final String EXTRA_OFFLINE_FLAG = "com.example.easyquizy_app.OFFLINE_FLAG";
     private static final String TAG = "PlayingActivity";
 
     final static long INTERVAL = 1000; // 1 sec
@@ -175,40 +176,76 @@ public class PlayingActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onClick(View v) {
         mCountDown.cancel();
-        if(index < totalQuestion) //still have questions in list
-        {
-            Button clickedBtn = (Button)v;
-            Log.d(TAG, "onClick: button " + clickedBtn.getText());
-            Log.d(TAG, "onClick: Correct Answer " + Common.questionList.get(index).getCorrectAnswer());
-            if(clickedBtn.getText().equals(Common.questionList.get(index).getCorrectAnswer()))
+        if(offline_flag==0) {
+            if (index < totalQuestion) //still have questions in list
             {
-                //Choose correct answer
-                score+=10;
-                correctAnswer++;
-                showQuestion(++index);  //next questions
-            }
-            else
-            {
-                if(--lifes <= 0) {
-                    updateLifeUI();
-                    //Choose wrong answer
-                    Log.d(TAG, "onClick: wrong answer. you're out");
-                    Intent intent = new Intent(this, DoneActivity.class);
-                    Bundle dataSend = new Bundle();
-                    dataSend.putInt("SCORE", score);
-                    dataSend.putInt("TOTAL", totalQuestion);
-                    dataSend.putInt("CORRECT", correctAnswer);
-                    intent.putExtras(dataSend);
-                    startActivity(intent);
-                    finish();
-                }
-                else {
-                    updateLifeUI();
-                    showQuestion(++index);  //next questions
-                }
-            }
+                Button clickedBtn = (Button) v;
+                Log.d(TAG, "onClick: button " + clickedBtn.getText());
+                Log.d(TAG, "onClick: Correct Answer " + Common.questionList.get(index).getCorrectAnswer());
 
-            txtScore.setText(String.format("%d", score));
+                if (clickedBtn.getText().equals(Common.questionList.get(index).getCorrectAnswer())) {
+                    //Choose correct answer
+                    score += 10;
+                    correctAnswer++;
+                    showQuestion(++index);  //next questions
+                } else {
+                    if (--lifes <= 0) {
+                        updateLifeUI();
+                        //Choose wrong answer
+                        Log.d(TAG, "onClick: wrong answer. you're out");
+                        Intent intent = new Intent(this, DoneActivity.class);
+                        Bundle dataSend = new Bundle();
+                        dataSend.putInt("SCORE", score);
+                        dataSend.putInt("TOTAL", totalQuestion);
+                        dataSend.putInt("CORRECT", correctAnswer);
+                        intent.putExtras(dataSend);
+                        intent.putExtra(EXTRA_OFFLINE_FLAG, offline_flag);
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        updateLifeUI();
+                        showQuestion(++index);  //next questions
+                    }
+                }
+
+                txtScore.setText(String.format("%d", score));
+            }
+        }
+        else
+        {
+            if (index < totalQuestion) //still have questions in list
+            {
+                Button clickedBtn = (Button) v;
+                Log.d(TAG, "onClick: button " + clickedBtn.getText());
+                Log.d(TAG, "onClick: Correct Answer " + questionsArr[index].getCorrectAnswer());
+
+                if (clickedBtn.getText().equals(questionsArr[index].getCorrectAnswer())) {
+                    //Choose correct answer
+                    score += 10;
+                    correctAnswer++;
+                    showQuestion(++index);  //next questions
+                } else {
+                    if (--lifes <= 0) {
+                        updateLifeUI();
+                        //Choose wrong answer
+                        Log.d(TAG, "onClick: wrong answer. you're out");
+                        Intent intent = new Intent(this, DoneActivity.class);
+                        Bundle dataSend = new Bundle();
+                        dataSend.putInt("SCORE", score);
+                        dataSend.putInt("TOTAL", totalQuestion);
+                        dataSend.putInt("CORRECT", correctAnswer);
+                        intent.putExtras(dataSend);
+                        intent.putExtra(EXTRA_OFFLINE_FLAG, offline_flag);
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        updateLifeUI();
+                        showQuestion(++index);  //next questions
+                    }
+                }
+
+                txtScore.setText(String.format("%d", score));
+            }
         }
         /*else {
             Intent intent = new Intent(this, DoneActivity.class);

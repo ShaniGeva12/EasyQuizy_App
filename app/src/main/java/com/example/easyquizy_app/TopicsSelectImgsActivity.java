@@ -59,9 +59,6 @@ public class TopicsSelectImgsActivity extends AppCompatActivity implements Navig
 
         //------------------------------------------------------
 
-        // Initialize Firebase Auth
-        mAuth = FirebaseAuth.getInstance();
-
         bottomNavigationView = (BottomNavigationView)findViewById(R.id.navigation);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -86,36 +83,42 @@ public class TopicsSelectImgsActivity extends AppCompatActivity implements Navig
         });
         setDefaultFragment();
 
-        //Navigation Drawer
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-        navigationView.setNavigationItemSelectedListener(this);
-        //END Navigation Drawer
+        if(offline_flag==0)
+        {
+            // Initialize Firebase Auth
+            mAuth = FirebaseAuth.getInstance();
 
-        //Header of Navigation Drawer
-        //----------------------------------------------------------------
-        View headerView = navigationView.getHeaderView(0);
+            //Navigation Drawer
+            Toolbar toolbar = findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
+            DrawerLayout drawer = findViewById(R.id.drawer_layout);
+            NavigationView navigationView = findViewById(R.id.nav_view);
+            ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                    this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+            drawer.addDrawerListener(toggle);
+            toggle.syncState();
+            navigationView.setNavigationItemSelectedListener(this);
+            //END Navigation Drawer
 
-        TextView userNameTv = headerView.findViewById(R.id.username_txt);
-        TextView userEmailTv = headerView.findViewById(R.id.mail_txt);
+            //Header of Navigation Drawer
+            //----------------------------------------------------------------
+            View headerView = navigationView.getHeaderView(0);
+
+            TextView userNameTv = headerView.findViewById(R.id.username_txt);
+            TextView userEmailTv = headerView.findViewById(R.id.mail_txt);
 
 
-        //user name
-        String userName = Common.currentUser.getName();
-        userNameTv.setText(userName);
+            //user name
+
+            String userName = Common.currentUser.getName();
+            userNameTv.setText(userName);
 
 
-        //email
-          String userEmail = Common.currentUser.getEmail();
-          userEmailTv.setText(userEmail);
-        //----------------------------------------------------------------
-
+            //email
+            String userEmail = Common.currentUser.getEmail();
+            userEmailTv.setText(userEmail);
+            //----------------------------------------------------------------
+        }
     }
 
     public int getOffline_flag() {

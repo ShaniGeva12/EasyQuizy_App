@@ -2,7 +2,6 @@ package com.example.easyquizy_app;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -11,14 +10,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.easyquizy_app.Common.Common;
-import com.example.easyquizy_app.Model.Question;
 import com.example.easyquizy_app.Model.QuestionScore;
 import com.example.easyquizy_app.Model.SoundPlayer;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class DoneActivity extends AppCompatActivity {
+    public static final String EXTRA_OFFLINE_FLAG = "com.example.easyquizy_app.OFFLINE_FLAG";
 
+    int offline_flag;
     Button btnTryAgain, btnToTopic;
     TextView txtResultScore, getTxtResultQuestion, title_txt;
 
@@ -39,6 +39,9 @@ public class DoneActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_done);
 
+        Intent intent = getIntent();
+        offline_flag = intent.getIntExtra(PlayingActivity.EXTRA_OFFLINE_FLAG , 0);
+
         //Firebase
         database = FirebaseDatabase.getInstance();
         question_score = database.getReference("Question_Score");
@@ -58,6 +61,7 @@ public class DoneActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(DoneActivity.this, PlayingActivity.class);
+                intent.putExtra(EXTRA_OFFLINE_FLAG, offline_flag);
                 startActivity(intent);
                 finish();
             }
@@ -67,6 +71,7 @@ public class DoneActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(DoneActivity.this, TopicsSelectImgsActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra(EXTRA_OFFLINE_FLAG,offline_flag);
                 startActivity(intent);
                 finish();
             }
