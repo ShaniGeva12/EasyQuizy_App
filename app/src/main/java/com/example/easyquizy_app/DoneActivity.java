@@ -2,6 +2,7 @@ package com.example.easyquizy_app;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.easyquizy_app.Common.Common;
+import com.example.easyquizy_app.Model.Question;
 import com.example.easyquizy_app.Model.QuestionScore;
 import com.example.easyquizy_app.Model.SoundPlayer;
 import com.google.firebase.database.DatabaseReference;
@@ -129,6 +131,7 @@ public class DoneActivity extends AppCompatActivity {
 
 
             //Uplaod to DB
+            //QuestionScore(String question_Score, String user, String score,String CategoryName)
             question_score.child(String.format("%s_%s", Common.currentUser.getEmail(),Common.categoryId))
                     .setValue(new QuestionScore(String.format("%s_%s", Common.currentUser.getName(),Common.categoryId)
                             ,Common.currentUser.getName(),String.valueOf(score),topicName));
