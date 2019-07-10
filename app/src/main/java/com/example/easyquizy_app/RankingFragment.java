@@ -37,6 +37,7 @@ public class RankingFragment extends Fragment {
 
     FirebaseDatabase database;
     DatabaseReference categories;
+    DatabaseReference Question_Score;
 
     //int sum=0;
     RecyclerView listCategoryScores;
@@ -55,21 +56,22 @@ public class RankingFragment extends Fragment {
 
         database = FirebaseDatabase.getInstance();
         categories = database.getReference("Category");
+        Question_Score = database.getReference("Question_Score");
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        DoneActivity activity = (DoneActivity) getActivity();
-        String myDataFromActivity = activity.getMyData();
+        /*DoneActivity activity = (DoneActivity) getActivity();
+        String myDataFromActivity = activity.getMyData();*/
 
         myFragment = inflater.inflate(R.layout.fragment_ranking_new,container,false);
         listCategoryScores = (RecyclerView)myFragment.findViewById(R.id.score_recycler_view);
         listCategoryScores.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(container.getContext());
         listCategoryScores.setLayoutManager(layoutManager);
-        loadCategories(myDataFromActivity);
+        //loadCategories(myDataFromActivity);
 
         return myFragment;
     }
