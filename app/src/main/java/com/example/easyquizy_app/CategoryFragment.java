@@ -106,7 +106,9 @@ public class CategoryFragment extends Fragment {
     @Override
     public void onStop() {
         super.onStop();
-        adapter.stopListening();
+        if(offline_flag==0) {
+            adapter.stopListening();
+        }
     }
 
     @Override

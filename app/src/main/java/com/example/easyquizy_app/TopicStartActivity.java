@@ -44,6 +44,9 @@ import java.util.Locale;
 public class TopicStartActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, AdapterView.OnItemSelectedListener {
     public static final String EXTRA_FRAGMENT_FLAG = "com.example.easyquizy_app.FRAGMENT_FLAG";
+    public static final String EXTRA_OFFLINE_FLAG = "com.example.easyquizy_app.OFFLINE_FLAG";
+    public static final String EXTRA_CATEGORY_NAME = "com.example.easyquizy_app.CATEGORY_NAME";
+    private static final String TAG = "TopicStartActivity";
     int frag_flag;
     int offline_flag;
 
@@ -58,6 +61,7 @@ public class TopicStartActivity extends AppCompatActivity
 
     private String msg_rate;
     private RatingBar ratingBar;
+    String category;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +85,12 @@ public class TopicStartActivity extends AppCompatActivity
         //get intents
         Intent intent = getIntent();
         offline_flag = intent.getIntExtra(MyAdapter.EXTRA_OFFLINE_FLAG , 0);
+
+        Log.d(TAG, "---------------------TopicsStartActivity------------------------------------" );
+        Log.d(TAG, " offline_flag = [" + offline_flag + "]");
+        Log.d(TAG, "---------------------------------------------------------" );
+
+        singleBtn = findViewById(R.id.single_player_btn);
 
         if(offline_flag==0)
         {
@@ -115,6 +125,7 @@ public class TopicStartActivity extends AppCompatActivity
                     finish();
                 }
             });
+
 
             //category image displaying
             //New Way
@@ -156,7 +167,45 @@ public class TopicStartActivity extends AppCompatActivity
 
         else
         {
+            //title & description setter START
+            //final String category = intent.getStringExtra("categoryName");
+            //String desc = intentfinal String category.getStringExtra("desc");
+            category = intent.getStringExtra(MyAdapter.EXTRA_CATEGORY_NAME);
 
+            //loadQuestion(Common.categoryId);
+
+            //category image displaying
+            if(category.equals(getResources().getString(R.string.math))) {
+                Picasso.get().load(R.drawable.math_img)
+                        .placeholder(R.drawable.loading_gr_wbg)
+                        .error(R.drawable.error_loading_pic)
+                        .into((ImageView) findViewById(R.id.topic_img));
+            }
+
+            else
+            {
+                Picasso.get().load(R.drawable.countries_img)
+                        .placeholder(R.drawable.loading_gr_wbg)
+                        .error(R.drawable.error_loading_pic)
+                        .into((ImageView) findViewById(R.id.topic_img));
+            }
+
+            final TextView title = findViewById(R.id.topic_name_txt);
+            TextView description = findViewById(R.id.topic_description_txt);
+            title.setText(category);
+            //description.setText(desc);
+
+            singleBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent startGame = new Intent(TopicStartActivity.this, PlayingActivity.class);
+                    //startGame.putExtra("Topic", category);
+                    startGame.putExtra(EXTRA_OFFLINE_FLAG, offline_flag);
+                    startGame.putExtra(EXTRA_CATEGORY_NAME, category);
+                    startActivity(startGame);
+                    finish();
+                }
+            });
         }
     }
 
@@ -216,19 +265,21 @@ public class TopicStartActivity extends AppCompatActivity
     //Navigation Drawer funcs START
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
+        if(offline_flag==0) {
+            DrawerLayout drawer = findViewById(R.id.drawer_layout);
+            if (drawer.isDrawerOpen(GravityCompat.START)) {
+                drawer.closeDrawer(GravityCompat.START);
+            } else {
+                super.onBackPressed();
+            }
         }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.topic_start2, menu);
-        return true;
+            getMenuInflater().inflate(R.menu.topic_start2, menu);
+            return true;
     }
 
     @Override

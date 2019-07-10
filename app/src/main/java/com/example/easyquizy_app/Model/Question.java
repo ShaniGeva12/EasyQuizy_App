@@ -3,6 +3,10 @@ package com.example.easyquizy_app.Model;
 public class Question {
 
     private String Question, AnswerA, AnswerB, AnswerC, AnswerD, CorrectAnswer, CategoryId, IsImageQuestion;
+    private int AnswerAi;
+    private int AnswerBi;
+    private int AnswerCi;
+    private int AnswerDi;
 
     public Question() {
     }
@@ -16,6 +20,14 @@ public class Question {
         CorrectAnswer = correctAnswer;
         this.CategoryId = categoryId;
         this.IsImageQuestion = isImageQuestion;
+    }
+
+    public Question(String question, int answerA, int answerB, int answerC, int answerD, int correctAnswer) {
+        Question = question;
+        AnswerAi = answerA;
+        AnswerBi = answerB;
+        AnswerCi = answerC;
+        AnswerDi = answerD;
     }
 
 
@@ -81,6 +93,38 @@ public class Question {
 
     public void setIsImageQuestion(String isImageQuestion) {
         this.IsImageQuestion = isImageQuestion;
+    }
+
+    public int getAnswerAi() {
+        return AnswerAi;
+    }
+
+    public void setAnswerAi(int answerAi) {
+        AnswerAi = answerAi;
+    }
+
+    public int getAnswerBi() {
+        return AnswerBi;
+    }
+
+    public void setAnswerBi(int answerBi) {
+        AnswerBi = answerBi;
+    }
+
+    public int getAnswerCi() {
+        return AnswerCi;
+    }
+
+    public void setAnswerCi(int answerCi) {
+        AnswerCi = answerCi;
+    }
+
+    public int getAnswerDi() {
+        return AnswerDi;
+    }
+
+    public void setAnswerDi(int answerDi) {
+        AnswerDi = answerDi;
     }
 
 
