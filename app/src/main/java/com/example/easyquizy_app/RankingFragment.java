@@ -59,7 +59,7 @@ public class RankingFragment extends Fragment {
         Question_Score = database.getReference("Question_Score");
     }
 
-    @Nullable
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
