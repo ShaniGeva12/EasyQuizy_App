@@ -3,7 +3,7 @@ package com.example.easyquizy_app.Model;
 public class QuestionScore {
     private String Question_Score;
     private String User;
-    private int Score;
+    private String Score;
     private String CategoryName;
 
     public String getCategoryName() {
@@ -17,7 +17,7 @@ public class QuestionScore {
     public QuestionScore() {
     }
 
-    public QuestionScore(String question_Score, String user, int score,String CategoryName) {
+    public QuestionScore(String question_Score, String user, String score,String CategoryName) {
         Question_Score = question_Score;
         User = user;
         Score = score;
@@ -40,11 +40,11 @@ public class QuestionScore {
         User = user;
     }
 
-    public int getScore() {
+    public String getScore() {
         return Score;
     }
 
-    public void setScore(int score) {
+    public void setScore(String score) {
         Score = score;
     }
 }
