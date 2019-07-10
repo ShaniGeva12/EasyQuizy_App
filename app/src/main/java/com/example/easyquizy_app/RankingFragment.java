@@ -43,7 +43,7 @@ public class RankingFragment extends Fragment {
     RecyclerView listCategoryScores;
     RecyclerView.LayoutManager layoutManager;
 
-    FirebaseRecyclerAdapter<Category, CategoryBoardHolder> adapter;
+    FirebaseRecyclerAdapter<QuestionScore, CategoryBoardHolder> adapter;
 
     public static RankingFragment newInstance(){
         RankingFragment rankingFragment = new RankingFragment();
@@ -71,7 +71,7 @@ public class RankingFragment extends Fragment {
         listCategoryScores.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(container.getContext());
         listCategoryScores.setLayoutManager(layoutManager);
-        //loadCategories(myDataFromActivity);
+        loadCategories();
 
         return myFragment;
     }
@@ -88,14 +88,15 @@ public class RankingFragment extends Fragment {
         adapter.startListening();
     }
 
-    private void loadCategories(final String score) {
+    private void loadCategories() {
 
-        FirebaseRecyclerOptions<Category> options =
-                new FirebaseRecyclerOptions.Builder<Category>()
-                        .setQuery(categories, Category.class)
+        FirebaseRecyclerOptions<QuestionScore> options =
+                new FirebaseRecyclerOptions.Builder<QuestionScore>()
+                        .setQuery(Question_Score, QuestionScore.class)
                         .build();
 
-        adapter = new FirebaseRecyclerAdapter<Category, CategoryBoardHolder>(options) {
+        adapter = new FirebaseRecyclerAdapter<QuestionScore, CategoryBoardHolder>(options) {
+
             @Override
             public CategoryBoardHolder onCreateViewHolder(ViewGroup parent, int viewType) {
                 View view = LayoutInflater.from(parent.getContext())
@@ -105,16 +106,16 @@ public class RankingFragment extends Fragment {
             }
 
             @Override
-            protected void onBindViewHolder(CategoryBoardHolder holder, int position,final Category model) {
+            protected void onBindViewHolder(@NonNull CategoryBoardHolder holder, int position, @NonNull final QuestionScore model) {
                 // Bind the Category object to the CategoryViewHolder
-                holder.topic_txt.setText(model.getName());
-                holder.score_txt.setText(score);
+                holder.topic_txt.setText(model.getCategoryName());
+                holder.score_txt.setText(model.getQuestion_Score());
 
-                holder.setItemClickListener(new ItemClickListener() {
+                /*holder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
-                        Toast.makeText(getActivity(),String.format("%s|%s",adapter.getRef(position).getKey(),model.getName()), Toast.LENGTH_SHORT).show();
-                        Log.d(TAG, "onClick: " + String.format("%s|%s",adapter.getRef(position).getKey(),model.getName()));
+                        Toast.makeText(getActivity(),String.format("%s|%s",adapter.getRef(position).getKey(),model.getCategoryName()), Toast.LENGTH_SHORT).show();
+                        Log.d(TAG, "onClick: " + String.format("%s|%s",adapter.getRef(position).getKey(),model.getCategoryName()));
                         //Intent startGame = new Intent(getActivity(), TopicStartActivity.class);
                         //Common.categoryId = adapter.getRef(position).getKey();
 
@@ -127,7 +128,14 @@ public class RankingFragment extends Fragment {
 
                     }
                 });
-            }
+            }*/
+                holder.setItemClickListener(new ItemClickListener() {
+                    @Override
+                    public void onClick(View view, int position, boolean isLongClick) {
+                        Toast.makeText(getActivity(),String.format("%s|%s",adapter.getRef(position)
+                                .getKey(),model.getCategoryName()), Toast.LENGTH_SHORT).show();
+                    }
+                });
 
         };
 
@@ -135,9 +143,5 @@ public class RankingFragment extends Fragment {
         listCategoryScores.setAdapter(adapter);
 
     }
-
-
-
-
 
 }
