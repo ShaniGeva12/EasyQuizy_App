@@ -20,16 +20,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.easyquizy_app.Common.Common;
 import com.example.easyquizy_app.Model.Question;
+import com.example.easyquizy_app.ViewHolder.MyAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -46,6 +45,7 @@ public class TopicStartActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, AdapterView.OnItemSelectedListener {
     public static final String EXTRA_FRAGMENT_FLAG = "com.example.easyquizy_app.FRAGMENT_FLAG";
     int frag_flag;
+    int offline_flag;
 
     Button singleBtn, randBtn;
     ImageView categoryImage;
@@ -78,57 +78,56 @@ public class TopicStartActivity extends AppCompatActivity
         });
         //----------------------------------------
 
-        //firebase START
-        database = FirebaseDatabase.getInstance();
-        questions = database.getReference("Questions");
-        loadQuestion(Common.categoryId);
-        //firebase END
+        //get intents
+        Intent intent = getIntent();
+        offline_flag = intent.getIntExtra(MyAdapter.EXTRA_OFFLINE_FLAG , 0);
 
-        //categoryImage = findViewById(R.id.topic_img);
+        if(offline_flag==0)
+        {
+            //firebase START
+            database = FirebaseDatabase.getInstance();
+            questions = database.getReference("Questions");
+            loadQuestion(Common.categoryId);
+            //firebase END
 
-        //singleBtn = findViewById(R.id.single_player_btn);
-        randBtn = findViewById(R.id.single_player_btn);
+            //categoryImage = findViewById(R.id.topic_img);
+
+            //singleBtn = findViewById(R.id.single_player_btn);
+            randBtn = findViewById(R.id.single_player_btn);
         /*singleBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 singlePlayerOnClick();
             }
         });*/
-        //title & description setter START
-        Intent intent = getIntent();
-        final String category = intent.getStringExtra("categoryName");
-        String desc = intent.getStringExtra("desc");
 
-        randBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent startGame = new Intent(TopicStartActivity.this, PlayingActivity.class);
-                //startGame.putExtra("gameType", "random");
-                startGame.putExtra("Topic", category);
-                startActivity(startGame);
-                finish();
-            }
-        });
+            //title & description setter START
+            final String category = intent.getStringExtra("categoryName");
+            String desc = intent.getStringExtra("desc");
 
+            randBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent startGame = new Intent(TopicStartActivity.this, PlayingActivity.class);
+                    //startGame.putExtra("gameType", "random");
+                    startGame.putExtra("Topic", category);
+                    startActivity(startGame);
+                    finish();
+                }
+            });
 
+            //category image displaying
+            //New Way
+            Picasso.get().load(getIntent().getExtras().getString("categoryImage"))
+                    .placeholder(R.drawable.loading_gr_wbg)
+                    .error(R.drawable.error_loading_pic)
+                    .into((ImageView) findViewById(R.id.topic_img));
 
-
-        //category image displaying
-        /* //OLD WAY
-        new DownloadImageTask((ImageView) findViewById(R.id.topic_img))
-                .execute(getIntent().getExtras().getString("categoryImage")); */
-
-        //New Way
-        Picasso.get().load(getIntent().getExtras().getString("categoryImage"))
-                .placeholder(R.drawable.loading_gr_wbg)
-                .error(R.drawable.error_loading_pic)
-                .into((ImageView) findViewById(R.id.topic_img));
-
-        final TextView title = findViewById(R.id.topic_name_txt);
-        TextView description = findViewById(R.id.topic_description_txt);
-        title.setText(category);
-        description.setText(desc);
-        //title & description setter END
+            final TextView title = findViewById(R.id.topic_name_txt);
+            TextView description = findViewById(R.id.topic_description_txt);
+            title.setText(category);
+            description.setText(desc);
+            //title & description setter END
 
         /*spinner handler START
         Spinner spinner = (Spinner) findViewById(R.id.players_spinner);
@@ -142,17 +141,23 @@ public class TopicStartActivity extends AppCompatActivity
         spinner.setOnItemSelectedListener(this);
         //spinner handler END*/
 
-        //Navigation Drawer
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-        navigationView.setNavigationItemSelectedListener(this);
-        //END Navigation Drawer
+            //Navigation Drawer
+            Toolbar toolbar = findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
+            DrawerLayout drawer = findViewById(R.id.drawer_layout);
+            NavigationView navigationView = findViewById(R.id.nav_view);
+            ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                    this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+            drawer.addDrawerListener(toggle);
+            toggle.syncState();
+            navigationView.setNavigationItemSelectedListener(this);
+            //END Navigation Drawer
+        }
+
+        else
+        {
+
+        }
     }
 
     private void loadQuestion(String categoryId) {

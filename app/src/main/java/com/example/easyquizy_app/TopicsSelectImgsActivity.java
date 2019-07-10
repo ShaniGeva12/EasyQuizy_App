@@ -13,6 +13,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,6 +25,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class TopicsSelectImgsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    private static final String TAG = "TopicsSelectImgActivity";
     BottomNavigationView bottomNavigationView;
 
     //Firebase
@@ -42,9 +44,20 @@ public class TopicsSelectImgsActivity extends AppCompatActivity implements Navig
         frag_flag = intent.getIntExtra(TopicStartActivity.EXTRA_FRAGMENT_FLAG , 0);
         offline_flag = intent.getIntExtra(GameTypeDialog.EXTRA_OFFLINE_FLAG , 0);
 
-
+        //trying to send data to categories fragment
         Bundle bundle = new Bundle();
-        bundle.putInt("Integer", offline_flag);
+        bundle.putInt("FlagOff", offline_flag);
+
+        // set Fragmentclass Arguments
+        final CategoryFragment cf = new CategoryFragment();
+        cf.setArguments(bundle);
+
+        Log.d(TAG, "---------------------TopicsSelectImgsActivity------------------------------------" );
+        Log.d(TAG, " offline_flag = [" + offline_flag + "]");
+        Log.d(TAG, "---------------------------------------------------------" );
+
+
+        //------------------------------------------------------
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
@@ -57,7 +70,7 @@ public class TopicsSelectImgsActivity extends AppCompatActivity implements Navig
                 Fragment selectedFragment = null;
                 switch (menuItem.getItemId()) {
                     case R.id.actionCategory:
-                        selectedFragment = CategoryFragment.newInstance();
+                        selectedFragment = CategoryFragment.newInstance(cf);
                         break;
                     case R.id.actionRanking:
                         selectedFragment = RankingFragment.newInstance();
@@ -104,6 +117,10 @@ public class TopicsSelectImgsActivity extends AppCompatActivity implements Navig
         //----------------------------------------------------------------
 
 
+    }
+
+    public int getOffline_flag() {
+        return offline_flag;
     }
 
     private void setDefaultFragment() {

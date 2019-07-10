@@ -18,6 +18,7 @@ import com.example.easyquizy_app.Common.Common;
 import com.example.easyquizy_app.Interface.ItemClickListener;
 import com.example.easyquizy_app.Model.Category;
 import com.example.easyquizy_app.ViewHolder.CategoryViewHolder;
+import com.example.easyquizy_app.ViewHolder.MyAdapter;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
@@ -26,10 +27,13 @@ import com.squareup.picasso.Picasso;
 
 public class CategoryFragment extends Fragment {
 
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter mAdapter;
+    //private RecyclerView.LayoutManager layoutManager;
+
     private static final String TAG = "CategoryFragment";
     View myFragment;
     int offline_flag;
-
 
     RecyclerView listCategory;
     RecyclerView.LayoutManager layoutManager;
@@ -45,6 +49,13 @@ public class CategoryFragment extends Fragment {
         return categoryFragment;
     }
 
+    public static CategoryFragment newInstance(CategoryFragment cf){
+        //CategoryFragment categoryFragment = cf;
+        CategoryFragment categoryFragment = new CategoryFragment();
+        categoryFragment.setArguments(cf.getArguments());
+        return categoryFragment;
+    }
+
     LinearLayout prog_ly;
 
     @Override
@@ -53,9 +64,6 @@ public class CategoryFragment extends Fragment {
 
         database = FirebaseDatabase.getInstance();
         categories = database.getReference("Category");
-
-       // offline_flag = getArguments().getInt("Integer");//Integer value
-
     }
 
     @Nullable
@@ -67,8 +75,27 @@ public class CategoryFragment extends Fragment {
         layoutManager = new LinearLayoutManager(container.getContext());
         listCategory.setLayoutManager(layoutManager);
 
+
+        //trying to get data from bundle
+        offline_flag = 0;
+        if (getArguments() != null) {
+            offline_flag = (int)getArguments().get("FlagOff");
+                    //getInt("FlagOff");
+        }
+        Log.d(TAG, "---------------------Fragment method 01------------------------------------" );
+        Log.d(TAG, " offline_flag = [" + offline_flag + "]");
+        Log.d(TAG, "---------------------------------------------------------" );
+
+        TopicsSelectImgsActivity activity = (TopicsSelectImgsActivity) getActivity();
+        offline_flag = activity.getOffline_flag();
+
+        Log.d(TAG, "---------------------Fragment method 02------------------------------------" );
+        Log.d(TAG, " offline_flag = [" + offline_flag + "]");
+        Log.d(TAG, "---------------------------------------------------------" );
+        //method 2 works
+
         prog_ly = myFragment.findViewById(R.id.progressBar_ly);
-        loadCategories();
+        loadCategories(offline_flag);
 
         prog_ly.setVisibility(View.GONE);
 
@@ -85,11 +112,54 @@ public class CategoryFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        adapter.startListening();
+        if(offline_flag==0) {
+            adapter.startListening();
+        }
+        else
+        {
+
+        }
     }
 
-    private void loadCategories() {
+    private void loadCategories(int offline_flag) {
+      if(offline_flag==1)
+      {
+          //Offline mode
+          Category offlineCategories[] = new Category[2];
+          offlineCategories[0] =
+              new Category(
+                      getResources().getString(R.string.math),
+                      getResources().getString(R.string.math)
+              );
 
+          offlineCategories[1] =
+                  new Category(
+                          getResources().getString(R.string.countries),
+                          getResources().getString(R.string.countries)
+                  );
+
+          //----------------------------------------------------------------------------------
+
+
+          listCategory.setHasFixedSize(true);
+          /*
+          recyclerView = (RecyclerView) findViewById(R.id.listCategory);
+          // use this setting to improve performance if you know that changes
+          // in content do not change the layout size of the RecyclerView
+          recyclerView.setHasFixedSize(true);
+          */
+
+          // use a linear layout manager
+          //layoutManager = new LinearLayoutManager(this);
+          listCategory.setLayoutManager(layoutManager);
+
+          // specify an adapter (see also next example)
+         mAdapter = new MyAdapter(this.getContext(), offlineCategories, myFragment);
+          listCategory.setAdapter(mAdapter);
+
+          //----------------------------------------------------------------------------------
+      }
+        else{
             FirebaseRecyclerOptions<Category> options =
                     new FirebaseRecyclerOptions.Builder<Category>()
                             .setQuery(categories, Category.class)
@@ -143,6 +213,7 @@ public class CategoryFragment extends Fragment {
 
             adapter.notifyDataSetChanged();
             listCategory.setAdapter(adapter);
+        }
 
     }
 }

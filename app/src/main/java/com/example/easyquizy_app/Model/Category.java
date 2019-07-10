@@ -7,6 +7,7 @@ public class Category {
     private String Name;
     private String Image;
     private String Description;
+    private android.media.Image Img;
 
     public String getDescription() {
         return Description;
@@ -37,6 +38,17 @@ public class Category {
     public Category(String name, String image,String Description) {
         Name = name;
         Image = image;
+        Description = Description;
+    }
+
+    public Category(String name, android.media.Image Img, String Description) {
+        Name = name;
+        Img = Img;
+        Description = Description;
+    }
+
+    public Category(String name, String Description) {
+        Name = name;
         Description = Description;
     }
 }
