@@ -32,6 +32,8 @@ public class DoneActivity extends AppCompatActivity {
 
     String topicScore= "check passing data";
 
+    String topicName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -115,10 +117,24 @@ public class DoneActivity extends AppCompatActivity {
 //                            Common.currentUser.getName(),
 //                            String.valueOf(score)));
 
+            if(Common.categoryId == "01")
+                topicName = "Math";
+            if(Common.categoryId == "02")
+                topicName = "Harry Potter";
+            if(Common.categoryId == "03")
+                topicName = "Countries";
+            if(Common.categoryId == "04")
+                topicName = "Food";
+            if(Common.categoryId == "05")
+                topicName = "Sport";
+
+
+
             //Uplaod to DB
+
             question_score.child(String.format("%s_%s", Common.currentUser.getEmail(),Common.categoryId))
                     .setValue(new QuestionScore(String.format("%s_%s", Common.currentUser.getName(),Common.categoryId)
-                            ,Common.currentUser.getName(),String.valueOf(score)));
+                            ,Common.currentUser.getName(),String.valueOf(score),topicName));
         }
     }
 

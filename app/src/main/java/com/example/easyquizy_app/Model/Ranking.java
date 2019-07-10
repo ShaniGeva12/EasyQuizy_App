@@ -3,7 +3,7 @@ package com.example.easyquizy_app.Model;
 public class Ranking {
 
     private String userName;
-    private long score;
+    private String score;
 
     public Ranking() { }
 
@@ -15,15 +15,15 @@ public class Ranking {
         this.userName = userName;
     }
 
-    public long getScore() {
+    public String getScore() {
         return score;
     }
 
-    public void setScore(long score) {
+    public void setScore(String score) {
         this.score = score;
     }
 
-    public Ranking(String userName, long score) {
+    public Ranking(String userName, String score) {
         this.userName = userName;
         this.score = score;
     }
