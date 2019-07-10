@@ -217,9 +217,9 @@ public class PlayingActivity extends AppCompatActivity implements View.OnClickLi
             {
                 Button clickedBtn = (Button) v;
                 Log.d(TAG, "onClick: button " + clickedBtn.getText());
-                Log.d(TAG, "onClick: Correct Answer " + questionsArr[index].getCorrectAnswer());
+                Log.d(TAG, "onClick: Correct Answer " + questionsArr[index].getCorrectAnswerIntAns());
 
-                if (clickedBtn.getText().equals(questionsArr[index].getCorrectAnswer())) {
+                if (clickedBtn.getText().equals( questionsArr[index].getCorrectAnswerIntAns()) ) {
                     //Choose correct answer
                     score += 10;
                     correctAnswer++;

@@ -87,4 +87,5 @@
     <string name="online_channel_desc">שחק עכשו ברשת ותהנה מקטגוריות נוספות ושאלות נוספות לשעות של הנאה</string>
     <string name="wlcm_back">ברוכ/ה השב/ה</string>
     <string name="category_channel_desc">השאר מעודכן לקטגוריות חדשות ותהנה ותהנה משעות של הנאה</string>
+    <string name="Login_Successfully">התחברת בהצלחה!</string>
 </resources>
