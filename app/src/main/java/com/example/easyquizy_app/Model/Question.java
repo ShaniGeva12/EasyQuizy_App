@@ -7,6 +7,7 @@ public class Question {
     private int AnswerBi;
     private int AnswerCi;
     private int AnswerDi;
+    int CorrectAnswerInt;
 
     public Question() {
     }
@@ -28,6 +29,7 @@ public class Question {
         AnswerBi = answerB;
         AnswerCi = answerC;
         AnswerDi = answerD;
+        CorrectAnswerInt = correctAnswer;
     }
 
 
@@ -73,6 +75,10 @@ public class Question {
 
     public String getCorrectAnswer() {
         return CorrectAnswer;
+    }
+
+    public int getCorrectAnswerIntAns() {
+        return CorrectAnswerInt;
     }
 
     public void setCorrectAnswer(String correctAnswer) {
