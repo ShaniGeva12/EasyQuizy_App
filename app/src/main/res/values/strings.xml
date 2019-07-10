@@ -108,9 +108,8 @@
     <string name="next_time">next time</string>
     <string name="wlcm_back">Welcome back</string>
     <string name="life">Life</string>
-    <string name="category_channel_desc">stay updated for new categories for more hours of fun</string>
     <string name="online_channel_desc">go ahead and play online for more categories and more questions and hours of fun</string>
-    <string name="Login_Successfully">Login Successfully!</string>
     <string name="category_channel_desc">stay updated for new categories for more hours of fun</string>
+    <string name="Login_Successfully">Login Successfully!</string>
 
 </resources>
