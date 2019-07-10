@@ -212,13 +212,17 @@ public class TopicsSelectImgsActivity extends AppCompatActivity implements Navig
 
 
     private void aboutDialog() {
-        String msg =
+        String msg ="Online EasyQuizy app lets you play your favorites quizes!\n"
+                        +"\n" + "Android 01 Class At HiT Bs.c.\n" +
+                        "Shani Geva, Inbal Schkolnik, Daniel Yadlin\n";
+
+                /*
                 "in this app you can\n" +
                         "search a recipe on app and even online,\n" +
                         "add a recipe to app,\n" +
                         "order a recipe from our chef,\n" +
                         "add ordering to your calendar,\nmake an alarm to remind you\n" +
-                        "and even contact our chef";
+                        "and even contact our chef";*/
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("What can you do here?");
