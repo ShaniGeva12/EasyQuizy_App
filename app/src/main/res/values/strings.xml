@@ -112,5 +112,6 @@
     <string name="category_channel_desc">stay updated for new categories for more hours of fun</string>
     <string name="Login_Successfully">Login Successfully!</string>
     <string name="pased">PASSED</string>
+    <string name="point_earn">You\'ve earned points. Sure you want to leave?</string>
 
 </resources>

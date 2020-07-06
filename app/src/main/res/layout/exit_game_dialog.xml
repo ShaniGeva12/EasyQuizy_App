@@ -48,7 +48,7 @@
                 android:layout_marginEnd="20dp"
                 android:layout_marginStart="20dp"
                 android:gravity="center"
-                android:text="you've earned %d pts. quit the game?"
+                android:text="@string/point_earn"
                 android:textSize="18dp"
                 android:textStyle="bold" />
 
@@ -64,8 +64,8 @@
         android:layout_marginTop="75dp">
 
         <android.support.design.widget.FloatingActionButton
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:src="@android:color/transparent"
             app:backgroundTint="@color/fabOnline" />
 
@@ -90,8 +90,8 @@
         android:layout_marginTop="75dp">
 
         <android.support.design.widget.FloatingActionButton
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:src="@android:color/transparent"
             app:backgroundTint="@color/fabOffline" />
 

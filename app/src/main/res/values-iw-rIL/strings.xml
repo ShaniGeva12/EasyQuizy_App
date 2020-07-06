@@ -88,4 +88,6 @@
     <string name="wlcm_back">ברוכ/ה השב/ה</string>
     <string name="category_channel_desc">השאר מעודכן לקטגוריות חדשות ותהנה ותהנה משעות של הנאה</string>
     <string name="Login_Successfully">התחברת בהצלחה!</string>
+    <string name="point_earn">הרווחת נקודות. בטוח רוצה לצאת?</string>
+    <string name="pased">עבר</string>
 </resources>
